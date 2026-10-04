@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta name="facebook-domain-verification" content="o10tlbirgr0hln072rukph9qv5yfbf" />
-<!-- Meta Pixel Code -->
+  <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -201,14 +201,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       margin: 22px 0 15px 0;
       text-align: center;
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-      cursor: default;
+      cursor: pointer; /* Modificado para que se reconozca como botón clickeable universalmente */
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       position: sticky;
       top: 90px; 
       z-index: 2147483647; 
-    }
-    @media (max-width: 768px) {
-      .eb-section-title { cursor: pointer; }
     }
     .eb-section-title i { font-size: 16px; color: #000; }
 
@@ -492,7 +489,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         </div>
 
         <div class="standalone-right-col">
-          <div class="eb-section-title" onclick="handleEmbedToggle(event)">
+          <!-- Botón unificado con el evento click que dispara el Pixel de Meta y maneja el comportamiento responsive -->
+          <div class="eb-section-title" role="button" tabindex="0" onclick="handleSelectTicketsClick(event)">
             <i class="fa-solid fa-ticket-simple"></i>
             <span class="i18n" data-es="Seleccionar Entradas" data-en="Select Tickets">Seleccionar Entradas</span>
             <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.3s;"></i>
@@ -618,7 +616,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgaNVFLyamS7l4UjKppTCKpSYhW2I8DbeT6hfCx8q2E15tq04q3NdAVTpfI4pgnehutdFHY8awhUhJx62dkw9iPI45n974v9ypiIvUsLg6me9fkfYIWXdiHITwCcFqIwgriSw_LAO9On_7EeCWWl9Z0_Im1Rwnm7GB5clcgjdPAuFGSq4gsa9VpL7IdI1Dh/s1600/Instagram%2011%20BLANK%20CP.jpg',
-        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
+        reviewEs: 'Los himnos de una generación ahora llevados al Piano, in a unique and unrepeatable emotional version.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
         setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
         artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
@@ -866,7 +864,24 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
     }
 
-    function handleEmbedToggle(e) {
+    /* NUEVA FUNCIÓN UNIFICADA: 
+       Dispara el evento de Meta Pixel en versión web y móvil al hacer clic, 
+       y en dispositivos móviles adicionalmente despliega u oculta el widget de Eventbrite. 
+       En computadoras (web) no interfiere con el comportamiento estático original. */
+    function handleSelectTicketsClick(e) {
+      const foundItem = eventosData.find(ev => ev.slug === currentStandaloneSlug);
+      
+      if (foundItem && typeof fbq === 'function') {
+        // Dispara un evento personalizado de Meta Pixel (por ejemplo, Lead o AddToCart) para la analítica del botón
+        fbq('track', 'Lead', {
+          content_ids: [foundItem.ebEventId],
+          content_name: currentLang === 'es' ? foundItem.titleEs : foundItem.titleEn,
+          content_category: foundItem.cityName,
+          action: 'Select Tickets Click'
+        });
+      }
+
+      // Funcionalidad móvil: alterna la visibilidad del widget de Eventbrite
       if (window.innerWidth <= 768) {
         toggleStandaloneEmbed();
       }
