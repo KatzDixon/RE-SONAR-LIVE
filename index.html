@@ -273,14 +273,20 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-details { flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
     .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 6px 0; line-height: 1.2; }
     
-    /* Fecha y hora en una sola línea abajo del título */
-    .standalone-datetime-inline { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
-    .standalone-datetime-inline i { color: var(--accent-gold); }
+    /* Fecha, hora y dirección ordenadas verticalmente */
+    .standalone-datetime-block { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .standalone-datetime-row { display: flex; align-items: center; gap: 12px; }
+    .standalone-datetime-block i { color: var(--accent-gold); }
 
     .standalone-review { font-size: 13px; color: var(--text-bright); line-height: 1.6; margin: 0 0 12px 0; opacity: 0.95; }
     
-    .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; font-style: italic; }
+    .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; font-style: italic; }
     .standalone-setlist-box i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
+
+    /* Bloque del pianista modificado: la palabra PIANISTA sin negritas (font-weight normal) */
+    .standalone-artist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; font-style: normal; }
+    .standalone-artist-box i { color: var(--accent-gold); font-weight: normal; font-style: normal; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .standalone-artist-box span { font-style: italic; color: var(--text-bright); }
 
     /* Sección de Precios */
     .standalone-prices-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--border-glass); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
@@ -290,11 +296,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-prices-grid span strong { color: var(--accent-gold); font-weight: 700; }
     .standalone-prices-combo-sub { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-style: italic; }
     .standalone-prices-combo-sub b { font-weight: 700; color: var(--text-bright); }
-
-    .standalone-info-list { display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--text-bright); }
-    .standalone-info-list i { color: var(--accent-gold); width: 20px; text-align: center; }
-    .standalone-info-list a { color: var(--accent-gold); text-decoration: underline; transition: opacity 0.2s; }
-    .standalone-info-list a:hover { opacity: 0.8; }
 
     .standalone-right-col { display: flex; flex-direction: column; width: 100%; }
 
@@ -487,15 +488,23 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
             <div class="standalone-details">
               <h2 id="stTitle" class="standalone-title">--</h2>
-              <!-- Fecha y hora en una sola línea abajo del título -->
-              <div class="standalone-datetime-inline">
-                <span><i class="fa-solid fa-calendar-days"></i> <span id="stDates">--</span></span>
-                <span>•</span>
-                <span><i class="fa-solid fa-clock"></i> <span id="stTime">--</span></span>
+              <!-- Fecha, hora y dirección ordenadas verticalmente abajo del título -->
+              <div class="standalone-datetime-block">
+                <div class="standalone-datetime-row">
+                  <span><i class="fa-solid fa-calendar-days"></i> <span id="stDates">--</span></span>
+                  <span>•</span>
+                  <span><i class="fa-solid fa-clock"></i> <span id="stTime">--</span></span>
+                </div>
+                <div><i class="fa-solid fa-location-dot"></i> <span id="stVenue">--</span></div>
               </div>
+              
               <p id="stReview" class="standalone-review"></p>
+              
               <div class="standalone-setlist-box">
                 <i>SET LIST:</i> <span id="stSetlist">--</span>
+              </div>
+              <div class="standalone-artist-box">
+                <i>Pianista:</i> <span id="stArtist">--</span>
               </div>
             </div>
           </div>
@@ -506,11 +515,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             <div id="stPricesContent" class="standalone-prices-grid">
               <!-- Se inyecta dinámicamente según sea evento normal o combo -->
             </div>
-          </div>
-
-          <div class="standalone-info-list">
-            <div><i class="fa-solid fa-location-dot"></i> <span id="stVenue">--</span></div>
-            <div><i class="fa-solid fa-user"></i> <span id="stArtist">--</span></div>
           </div>
         </div>
 
@@ -559,10 +563,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
-        addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
+        addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/cun-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002285821793',
         ebEventId: '2002285821793', ebHeight: 680,
         whatsappKey: 'Cancún Michael Jackson en Piano',
@@ -577,10 +581,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
         setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
-        addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
+        addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786313778',
         ebEventId: '2002786313778', ebHeight: 680,
         whatsappKey: 'Cancún Coldplay en Piano',
@@ -595,7 +599,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -613,7 +617,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
         setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -631,7 +635,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -649,7 +653,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, in a unique and unrepeatable emotional version.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
         setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -668,10 +672,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
-        addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
+        addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/cun-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002285821793',
         ebEventId: '2002285821793', ebHeight: 680,
         whatsappKey: 'Cancún Combo Michael Jackson y Coldplay',
@@ -686,7 +690,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -704,7 +708,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
-        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
@@ -832,7 +836,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     function renderEvents() {
       const container = document.getElementById('eventsContainer');
-      // Ocultar los slugs de tipo combo en la lista principal de cartelera
       const filtered = (currentCityFilter === 'all' ? eventosData : eventosData.filter(e => e.cityKey === currentCityFilter))
                         .filter(e => !e.slug.includes('combo'));
 
@@ -932,16 +935,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       
       actualizarBotonWhatsApp(item.whatsappKey);
 
-      // Renderizado condicional de la sección de precios según sea combo o evento normal
       const pricesContainer = document.getElementById('stPricesContent');
       if (item.isCombo) {
         pricesContainer.innerHTML = `
           <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
-          <span class="standalone-prices-combo-sub">*busca el tipo de boleto marcado como 'COMBO', en la seccion de <b>Selección de Entradas</b></span>
+          <span class="standalone-prices-combo-sub">*busca el tipo de boleto marcado como <b>'COMBO'</b>, en la seccion <b>Seleccionar de Entradas</b></span>
         `;
       } else {
         if (item.cityKey === 'cdmx') {
-          // Precios CDMX sin boleto preferente
           pricesContainer.innerHTML = `
             <span>Preventa: <strong>$275</strong></span> • 
             <span>General: <strong>$320</strong></span> • 
@@ -949,7 +950,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
           `;
         } else {
-          // Precios Cancún con boleto preferente incluido
           pricesContainer.innerHTML = `
             <span>Preventa: <strong>$275</strong></span> • 
             <span>General: <strong>$320</strong></span> • 
