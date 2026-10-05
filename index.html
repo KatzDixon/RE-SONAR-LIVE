@@ -25,9 +25,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   <meta name="description" content="Experiencias Musicales"/>
   <title>RE:SONAR LIVE — Experiencias Musicales</title>
   
-  <!-- Favicon e Iconos de la Marca -->
-  <link rel="icon" type="image/png" sizes="32x32" href="https://github.com/KatzDixon/RE-SONAR-LIVE/blob/main/Favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://github.com/KatzDixon/RE-SONAR-LIVE/blob/main/Favicon.png">
+  <!-- Favicon corregido a formato Raw para carga rápida y visualización garantizada -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/Favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/Favicon.png">
 
   <!-- Preconnect a dominios críticos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -201,7 +201,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       margin: 22px 0 15px 0;
       text-align: center;
       box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-      cursor: pointer; /* Modificado para que se reconozca como botón clickeable universalmente */
+      cursor: pointer;
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       position: sticky;
       top: 90px; 
@@ -271,11 +271,23 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); } 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); } }
 
     .standalone-details { flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
-    .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 8px 0; line-height: 1.2; }
+    .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 6px 0; line-height: 1.2; }
+    
+    /* NUEVO: Fecha y hora en una sola línea abajo del título */
+    .standalone-datetime-inline { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .standalone-datetime-inline i { color: var(--accent-gold); }
+
     .standalone-review { font-size: 13px; color: var(--text-bright); line-height: 1.6; margin: 0 0 12px 0; opacity: 0.95; }
     
     .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; font-style: italic; }
     .standalone-setlist-box i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
+
+    /* NUEVO: Sección de Precios */
+    .standalone-prices-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--border-glass); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
+    .standalone-prices-title { font-size: 11px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
+    .standalone-prices-grid { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; color: var(--text-bright); }
+    .standalone-prices-grid span { font-weight: 600; }
+    .standalone-prices-grid span strong { color: var(--accent-gold); font-weight: 700; }
 
     .standalone-info-list { display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--text-bright); }
     .standalone-info-list i { color: var(--accent-gold); width: 20px; text-align: center; }
@@ -473,6 +485,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
             <div class="standalone-details">
               <h2 id="stTitle" class="standalone-title">--</h2>
+              <!-- Fecha y hora en una sola línea abajo del título -->
+              <div class="standalone-datetime-inline">
+                <span><i class="fa-solid fa-calendar-days"></i> <span id="stDates">--</span></span>
+                <span>•</span>
+                <span><i class="fa-solid fa-clock"></i> <span id="stTime">--</span></span>
+              </div>
               <p id="stReview" class="standalone-review"></p>
               <div class="standalone-setlist-box">
                 <i>SET LIST:</i> <span id="stSetlist">--</span>
@@ -480,16 +498,25 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
+          <!-- Línea con los precios solicitados -->
+          <div class="standalone-prices-box">
+            <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de Boletos</div>
+            <div class="standalone-prices-grid">
+              <span>Preventa: <strong>$275</strong></span> • 
+              <span>General: <strong>$320</strong></span> • 
+              <span>Preferente: <strong>$420</strong></span> • 
+              <span>VIP: <strong>$500</strong></span> • 
+              <span>Combo MJ + Coldplay: <strong>$550</strong></span>
+            </div>
+          </div>
+
           <div class="standalone-info-list">
-            <div><i class="fa-solid fa-calendar-days"></i> <strong id="stDates">--</strong></div>
-            <div><i class="fa-solid fa-clock"></i> <span id="stTime">--</span></div>
             <div><i class="fa-solid fa-location-dot"></i> <span id="stVenue">--</span></div>
             <div><i class="fa-solid fa-user"></i> <span id="stArtist">--</span></div>
           </div>
         </div>
 
         <div class="standalone-right-col">
-          <!-- Botón unificado con el evento click que dispara el Pixel de Meta y maneja el comportamiento responsive -->
           <div class="eb-section-title" role="button" tabindex="0" onclick="handleSelectTicketsClick(event)">
             <i class="fa-solid fa-ticket-simple"></i>
             <span class="i18n" data-es="Seleccionar Entradas" data-en="Select Tickets">Seleccionar Entradas</span>
@@ -634,7 +661,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     let currentLang = 'es';
     let currentStandaloneSlug = null;
 
-    // --- FUNCIÓN UNIVERSAL DE COMPARTIR ---
     function triggerShare(shareData) {
       if (navigator.share) {
         navigator.share(shareData).catch((err) => console.log('Error al compartir:', err));
@@ -864,15 +890,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
     }
 
-    /* NUEVA FUNCIÓN UNIFICADA: 
-       Dispara el evento de Meta Pixel en versión web y móvil al hacer clic, 
-       y en dispositivos móviles adicionalmente despliega u oculta el widget de Eventbrite. 
-       En computadoras (web) no interfiere con el comportamiento estático original. */
     function handleSelectTicketsClick(e) {
       const foundItem = eventosData.find(ev => ev.slug === currentStandaloneSlug);
       
       if (foundItem && typeof fbq === 'function') {
-        // Dispara un evento personalizado de Meta Pixel (por ejemplo, Lead o AddToCart) para la analítica del botón
         fbq('track', 'Lead', {
           content_ids: [foundItem.ebEventId],
           content_name: currentLang === 'es' ? foundItem.titleEs : foundItem.titleEn,
@@ -881,7 +902,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         });
       }
 
-      // Funcionalidad móvil: alterna la visibilidad del widget de Eventbrite
       if (window.innerWidth <= 768) {
         toggleStandaloneEmbed();
       }
