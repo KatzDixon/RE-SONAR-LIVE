@@ -278,6 +278,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-datetime-row { display: flex; align-items: center; gap: 12px; }
     .standalone-datetime-block i { color: var(--accent-gold); }
 
+    /* Modificado: enlace de la dirección sin mayúsculas ni negritas (font-weight normal, text-transform none) */
+    .standalone-datetime-block a { text-transform: none; font-weight: normal; color: var(--text-bright); text-decoration: underline; }
+    .standalone-datetime-block a:hover { color: var(--accent-gold); }
+
     .standalone-review { font-size: 13px; color: var(--text-bright); line-height: 1.6; margin: 0 0 12px 0; opacity: 0.95; }
     
     .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; font-style: italic; }
@@ -939,7 +943,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       if (item.isCombo) {
         pricesContainer.innerHTML = `
           <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
-          <span class="standalone-prices-combo-sub">*busca el tipo de boleto marcado como <b>'COMBO'</b>, en la seccion <b>Seleccionar de Entradas</b></span>
+          <span class="standalone-prices-combo-sub">*busca el tipo de boleto marcado como 'COMBO', en la seccion de <b>Selección de Entradas</b></span>
         `;
       } else {
         if (item.cityKey === 'cdmx') {
