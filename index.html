@@ -273,7 +273,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-details { flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
     .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 6px 0; line-height: 1.2; }
     
-    /* NUEVO: Fecha y hora en una sola línea abajo del título */
+    /* Fecha y hora en una sola línea abajo del título */
     .standalone-datetime-inline { display: flex; align-items: center; gap: 12px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
     .standalone-datetime-inline i { color: var(--accent-gold); }
 
@@ -282,12 +282,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; font-style: italic; }
     .standalone-setlist-box i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
 
-    /* NUEVO: Sección de Precios */
+    /* Sección de Precios */
     .standalone-prices-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--border-glass); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
     .standalone-prices-title { font-size: 11px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
     .standalone-prices-grid { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; color: var(--text-bright); }
     .standalone-prices-grid span { font-weight: 600; }
     .standalone-prices-grid span strong { color: var(--accent-gold); font-weight: 700; }
+    .standalone-prices-combo-sub { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-style: italic; }
+    .standalone-prices-combo-sub b { font-weight: 700; color: var(--text-bright); }
 
     .standalone-info-list { display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; color: var(--text-bright); }
     .standalone-info-list i { color: var(--accent-gold); width: 20px; text-align: center; }
@@ -498,15 +500,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <!-- Línea con los precios solicitados -->
+          <!-- Sección dinámica de Precios -->
           <div class="standalone-prices-box">
             <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de Boletos</div>
-            <div class="standalone-prices-grid">
-              <span>Preventa: <strong>$275</strong></span> • 
-              <span>General: <strong>$320</strong></span> • 
-              <span>Preferente: <strong>$420</strong></span> • 
-              <span>VIP: <strong>$500</strong></span> • 
-              <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
+            <div id="stPricesContent" class="standalone-prices-grid">
+              <!-- Se inyecta dinámicamente según sea evento normal o combo -->
             </div>
           </div>
 
@@ -567,7 +565,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/cun-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002285821793',
         ebEventId: '2002285821793', ebHeight: 680,
-        whatsappKey: 'Cancún Michael Jackson en Piano'
+        whatsappKey: 'Cancún Michael Jackson en Piano',
+        isCombo: false
       },
       {
         slug: 'cancun-coldplay',
@@ -584,7 +583,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786313778',
         ebEventId: '2002786313778', ebHeight: 680,
-        whatsappKey: 'Cancún Coldplay en Piano'
+        whatsappKey: 'Cancún Coldplay en Piano',
+        isCombo: false
       },
       {
         slug: 'cdmx-michaeljackson-8',
@@ -601,7 +601,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/cdmx-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002243538322',
         ebEventId: '2002243538322', ebHeight: 680,
-        whatsappKey: 'CDMX 8 de Diciembre Michael Jackson en Piano'
+        whatsappKey: 'CDMX 8 de Diciembre Michael Jackson en Piano',
+        isCombo: false
       },
       {
         slug: 'cdmx-coldplay-8',
@@ -618,7 +619,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786319796',
         ebEventId: '2002786319796', ebHeight: 680,
-        whatsappKey: 'CDMX 8 de Diciembre Coldplay en Piano'
+        whatsappKey: 'CDMX 8 de Diciembre Coldplay en Piano',
+        isCombo: false
       },
        {
         slug: 'cdmx-michaeljackson-9',
@@ -635,7 +637,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/cdmx-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002243538322',
         ebEventId: '2002243538322', ebHeight: 680,
-        whatsappKey: 'CDMX 9 de Diciembre Michael Jackson en Piano'
+        whatsappKey: 'CDMX 9 de Diciembre Michael Jackson en Piano',
+        isCombo: false
       },
       {
         slug: 'cdmx-coldplay-9',
@@ -652,7 +655,63 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786319796',
         ebEventId: '2002786319796', ebHeight: 680,
-        whatsappKey: 'CDMX 9 de Diciembre Coldplay en Piano'
+        whatsappKey: 'CDMX 9 de Diciembre Coldplay en Piano',
+        isCombo: false
+      },
+      /* MODALES COMBO REQUERIDOS (Solo accesibles mediante etiqueta/hash) */
+      {
+        slug: 'cancun-combo',
+        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04', dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
+        datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
+        titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
+        image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizmCSLfTWVWRyJ1hZMPtAB6s9dmkADxVIW5JjVD-sC3k_yfOQoSOdqYpQXeC10es-55e1SKyWQHhLn3Vbf2dibVHqdzZJmqFzW9uK4X8ek91fMuQVdawiVBOx1Frbosoq7fa_fQ-eVkeSBOi37oOizF1sfRKX9mpHE3dLNeULbTUGjnh00toZ-0wJmStxq/s1600/Instagram%2011%20BLANK%20MJ.jpg',
+        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
+        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
+        mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
+        addressText: 'Casa de la Cultura de Cancún • Av Yaxchilán 21-21, 77505 Cancún, Q.R.',
+        eventbriteUrl: 'https://www.eventbrite.com.mx/e/cun-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002285821793',
+        ebEventId: '2002285821793', ebHeight: 680,
+        whatsappKey: 'Cancún Combo Michael Jackson y Coldplay',
+        isCombo: true
+      },
+      {
+        slug: 'cdmx-combo-8',
+        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08', dateEs: '8 Dic', dateEn: 'Dec 8', time: '19:30 hrs',
+        datesEs: '8 de Diciembre, 2026', datesEn: 'December 8, 2026',
+        titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
+        image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizmCSLfTWVWRyJ1hZMPtAB6s9dmkADxVIW5JjVD-sC3k_yfOQoSOdqYpQXeC10es-55e1SKyWQHhLn3Vbf2dibVHqdzZJmqFzW9uK4X8ek91fMuQVdawiVBOx1Frbosoq7fa_fQ-eVkeSBOi37oOizF1sfRKX9mpHE3dLNeULbTUGjnh00toZ-0wJmStxq/s1600/Instagram%2011%20BLANK%20MJ.jpg',
+        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
+        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
+        mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
+        addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
+        eventbriteUrl: 'https://www.eventbrite.com.mx/e/cdmx-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002243538322',
+        ebEventId: '2002243538322', ebHeight: 680,
+        whatsappKey: 'CDMX 8 de Diciembre Combo Michael Jackson',
+        isCombo: true
+      },
+      {
+        slug: 'cdmx-combo-9',
+        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-09', dateEs: '9 Dic', dateEn: 'Dec 9', time: '19:30 hrs',
+        datesEs: '9 de Diciembre, 2026', datesEn: 'December 9, 2026',
+        titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
+        image: 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEizmCSLfTWVWRyJ1hZMPtAB6s9dmkADxVIW5JjVD-sC3k_yfOQoSOdqYpQXeC10es-55e1SKyWQHhLn3Vbf2dibVHqdzZJmqFzW9uK4X8ek91fMuQVdawiVBOx1Frbosoq7fa_fQ-eVkeSBOi37oOizF1sfRKX9mpHE3dLNeULbTUGjnh00toZ-0wJmStxq/s1600/Instagram%2011%20BLANK%20MJ.jpg',
+        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
+        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        artist: 'Pianista: Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
+        mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
+        addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
+        eventbriteUrl: 'https://www.eventbrite.com.mx/e/cdmx-homenajes-a-michael-jackson-coldplay-en-piano-tickets-2002243538322',
+        ebEventId: '2002243538322', ebHeight: 680,
+        whatsappKey: 'CDMX 9 de Diciembre Combo Michael Jackson',
+        isCombo: true
       }
     ];
 
@@ -773,7 +832,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     function renderEvents() {
       const container = document.getElementById('eventsContainer');
-      const filtered = currentCityFilter === 'all' ? eventosData : eventosData.filter(e => e.cityKey === currentCityFilter);
+      // Ocultar los slugs de tipo combo en la lista principal de cartelera
+      const filtered = (currentCityFilter === 'all' ? eventosData : eventosData.filter(e => e.cityKey === currentCityFilter))
+                        .filter(e => !e.slug.includes('combo'));
 
       if(filtered.length === 0) {
         container.innerHTML = `
@@ -870,6 +931,34 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       document.getElementById('stArtist').innerText = item.artist;
       
       actualizarBotonWhatsApp(item.whatsappKey);
+
+      // Renderizado condicional de la sección de precios según sea combo o evento normal
+      const pricesContainer = document.getElementById('stPricesContent');
+      if (item.isCombo) {
+        pricesContainer.innerHTML = `
+          <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
+          <span class="standalone-prices-combo-sub">*busca el tipo de boleto marcado como 'COMBO', en la seccion de <b>Selección de Entradas</b></span>
+        `;
+      } else {
+        if (item.cityKey === 'cdmx') {
+          // Precios CDMX sin boleto preferente
+          pricesContainer.innerHTML = `
+            <span>Preventa: <strong>$275</strong></span> • 
+            <span>General: <strong>$320</strong></span> • 
+            <span>VIP: <strong>$500</strong></span> • 
+            <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
+          `;
+        } else {
+          // Precios Cancún con boleto preferente incluido
+          pricesContainer.innerHTML = `
+            <span>Preventa: <strong>$275</strong></span> • 
+            <span>General: <strong>$320</strong></span> • 
+            <span>Preferente: <strong>$420</strong></span> • 
+            <span>VIP: <strong>$500</strong></span> • 
+            <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
+          `;
+        }
+      }
 
       const chevron = document.getElementById('stEmbedChevron');
       injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight);
@@ -1010,7 +1099,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     }
 
     function injectSEO() {
-      const schemaEvents = eventosData.map(ev => ({
+      const schemaEvents = eventosData.filter(e => !e.slug.includes('combo')).map(ev => ({
         "@context": "https://schema.org",
         "@type": "MusicEvent",
         "name": currentLang === 'es' ? ev.titleEs : ev.titleEn,
