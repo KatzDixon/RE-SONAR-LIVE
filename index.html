@@ -25,9 +25,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   <meta name="description" content="Experiencias Musicales"/>
   <title>RE:SONAR LIVE — Experiencias Musicales</title>
   
-  <!-- Favicon corregido a formato Raw para carga rápida y visualización garantizada -->
-  <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/Favicon.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/Favicon.png">
+  <!-- Favicon actualizado -->
+  <link rel="icon" type="image/png" sizes="32x32" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Favicon.png">
 
   <!-- Preconnect a dominios críticos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,7 +44,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-  <!-- Eventbrite Widget con carga diferida -->
+  <!-- Eventbrite Widget -->
   <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" defer></script>
 
   <style>
@@ -273,12 +273,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-details { flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
     .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 6px 0; line-height: 1.2; }
     
-    /* Fecha, hora y dirección ordenadas verticalmente */
     .standalone-datetime-block { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
     .standalone-datetime-row { display: flex; align-items: center; gap: 12px; }
     .standalone-datetime-block i { color: var(--accent-gold); }
 
-    /* Modificado: enlace de la dirección sin mayúsculas ni negritas (font-weight normal, text-transform none) */
     .standalone-datetime-block a { text-transform: none; font-weight: normal; color: var(--text-bright); text-decoration: underline; }
     .standalone-datetime-block a:hover { color: var(--accent-gold); }
 
@@ -287,12 +285,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-setlist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 6px; font-style: italic; }
     .standalone-setlist-box i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
 
-    /* Bloque del pianista modificado: la palabra PIANISTA sin negritas (font-weight normal) */
     .standalone-artist-box { font-size: 12.5px; color: var(--text-muted); margin-bottom: 15px; font-style: normal; }
     .standalone-artist-box i { color: var(--accent-gold); font-weight: normal; font-style: normal; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .standalone-artist-box span { font-style: italic; color: var(--text-bright); }
 
-    /* Sección de Precios */
+    /* Sección de Precios y Mapa */
     .standalone-prices-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--border-glass); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
     .standalone-prices-title { font-size: 11px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
     .standalone-prices-grid { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; color: var(--text-bright); }
@@ -300,6 +297,13 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-prices-grid span strong { color: var(--accent-gold); font-weight: 700; }
     .standalone-prices-combo-sub { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-style: italic; }
     .standalone-prices-combo-sub b { font-weight: 700; color: var(--text-bright); }
+
+    /* Estilos para el mapa y la info adicional dentro del recuadro de precios */
+    .map-container-modal { width: 100%; margin-top: 12px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-glass); }
+    .map-container-modal img { width: 100%; height: auto; display: block; }
+    
+    .standalone-info-adicional { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; font-style: italic; }
+    .standalone-info-adicional i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
 
     .standalone-right-col { display: flex; flex-direction: column; width: 100%; }
 
@@ -492,7 +496,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
             <div class="standalone-details">
               <h2 id="stTitle" class="standalone-title">--</h2>
-              <!-- Fecha, hora y dirección ordenadas verticalmente abajo del título -->
               <div class="standalone-datetime-block">
                 <div class="standalone-datetime-row">
                   <span><i class="fa-solid fa-calendar-days"></i> <span id="stDates">--</span></span>
@@ -513,11 +516,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <!-- Sección dinámica de Precios -->
+          <!-- Sección dinámica de Precios con Mapa e Info Adicional -->
           <div class="standalone-prices-box">
-            <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de Boletos</div>
+            <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de boletos y zonas</div>
             <div id="stPricesContent" class="standalone-prices-grid">
-              <!-- Se inyecta dinámicamente según sea evento normal o combo -->
+              <!-- Se inyecta dinámicamente -->
+            </div>
+            <div id="stMapContainer">
+              <!-- El mapa y la info adicional se inyectan dinámicamente aquí -->
             </div>
           </div>
         </div>
@@ -548,7 +554,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   <!-- Toast para copiar enlace -->
   <div id="copyToast" class="copy-toast">
     <i class="fa-solid fa-check"></i>
-    <span class="i18n" data-es="¡Enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
+    <span class="i18n" data-es="¡En enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
   </div>
 
   <footer>
@@ -666,7 +672,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         whatsappKey: 'CDMX 9 de Diciembre Coldplay en Piano',
         isCombo: false
       },
-      /* MODALES COMBO REQUERIDOS (Solo accesibles mediante etiqueta/hash) */
       {
         slug: 'cancun-combo',
         cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04', dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
@@ -694,7 +699,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         reviewEs: 'Misma noche, mismo lugar. Disfruta de 2 tributos: Michael Jackson (19:30h) y Coldplay (21:30h), reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales. -1 hora de intermedio entre shows-',
         reviewEn: 'Same night, same place. Enjoy two tributes—to Jackson (19:30h) and Coldplay (21:30h)—reimagined for the piano: a unique and powerful performance featuring instrumental arrangements. -1 hour break between shows-',
         setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
@@ -945,6 +949,32 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
           `;
         }
+      }
+
+      // Inserción del mapa y la línea provisional "INFO ADICIONAL" dentro del recuadro de precios
+      const mapContainer = document.getElementById('stMapContainer');
+      let mapUrl = '';
+      if (item.cityKey === 'cancun') {
+        mapUrl = 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CUN-CC-MAPA.jpg';
+      } else if (item.cityKey === 'cdmx') {
+        mapUrl = 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CDMX-FL-MAPA.jpg';
+      }
+
+      if (mapUrl) {
+        mapContainer.innerHTML = `
+          <div class="map-container-modal">
+            <img src="${mapUrl}" alt="Mapa de Zonas" loading="lazy" decoding="async"/>
+          </div>
+          <div class="standalone-info-adicional">
+            <span>*los asientos se asignan por orden de llegada dentro de la zona elegida.</span>
+          </div>
+        `;
+      } else {
+        mapContainer.innerHTML = `
+          <div class="standalone-info-adicional">
+            <span>*los asientos se asignan por orden de llegada dentro de la zona elegida. Se asignarán mesas compartidas en grupos menores a 4 personas.</span>
+          </div>
+        `;
       }
 
       const chevron = document.getElementById('stEmbedChevron');
