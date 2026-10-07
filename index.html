@@ -44,7 +44,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
-  <!-- Eventbrite Widget -->
+  <!-- Eventbrite Widget con carga diferida -->
   <script src="https://www.eventbrite.com/static/widgets/eb_widgets.js" defer></script>
 
   <style>
@@ -273,6 +273,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-details { flex: 1; min-width: 250px; display: flex; flex-direction: column; justify-content: center; }
     .standalone-title { font-family: 'Cinzel', serif; font-size: 26px; color: var(--accent-gold); margin: 0 0 6px 0; line-height: 1.2; }
     
+    /* Fecha, hora y dirección ordenadas verticalmente */
     .standalone-datetime-block { display: flex; flex-direction: column; gap: 4px; font-size: 13px; font-weight: 700; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
     .standalone-datetime-row { display: flex; align-items: center; gap: 12px; }
     .standalone-datetime-block i { color: var(--accent-gold); }
@@ -289,7 +290,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-artist-box i { color: var(--accent-gold); font-weight: normal; font-style: normal; margin-right: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
     .standalone-artist-box span { font-style: italic; color: var(--text-bright); }
 
-    /* Sección de Precios y Mapa */
+    /* Sección de Precios y Zonas */
     .standalone-prices-box { background: rgba(212, 175, 55, 0.08); border: 1px dashed var(--border-glass); padding: 12px 15px; border-radius: 12px; margin-bottom: 15px; }
     .standalone-prices-title { font-size: 11px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; display: flex; align-items: center; gap: 6px; }
     .standalone-prices-grid { display: flex; flex-wrap: wrap; gap: 8px 14px; font-size: 11.5px; color: var(--text-bright); }
@@ -298,12 +299,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-prices-combo-sub { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-style: italic; }
     .standalone-prices-combo-sub b { font-weight: 700; color: var(--text-bright); }
 
-    /* Estilos para el mapa y la info adicional dentro del recuadro de precios */
-    .map-container-modal { width: 100%; margin-top: 12px; border-radius: 8px; overflow: hidden; border: 1px solid var(--border-glass); }
-    .map-container-modal img { width: 100%; height: auto; display: block; }
-    
-    .standalone-info-adicional { font-size: 12.5px; color: var(--text-muted); margin-top: 12px; font-style: italic; }
-    .standalone-info-adicional i { color: var(--accent-gold); font-style: normal; margin-right: 4px; }
+    /* Estilos para el mapa y notas dentro del cuadro de precios */
+    .modal-map-img { width: 100%; height: auto; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-subtle); display: block; }
+    .modal-map-note { font-size: 11.5px; color: var(--text-muted); font-style: italic; margin-top: 8px; line-height: 1.4; display: block; }
 
     .standalone-right-col { display: flex; flex-direction: column; width: 100%; }
 
@@ -516,14 +514,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <!-- Sección dinámica de Precios con Mapa e Info Adicional -->
+          <!-- Sección dinámica de Precios y Zonas con Mapa y Nota integrados -->
           <div class="standalone-prices-box">
             <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de boletos y zonas</div>
             <div id="stPricesContent" class="standalone-prices-grid">
               <!-- Se inyecta dinámicamente -->
-            </div>
-            <div id="stMapContainer">
-              <!-- El mapa y la info adicional se inyectan dinámicamente aquí -->
             </div>
           </div>
         </div>
@@ -551,10 +546,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     <a id="whatsappBtnLink" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-float" aria-label="Comprar por WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
   </div>
 
-  <!-- Toast para copiar enlace -->
   <div id="copyToast" class="copy-toast">
     <i class="fa-solid fa-check"></i>
-    <span class="i18n" data-es="¡En enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
+    <span class="i18n" data-es="¡Enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
   </div>
 
   <footer>
@@ -927,21 +921,23 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       actualizarBotonWhatsApp(item.whatsappKey);
 
       const pricesContainer = document.getElementById('stPricesContent');
+      let pricesHtml = '';
+      
       if (item.isCombo) {
-        pricesContainer.innerHTML = `
-            <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
+        pricesHtml = `
+          <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
           <span class="standalone-prices-combo-sub"><a href="https://resonarlive.com/">*Da CLIC AQUI si deseas comprar boletos para UNA SOLA función.</a></span>
         `;
       } else {
         if (item.cityKey === 'cdmx') {
-          pricesContainer.innerHTML = `
+          pricesHtml = `
             <span>Preventa: <strong>$275</strong></span> • 
             <span>General: <strong>$320</strong></span> • 
             <span>VIP: <strong>$500</strong></span> • 
             <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
           `;
         } else {
-          pricesContainer.innerHTML = `
+          pricesHtml = `
             <span>Preventa: <strong>$275</strong></span> • 
             <span>General: <strong>$320</strong></span> • 
             <span>Preferente: <strong>$420</strong></span> • 
@@ -951,31 +947,20 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         }
       }
 
-      // Inserción del mapa y la línea provisional "INFO ADICIONAL" dentro del recuadro de precios
-      const mapContainer = document.getElementById('stMapContainer');
-      let mapUrl = '';
+      // Inserción de mapas y notas al pie dentro del cuadro de precios según la ciudad
       if (item.cityKey === 'cancun') {
-        mapUrl = 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CUN-CC-MAPA.jpg';
+        pricesHtml += `
+          <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CUN-CC-MAPA.jpg" alt="Mapa de Zonas Cancún" class="modal-map-img" loading="lazy" />
+          <span class="modal-map-note">*los asientos se asignan por orden de llegada dentro de la zona elegida.</span>
+        `;
       } else if (item.cityKey === 'cdmx') {
-        mapUrl = 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CDMX-FL-MAPA.jpg';
+        pricesHtml += `
+          <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CDMX-FL-MAPA.jpg" alt="Mapa de Zonas CDMX" class="modal-map-img" loading="lazy" />
+          <span class="modal-map-note">*los asientos se asignan por orden de llegada dentro de la zona elegida. Se te asignará una mesa compartida si tu grupo es de menos de 4 personas</span>
+        `;
       }
 
-      if (mapUrl) {
-        mapContainer.innerHTML = `
-          <div class="map-container-modal">
-            <img src="${mapUrl}" alt="Mapa de Zonas" loading="lazy" decoding="async"/>
-          </div>
-          <div class="standalone-info-adicional">
-            <span>*los asientos se asignan por orden de llegada dentro de la zona elegida.</span>
-          </div>
-        `;
-      } else {
-        mapContainer.innerHTML = `
-          <div class="standalone-info-adicional">
-            <span>*los asientos se asignan por orden de llegada dentro de la zona elegida. Se asignarán mesas compartidas en grupos menores a 4 personas.</span>
-          </div>
-        `;
-      }
+      pricesContainer.innerHTML = pricesHtml;
 
       const chevron = document.getElementById('stEmbedChevron');
       injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight);
