@@ -968,12 +968,21 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     }
 
     function closeStandaloneView() {
+      let targetCity = 'all';
+      if (currentStandaloneSlug) {
+        const foundItem = eventosData.find(e => e.slug === currentStandaloneSlug);
+        if (foundItem) {
+          targetCity = foundItem.cityKey; // ej. 'cancun', 'cdmx', 'monterrey'
+        }
+      }
+
       document.body.classList.remove('standalone-active');
       document.body.classList.remove('embed-expanded-mobile');
+      
       if (history.pushState) {
-        history.pushState('', document.title, window.location.pathname + window.location.search);
+        history.pushState('', document.title, window.location.pathname + window.location.search + '#' + targetCity);
       } else {
-        window.location.hash = '';
+        window.location.hash = '#' + targetCity;
       }
       checkHashRouting();
     }
