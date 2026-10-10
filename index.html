@@ -754,7 +754,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-jackson-coldplay-en-piano-cancun-tickets-2002937614322',
         ebEventId: '2002937614322', ebHeight: 680,
         whatsappKey: 'Cancún Combo Michael Jackson + Coldplay en Piano',
-        isCombo: true
+        isCombo: false
       },
       {
         slug: 'cdmx-combo',
@@ -772,7 +772,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-j-coldplay-en-piano-cdmx-tickets-2002975627019',
         ebEventId: '2002975627019', ebHeight: 680,
         whatsappKey: 'CDMX Michael Jackson + Coldplay en Piano',
-        isCombo: true
+        isCombo: false
       },
     ];
 
@@ -1006,8 +1006,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       
       if (item.isCombo) {
         pricesHtml = `
-          <div>Combo Michael J. + Coldplay: <strong>$550</strong></div>
-          <span class="standalone-prices-combo-sub"><a href="https://resonarlive.com/">*Da CLIC AQUI si deseas comprar boletos para UNA SOLA función.</a></span>
+          <span>GRAL All Access: <strong>$600</strong></span> • 
+          <span>PREF All Access: <strong>$760</strong></span> • 
+          <span>VIP All Access: <strong>$900</strong></span> 
+          <span>Una sola función:<strong><i>Desde $320</i></strong></span>
         `;
       } else {
         pricesHtml = `
@@ -1015,7 +1017,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <span>General: <strong>$320</strong></span> • 
           <span>Preferente: <strong>$420</strong></span> • 
           <span>VIP: <strong>$500</strong></span> • 
-          <span>Combo Michael J. + Coldplay: <strong>$550</strong></span>
+          <span>ALL ACCESS: Michael J. + Coldplay: <strong><i>Desde $600</i></strong></span>
         `;
       }
 
