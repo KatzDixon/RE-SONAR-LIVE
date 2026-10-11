@@ -610,7 +610,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2003248899384',
         ebEventId: '2003248899384', ebHeight: 680,
         whatsappKey: 'Michael Jackson + Coldplay en Piano en Cancún',
-        isCombo: true
+        isComboCUN: true
       },
       {
         slug: 'cdmx-mjdic26',
@@ -664,7 +664,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-j-coldplay-en-piano-cdmx-tickets-2002975627019',
         ebEventId: '2002975627019', ebHeight: 680,
         whatsappKey: 'Michael Jackson + Coldplay en Piano en CDMX',
-        isCombo: true
+        isComboCDMX: true
       },
       {
         slug: 'mty-mjdic26',
@@ -718,7 +718,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-j-coldplay-en-piano-cdmx-tickets-2002975627019',
         ebEventId: '2002975627019', ebHeight: 680,
         whatsappKey: 'Michael Jackson + Coldplay en Piano en Monterrey',
-        isCombo: true
+        isComboMTY: true
       },
     ];
 
@@ -955,7 +955,28 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <span>GRAL All Access: <strong>$600</strong></span> • 
           <span>PREF All Access: <strong>$760</strong></span> • 
           <span>VIP All Access: <strong>$900</strong></span> 
-          <span>Una sola función: <strong><i>Desde $320</i></strong></span>
+          <span>Una sola función: <strong><i>Desde $320 (Clic en el Botón de WhatsApp)</i></strong></span>
+        `;
+      if (item.isComboCUN) {
+        pricesHtml = `
+          <span>GRAL All Access: <strong>$600</strong></span> • 
+          <span>PREF All Access: <strong>$760</strong></span> • 
+          <span>VIP All Access: <strong>$900</strong></span> 
+          <span>Una sola función: <strong><i>Desde $320 (Clic <a href"https://resonarlive.com/#cancun">AQUÍ</a> o en el Botón de WhatsApp)</i></strong></span>
+        `;
+        if (item.isComboCDMX) {
+        pricesHtml = `
+          <span>GRAL All Access: <strong>$600</strong></span> • 
+          <span>PREF All Access: <strong>$760</strong></span> • 
+          <span>VIP All Access: <strong>$900</strong></span> 
+          <span>Una sola función: <strong><i>Desde $320 (Clic <a href"https://resonarlive.com/#cdmx">AQUÍ</a> o en el Botón de WhatsApp)</i></strong></span>
+        `;
+          if (item.isComboMTY) {
+        pricesHtml = `
+          <span>GRAL All Access: <strong>$600</strong></span> • 
+          <span>PREF All Access: <strong>$760</strong></span> • 
+          <span>VIP All Access: <strong>$900</strong></span> 
+          <span>Una sola función: <strong><i>Desde $320 (Clic <a href"https://resonarlive.com/#monterrey">AQUÍ</a> o en el Botón de WhatsApp)</i></strong></span>
         `;
       } else {
         pricesHtml = `
