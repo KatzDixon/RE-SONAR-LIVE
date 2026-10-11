@@ -101,7 +101,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     /* HERO BANNER */
     .hero-banner {
-      position: relative; width: 100%; height: 380px; background-size: cover; background-position: center;
+      position: relative; width: 100%; height: 380px; background-size: cover; background-position: top center;
       background-image: linear-gradient(rgba(11, 11, 14, 0.45), rgba(11, 11, 14, 0.9)), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg');
       display: flex; align-items: flex-end; padding: 50px 24px; margin-bottom: 30px; border-bottom: 1px solid var(--border-glass);
     }
@@ -263,7 +263,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-header { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 0; }
     
     .standalone-flyer-wrapper { position: relative; width: 100%; max-width: 320px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-glass); flex-shrink: 0; }
-    .standalone-flyer { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .standalone-flyer { width: 100%; height: 100%; object-fit: cover; background-position: top center; display: block; }
     
     .st-badge-city { position: absolute; top: 12px; left: 12px; background: rgba(11, 11, 14, 0.85); border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); z-index: 5; }
     .st-badge-urgency { position: absolute; bottom: 12px; right: 12px; background: rgba(230, 57, 70, 0.9); border: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4); animation: pulse-red 2s infinite; z-index: 5; }
@@ -298,10 +298,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-prices-grid span strong { color: var(--accent-gold); font-weight: 700; }
     .standalone-prices-combo-sub { display: block; margin-top: 6px; font-size: 11px; color: var(--text-muted); font-style: italic; }
     .standalone-prices-combo-sub b { font-weight: 700; color: var(--text-bright); }
-
-    /* Estilos para enlaces de All Access rápidos en precios */
-    .all-access-link-inline { color: var(--accent-gold); text-decoration: underline; font-weight: 700; cursor: pointer; transition: opacity 0.2s; }
-    .all-access-link-inline:hover { opacity: 0.8; }
+    .combo-link-clic { color: var(--accent-gold); text-decoration: underline; font-weight: 700; }
+    .combo-link-clic:hover { color: #fff; }
 
     /* Estilos para el mapa y notas dentro del cuadro de precios */
     .modal-map-img { width: 100%; height: auto; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-subtle); display: block; }
@@ -955,31 +953,28 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       let pricesHtml = '';
       
       if (item.isCombo) {
+        // Enlace dinámico según la ciudad para el combo
+        let cityLinkHash = '#cancun';
+        if (item.cityKey === 'cdmx') cityLinkHash = '#cdmx';
+        if (item.cityKey === 'monterrey') cityLinkHash = '#monterrey';
+
         pricesHtml = `
           <span>GRAL All Access: <strong>$600</strong></span> • 
           <span>PREF All Access: <strong>$760</strong></span> • 
           <span>VIP All Access: <strong>$900</strong></span> 
-          <span>Una sola función: <strong><i>Desde $320</i></strong></span>
+          <span style="width: 100%; margin-top: 4px;">¿Buscas boletos para una sola función? <a href="${cityLinkHash}" class="combo-link-clic" onclick="closeStandaloneView()">CLIC AQUÍ</a></span>
         `;
       } else {
-        // Enlaces específicos de All Access según la ciudad solicitada
-        let allAccessUrl = 'https://resonarlive.com/#cancun';
-        if (item.cityKey === 'cdmx') {
-          allAccessUrl = 'https://resonarlive.com/#cdmx';
-        } else if (item.cityKey === 'monterrey') {
-          allAccessUrl = 'https://resonarlive.com/#monterrey';
-        }
-
         pricesHtml = `
           <span>Preventa: <strong>$275</strong></span> • 
           <span>General: <strong>$320</strong></span> • 
           <span>Preferente: <strong>$420</strong></span> • 
           <span>VIP: <strong>$500</strong></span> • 
-          <span>ALL ACCESS: <strong><i>Michael J. + Coldplay desde $600</i></strong> — <a href="${allAccessUrl}" class="all-access-link-inline">CLIC AQUÍ</a></span>
+          <span>ALL ACCESS: <strong><i>Michael J. + Coldplay desde $600</i></strong></span>
         `;
       }
 
-      // Inserción de mapas y notas al pie dentro del cuadro de precios según la ciudad (independiente para MTY, CDMX y Cancún)
+      // Inserción de mapas y notas al pie dentro del cuadro de precios según la ciudad
       if (item.cityKey === 'cancun') {
         pricesHtml += `
           <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CUN-CC-MAPA.jpg" alt="Mapa de Zonas Cancún" class="modal-map-img" loading="lazy" />
