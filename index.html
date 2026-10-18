@@ -240,17 +240,17 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .copy-toast i { color: var(--accent-gold); }
 
     /* FICHA INDIVIDUAL DE EVENTO / MODALES */
-    .standalone-event-container, .social-modal-container, .pure-payment-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
-    .standalone-card, .social-modal-card, .pure-payment-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .standalone-event-container, .social-modal-container, .payment-modal-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
+    .standalone-card, .social-modal-card, .payment-modal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
     
-    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .pure-payment-card > .pure-fixed-close {
+    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close {
       position: fixed !important; top: 32px !important; right: 35px !important;
       background: rgba(11, 11, 14, 0.9) !important; border: 1px solid var(--border-glass) !important; color: var(--text-bright) !important;
       width: 42px !important; height: 42px !important; border-radius: 50% !important; font-size: 24px !important;
       display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
       z-index: 9999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; backdrop-filter: blur(8px); transition: all 0.3s ease;
     }
-    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover, .pure-payment-card > .pure-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
+    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover, .payment-modal-card > .payment-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
     
     .standalone-layout-grid { display: flex; flex-direction: column; gap: 30px; margin-top: 15px; }
 
@@ -329,14 +329,18 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .social-arrow { color: var(--text-muted); font-size: 14px; transition: transform 0.3s; }
     .social-link-card:hover .social-arrow { color: var(--accent-gold); transform: translateX(4px); }
 
+    /* ESTILOS MODAL PAGO DIRECTO EXCLUSIVO */
+    .payment-modal-wrapper { width: 100%; min-height: 550px; position: relative; }
+    #paymentEbWidgetWrapper { width: 100%; min-height: 550px; max-height: none; overflow-y: visible !important; position: relative; }
+
     /* WIDGET & EMBED EVENTBRITE */
     #eb-widget-wrapper { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 15px; min-height: 608px; position: relative; }
-    #stEbWidgetWrapper, .pure-eb-wrapper { width: 100%; min-height: 600px; max-height: none; overflow-y: visible !important; position: relative; }
+    #stEbWidgetWrapper { width: 100%; min-height: 600px; max-height: none; overflow-y: visible !important; position: relative; }
     
-    #stEbWidgetWrapper::-webkit-scrollbar, .pure-eb-wrapper::-webkit-scrollbar { width: 6px; }
-    #stEbWidgetWrapper::-webkit-scrollbar-thumb, .pure-eb-wrapper::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+    #stEbWidgetWrapper::-webkit-scrollbar, #paymentEbWidgetWrapper::-webkit-scrollbar { width: 6px; }
+    #stEbWidgetWrapper::-webkit-scrollbar-thumb, #paymentEbWidgetWrapper::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
     
-    #eb-widget-wrapper iframe, #stEbWidgetWrapper iframe, .pure-eb-wrapper iframe, div[id^="eb-node-"] iframe {
+    #eb-widget-wrapper iframe, #stEbWidgetWrapper iframe, #paymentEbWidgetWrapper iframe, div[id^="eb-node-"] iframe {
       width: 100% !important; max-width: 100% !important;
     }
     .eb-loader { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 400px; color: var(--accent-gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -359,14 +363,20 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       body.standalone-active header, body.standalone-active footer { display: none !important; }
       body.standalone-active { padding-top: 0 !important; }
-      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .pure-payment-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .payment-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
 
-      body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .pure-payment-card {
-        width: 100% !important; min-height: 100vh !important; border-radius: 0 !important; border: none !important; padding: 25px 18px !important; box-shadow: none !important; backdrop-filter: none !important;
+      body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .payment-modal-card {
+        width: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; border-radius: 0 !important; border: none !important; padding: 15px 10px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: flex-start !important;
       }
+
+      /* Ajuste exacto de pantalla completa móvil para modales de pago */
+      body.standalone-active .payment-modal-card { padding: 10px 5px !important; }
+      .payment-modal-wrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
+      #paymentEbWidgetWrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
+
       .standalone-flyer-wrapper { max-width: 100%; height: 260px; }
       
-      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .pure-payment-card > .pure-fixed-close { top: 18px !important; right: 18px !important; width: 38px !important; height: 38px !important; font-size: 22px !important; }
+      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
 
       .standalone-right-col { position: relative; padding-bottom: 70px; }
       
@@ -619,18 +629,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- MODAL EXCLUSIVO DE WIDGETS DE PAGO DIRECTO (#pagocuncoldplay, #pagocunmj, etc.) -->
-  <div id="purePaymentView" class="pure-payment-container" style="display: none;">
-    <div class="pure-payment-card">
-      <button class="pure-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
-      
-      <div style="text-align: center; margin-bottom: 25px;">
-        <h2 id="purePaymentTitle" class="social-modal-title" style="font-size: 24px;">Selección de Entradas</h2>
-        <p style="font-size: 12px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">RE:SONAR LIVE • Pago Seguro Eventbrite</p>
-      </div>
-
-      <div class="pure-eb-wrapper">
-        <div id="pureEbWidgetWrapper"></div>
+  <!-- NUEVOS MODALES DE PAGO DIRECTO EXCLUSIVO -->
+  <div id="paymentModalView" class="payment-modal-container" style="display: none;">
+    <div class="payment-modal-card">
+      <button class="payment-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
+      <div class="payment-modal-wrapper">
+        <div id="paymentEbWidgetWrapper"></div>
       </div>
     </div>
   </div>
@@ -1200,15 +1204,39 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       const standaloneContainer = document.getElementById('standaloneEventView');
       const socialModalContainer = document.getElementById('socialMediaView');
-      const purePaymentContainer = document.getElementById('purePaymentView');
+      const paymentModalContainer = document.getElementById('paymentModalView');
       const mainHomeSections = document.querySelectorAll('.main-home-section');
 
-      // Ocultar todos los contenedores por defecto
+      // Ocultar todos por defecto
       standaloneContainer.style.display = 'none';
       socialModalContainer.style.display = 'none';
-      purePaymentContainer.style.display = 'none';
+      paymentModalContainer.style.display = 'none';
 
-      // 1. Manejo de #redes
+      // 1. Verificación de etiquetas de pago directo (#cunpagocp, #cunpagomj, etc.)
+      const paymentRoutes = {
+        'cunpagocp': 'cancun-cpdic26',
+        'cunpagomj': 'cancun-mjdic26',
+        'cdmxpagocp': 'cdmx-cpdic26',
+        'cdmcpagomj': 'cdmx-mjdic26',
+        'mtypagocp': 'mty-cpdic26',
+        'mtypagomj': 'mty-mjdic26'
+      };
+
+      if (paymentRoutes[cleanHash]) {
+        const targetEventSlug = paymentRoutes[cleanHash];
+        const foundItem = eventosData.find(e => e.slug === targetEventSlug);
+        if (foundItem) {
+          mainHomeSections.forEach(sec => sec.style.display = 'none');
+          paymentModalContainer.style.display = 'block';
+          document.body.classList.add('standalone-active');
+          injectEventbriteWidget('paymentEbWidgetWrapper', foundItem.ebEventId, foundItem.ebHeight);
+          actualizarBotonWhatsApp(foundItem.whatsappKey);
+          window.scrollTo(0, 0);
+          return;
+        }
+      }
+
+      // 2. Verificación de #redes
       if (cleanHash === 'redes') {
         mainHomeSections.forEach(sec => sec.style.display = 'none');
         socialModalContainer.style.display = 'block';
@@ -1217,29 +1245,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         return;
       }
 
-      // 2. Mapeo de los nuevos modales exclusivos de pago
-      const paymentRouting = {
-        'pagocuncoldplay': { title: 'Tributo a Coldplay — Cancún', eventId: '2002786313778', height: 680, whatsapp: 'Coldplay en Piano, Cancún' },
-        'pagocunmj': { title: 'Tributo a Michael Jackson — Cancún', eventId: '2002285821793', height: 680, whatsapp: 'Michael Jackson en Piano, Cancún' },
-        'pagocdmxcoldplay': { title: 'Tributo a Coldplay — CDMX', eventId: '2002786319796', height: 680, whatsapp: 'Coldplay en Piano, 8 de Diciembre, CDMX' },
-        'pagocdmxmj': { title: 'Tributo a Michael Jackson — CDMX', eventId: '2002243538322', height: 680, whatsapp: 'Michael Jackson en Piano, 8 de Diciembre, CDMX' },
-        'pagomtycoldplay': { title: 'Tributo a Coldplay — Monterrey', eventId: '2003120820296', height: 680, whatsapp: 'Coldplay en Piano, 18 de Diciembre, MTY' },
-        'pagomtymj': { title: 'Tributo a Michael Jackson — Monterrey', eventId: '2003120357913', height: 680, whatsapp: 'Michael Jackson en Piano, 18 de Diciembre, MTY' }
-      };
-
-      if (paymentRouting[cleanHash]) {
-        const config = paymentRouting[cleanHash];
-        mainHomeSections.forEach(sec => sec.style.display = 'none');
-        document.getElementById('purePaymentTitle').innerText = config.title;
-        purePaymentContainer.style.display = 'block';
-        document.body.classList.add('standalone-active');
-        actualizarBotonWhatsApp(config.whatsapp);
-        injectEventbriteWidget('pureEbWidgetWrapper', config.eventId, config.height);
-        window.scrollTo(0, 0);
-        return;
-      }
-
-      // 3. Manejo de fichas de eventos normales (slugs)
+      // 3. Verificación de eventos normales o combo
       const foundItem = eventosData.find(e => e.slug === cleanHash);
 
       if (foundItem) {
