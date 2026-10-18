@@ -240,17 +240,17 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .copy-toast i { color: var(--accent-gold); }
 
     /* FICHA INDIVIDUAL DE EVENTO / MODALES */
-    .standalone-event-container, .social-modal-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
-    .standalone-card, .social-modal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .standalone-event-container, .social-modal-container, .pure-payment-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
+    .standalone-card, .social-modal-card, .pure-payment-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
     
-    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close {
+    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .pure-payment-card > .pure-fixed-close {
       position: fixed !important; top: 32px !important; right: 35px !important;
       background: rgba(11, 11, 14, 0.9) !important; border: 1px solid var(--border-glass) !important; color: var(--text-bright) !important;
       width: 42px !important; height: 42px !important; border-radius: 50% !important; font-size: 24px !important;
       display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
       z-index: 9999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; backdrop-filter: blur(8px); transition: all 0.3s ease;
     }
-    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
+    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover, .pure-payment-card > .pure-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
     
     .standalone-layout-grid { display: flex; flex-direction: column; gap: 30px; margin-top: 15px; }
 
@@ -331,12 +331,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     /* WIDGET & EMBED EVENTBRITE */
     #eb-widget-wrapper { width: 100%; border-radius: 12px; overflow: hidden; margin-bottom: 15px; min-height: 608px; position: relative; }
-    #stEbWidgetWrapper { width: 100%; min-height: 600px; max-height: none; overflow-y: visible !important; position: relative; }
+    #stEbWidgetWrapper, .pure-eb-wrapper { width: 100%; min-height: 600px; max-height: none; overflow-y: visible !important; position: relative; }
     
-    #stEbWidgetWrapper::-webkit-scrollbar { width: 6px; }
-    #stEbWidgetWrapper::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+    #stEbWidgetWrapper::-webkit-scrollbar, .pure-eb-wrapper::-webkit-scrollbar { width: 6px; }
+    #stEbWidgetWrapper::-webkit-scrollbar-thumb, .pure-eb-wrapper::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
     
-    #eb-widget-wrapper iframe, #stEbWidgetWrapper iframe, div[id^="eb-node-"] iframe {
+    #eb-widget-wrapper iframe, #stEbWidgetWrapper iframe, .pure-eb-wrapper iframe, div[id^="eb-node-"] iframe {
       width: 100% !important; max-width: 100% !important;
     }
     .eb-loader { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 400px; color: var(--accent-gold); font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
@@ -359,14 +359,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       body.standalone-active header, body.standalone-active footer { display: none !important; }
       body.standalone-active { padding-top: 0 !important; }
-      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .pure-payment-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
 
-      body.standalone-active .standalone-card, body.standalone-active .social-modal-card {
+      body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .pure-payment-card {
         width: 100% !important; min-height: 100vh !important; border-radius: 0 !important; border: none !important; padding: 25px 18px !important; box-shadow: none !important; backdrop-filter: none !important;
       }
       .standalone-flyer-wrapper { max-width: 100%; height: 260px; }
       
-      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close { top: 18px !important; right: 18px !important; width: 38px !important; height: 38px !important; font-size: 22px !important; }
+      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .pure-payment-card > .pure-fixed-close { top: 18px !important; right: 18px !important; width: 38px !important; height: 38px !important; font-size: 22px !important; }
 
       .standalone-right-col { position: relative; padding-bottom: 70px; }
       
@@ -557,7 +557,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <!-- NUEVO MODAL DE REDES SOCIALES (#redes) -->
+  <!-- MODAL DE REDES SOCIALES (#redes) -->
   <div id="socialMediaView" class="social-modal-container" style="display: none;">
     <div class="social-modal-card">
       <button class="social-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
@@ -571,7 +571,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       </div>
 
       <div class="social-links-grid">
-        <!-- Instagram -->
         <a href="https://instagram.com" target="_blank" rel="noopener" class="social-link-card">
           <div class="social-icon-box"><i class="fa-brands fa-instagram"></i></div>
           <div class="social-info">
@@ -581,7 +580,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- Facebook -->
         <a href="https://facebook.com" target="_blank" rel="noopener" class="social-link-card">
           <div class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></div>
           <div class="social-info">
@@ -591,7 +589,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- TikTok -->
         <a href="https://tiktok.com" target="_blank" rel="noopener" class="social-link-card">
           <div class="social-icon-box"><i class="fa-brands fa-tiktok"></i></div>
           <div class="social-info">
@@ -601,7 +598,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- YouTube -->
         <a href="https://youtube.com" target="_blank" rel="noopener" class="social-link-card">
           <div class="social-icon-box"><i class="fa-brands fa-youtube"></i></div>
           <div class="social-info">
@@ -611,7 +607,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- Spotify -->
         <a href="https://spotify.com" target="_blank" rel="noopener" class="social-link-card">
           <div class="social-icon-box"><i class="fa-brands fa-spotify"></i></div>
           <div class="social-info">
@@ -620,6 +615,22 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           </div>
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL EXCLUSIVO DE WIDGETS DE PAGO DIRECTO (#pagocuncoldplay, #pagocunmj, etc.) -->
+  <div id="purePaymentView" class="pure-payment-container" style="display: none;">
+    <div class="pure-payment-card">
+      <button class="pure-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
+      
+      <div style="text-align: center; margin-bottom: 25px;">
+        <h2 id="purePaymentTitle" class="social-modal-title" style="font-size: 24px;">Selección de Entradas</h2>
+        <p style="font-size: 12px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-top: 5px;">RE:SONAR LIVE • Pago Seguro Eventbrite</p>
+      </div>
+
+      <div class="pure-eb-wrapper">
+        <div id="pureEbWidgetWrapper"></div>
       </div>
     </div>
   </div>
@@ -1189,23 +1200,50 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       const standaloneContainer = document.getElementById('standaloneEventView');
       const socialModalContainer = document.getElementById('socialMediaView');
+      const purePaymentContainer = document.getElementById('purePaymentView');
       const mainHomeSections = document.querySelectorAll('.main-home-section');
 
-      // Verificamos si el hash es #redes
+      // Ocultar todos los contenedores por defecto
+      standaloneContainer.style.display = 'none';
+      socialModalContainer.style.display = 'none';
+      purePaymentContainer.style.display = 'none';
+
+      // 1. Manejo de #redes
       if (cleanHash === 'redes') {
         mainHomeSections.forEach(sec => sec.style.display = 'none');
-        standaloneContainer.style.display = 'none';
         socialModalContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
         window.scrollTo(0, 0);
         return;
       }
 
+      // 2. Mapeo de los nuevos modales exclusivos de pago
+      const paymentRouting = {
+        'pagocuncoldplay': { title: 'Tributo a Coldplay — Cancún', eventId: '2002786313778', height: 680, whatsapp: 'Coldplay en Piano, Cancún' },
+        'pagocunmj': { title: 'Tributo a Michael Jackson — Cancún', eventId: '2002285821793', height: 680, whatsapp: 'Michael Jackson en Piano, Cancún' },
+        'pagocdmxcoldplay': { title: 'Tributo a Coldplay — CDMX', eventId: '2002786319796', height: 680, whatsapp: 'Coldplay en Piano, 8 de Diciembre, CDMX' },
+        'pagocdmxmj': { title: 'Tributo a Michael Jackson — CDMX', eventId: '2002243538322', height: 680, whatsapp: 'Michael Jackson en Piano, 8 de Diciembre, CDMX' },
+        'pagomtycoldplay': { title: 'Tributo a Coldplay — Monterrey', eventId: '2003120820296', height: 680, whatsapp: 'Coldplay en Piano, 18 de Diciembre, MTY' },
+        'pagomtymj': { title: 'Tributo a Michael Jackson — Monterrey', eventId: '2003120357913', height: 680, whatsapp: 'Michael Jackson en Piano, 18 de Diciembre, MTY' }
+      };
+
+      if (paymentRouting[cleanHash]) {
+        const config = paymentRouting[cleanHash];
+        mainHomeSections.forEach(sec => sec.style.display = 'none');
+        document.getElementById('purePaymentTitle').innerText = config.title;
+        purePaymentContainer.style.display = 'block';
+        document.body.classList.add('standalone-active');
+        actualizarBotonWhatsApp(config.whatsapp);
+        injectEventbriteWidget('pureEbWidgetWrapper', config.eventId, config.height);
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      // 3. Manejo de fichas de eventos normales (slugs)
       const foundItem = eventosData.find(e => e.slug === cleanHash);
 
       if (foundItem) {
         mainHomeSections.forEach(sec => sec.style.display = 'none');
-        socialModalContainer.style.display = 'none';
         updateStandaloneContent(foundItem);
         standaloneContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
@@ -1213,8 +1251,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       } else {
         document.body.classList.remove('standalone-active');
         document.body.classList.remove('embed-expanded-mobile');
-        standaloneContainer.style.display = 'none';
-        socialModalContainer.style.display = 'none';
         mainHomeSections.forEach(sec => sec.style.display = 'block');
         
         actualizarBotonWhatsApp('Home');
