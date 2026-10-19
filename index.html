@@ -449,12 +449,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <button class="city-btn active i18n" onclick="filterCity('all', this)" data-es="Todas" data-en="All">Todas</button>
           <button class="city-btn" onclick="filterCity('cdmx', this)">CDMX</button>
           <button class="city-btn" onclick="filterCity('cancun', this)">Cancún</button>
+          <button class="city-btn" onclick="filterCity('playadelcarmen', this)">Playa del Carmen</button>
           <button class="city-btn" onclick="filterCity('monterrey', this)">Monterrey</button>
         </div>
         <select id="citySelectDropdown" aria-label="Filtrar por ciudad" class="city-select-dropdown" onchange="filterCityDropdown(this.value)">
           <option value="all" class="i18n" data-es="Todas las ciudades" data-en="All Cities">Todas las ciudades</option>
           <option value="cdmx">CDMX</option>
           <option value="cancun">Cancún</option>
+          <option value="playadelcarmen">Playa del Carmen</option>
           <option value="monterrey">Monterrey</option>
         </select>
       </div>
@@ -697,6 +699,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         accesibilidad: 'Limitada',
         todoPublico: 'Sí'
       },
+      playadelcarmen: {
+        estacionamiento: 'Gratuito',
+        accesibilidad: 'Si, este venue es inclusivo',
+        todoPublico: 'Sí'
+      },
       monterrey: {
         estacionamiento: 'Gratuito, Limitado',
         accesibilidad: 'Si, este venue es inclusivo',
@@ -758,6 +765,42 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         ebEventId: '2003248899384', ebHeight: 680,
         whatsappKey: 'Cancún Combo Michael Jackson + Coldplay en Piano',
         isCombo: true
+      },
+      {
+        slug: 'pdc-mjdic26',
+        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05', dateEs: '5 Dic', dateEn: 'Dec 5', time: '19:00 hrs',
+        datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
+        titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
+        image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
+        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
+        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
+        venue: 'Planetario SAYAB, Playa del Carmen',
+        mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
+        addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
+        eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-jackson-en-piano-playa-del-carmen-tickets-2003618964258',
+        ebEventId: '2003618964258', ebHeight: 680,
+        whatsappKey: 'Michael Jackson en Piano, Playa del Carmen',
+        isCombo: false
+      },
+      {
+        slug: 'pdc-cpdic26',
+        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05', dateEs: '5 Dic', dateEn: 'Dec 5', time: '21:00 hrs',
+        datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
+        titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
+        image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
+        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
+        reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
+        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
+        artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
+        venue: 'Planetario SAYAB, Playa del Carmen',
+        mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
+        addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
+        eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-coldplay-en-piano-playa-del-carmen-tickets-2003619846898',
+        ebEventId: '2003619846898', ebHeight: 680,
+        whatsappKey: 'Coldplay en Piano, Playa del Carmen',
+        isCombo: false
       },
       {
         slug: 'cdmx-mjdic26',
@@ -1123,6 +1166,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CUN-CC-MAPA.jpg" alt="Mapa de Zonas Cancún" class="modal-map-img" loading="lazy" />
           <span class="modal-map-note">*Los asientos se asignan por orden de llegada dentro de la zona elegida.</span>
         `;
+      } else if (item.cityKey === 'playadelcarmen') {
+        pricesHtml += `
+          <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/PDC-PN-MAPA.jpg" alt="Mapa de Zonas Playa del Carmen" class="modal-map-img" loading="lazy" />
+          <span class="modal-map-note">*Los asientos se asignan por orden de llegada dentro de la zona elegida.</span>
+        `;
       } else if (item.cityKey === 'cdmx') {
         pricesHtml += `
           <img src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CDMX-FL-MAPA.jpg" alt="Mapa de Zonas CDMX" class="modal-map-img" loading="lazy" />
@@ -1320,7 +1368,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         
         actualizarBotonWhatsApp('Home');
         
-        if (['all', 'cdmx', 'cancun', 'monterrey'].includes(cleanHash)) {
+        if (['all', 'cdmx', 'cancun', 'playadelcarmen', 'monterrey'].includes(cleanHash)) {
           filterCity(cleanHash, null, false);
         } else {
           filterCity('all', null, false);
