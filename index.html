@@ -240,17 +240,17 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .copy-toast i { color: var(--accent-gold); }
 
     /* FICHA INDIVIDUAL DE EVENTO / MODALES */
-    .standalone-event-container, .social-modal-container, .payment-modal-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
-    .standalone-card, .social-modal-card, .payment-modal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+    .standalone-event-container, .social-modal-container, .payment-modal-container, .thankyou-modal-container { max-width: 1250px; margin: 20px auto 50px auto; padding: 0 20px; position: relative; }
+    .standalone-card, .social-modal-card, .payment-modal-card, .thankyou-modal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
     
-    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close {
+    .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thankyou-modal-card > .thankyou-fixed-close {
       position: fixed !important; top: 32px !important; right: 35px !important;
       background: rgba(11, 11, 14, 0.9) !important; border: 1px solid var(--border-glass) !important; color: var(--text-bright) !important;
       width: 42px !important; height: 42px !important; border-radius: 50% !important; font-size: 24px !important;
       display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
       z-index: 9999999 !important; box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important; backdrop-filter: blur(8px); transition: all 0.3s ease;
     }
-    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover, .payment-modal-card > .payment-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
+    .standalone-card > .standalone-fixed-close:hover, .social-modal-card > .social-fixed-close:hover, .payment-modal-card > .payment-fixed-close:hover, .thankyou-modal-card > .thankyou-fixed-close:hover { color: var(--accent-gold) !important; border-color: var(--accent-gold) !important; transform: scale(1.08) !important; }
     
     .standalone-layout-grid { display: flex; flex-direction: column; gap: 30px; margin-top: 15px; }
 
@@ -321,10 +321,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .btn-share-standalone { background: transparent; border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 9px 16px; border-radius: 25px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: all 0.3s; }
     .btn-share-standalone:hover { background: rgba(212, 175, 55, 0.15); border-color: var(--accent-gold); }
 
-    /* ESTILOS MODAL REDES SOCIALES (#redes) */
-    .social-modal-header { text-align: center; margin-bottom: 30px; }
-    .social-modal-title { font-family: 'Cinzel', serif; font-size: 28px; color: var(--accent-gold); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1.5px; }
-    .social-modal-subtitle { font-size: 13px; color: var(--text-muted); max-width: 500px; margin: 0 auto; line-height: 1.5; }
+    /* ESTILOS MODAL REDES SOCIALES (#redes) Y AGRADECIMIENTO (#gracias) */
+    .social-modal-header, .thankyou-modal-header { text-align: center; margin-bottom: 30px; }
+    .social-modal-title, .thankyou-modal-title { font-family: 'Cinzel', serif; font-size: 28px; color: var(--accent-gold); margin: 0 0 8px 0; text-transform: uppercase; letter-spacing: 1.5px; }
+    .social-modal-subtitle, .thankyou-modal-subtitle { font-size: 14px; color: var(--text-bright); max-width: 550px; margin: 0 auto; line-height: 1.6; }
     
     .social-links-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; max-width: 800px; margin: 0 auto; }
     .social-link-card { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); border-radius: 14px; padding: 18px 22px; display: flex; align-items: center; gap: 16px; text-decoration: none; color: var(--text-bright); transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1); }
@@ -336,6 +336,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .social-handle { font-size: 11.5px; color: var(--text-muted); font-weight: 500; }
     .social-arrow { color: var(--text-muted); font-size: 14px; transition: transform 0.3s; }
     .social-link-card:hover .social-arrow { color: var(--accent-gold); transform: translateX(4px); }
+
+    /* ESTILOS ESPECÍFICOS DE LA PÁGINA DE AGRADECIMIENTO */
+    .thankyou-card-content { max-width: 750px; margin: 0 auto; text-align: center; }
+    .thankyou-actions { display: flex; justify-content: center; margin-top: 35px; }
+    .btn-return-home { background: var(--accent-gold-gradient); color: #000; border: none; padding: 14px 32px; border-radius: 30px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; text-decoration: none; transition: all 0.3s; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3); display: inline-flex; align-items: center; gap: 10px; }
+    .btn-return-home:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5); }
 
     /* ESTILOS MODAL PAGO DIRECTO EXCLUSIVO */
     .payment-modal-wrapper { width: 100%; min-height: 550px; position: relative; }
@@ -371,9 +377,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       body.standalone-active header, body.standalone-active footer { display: none !important; }
       body.standalone-active { padding-top: 0 !important; }
-      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .payment-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
+      body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .payment-modal-container, body.standalone-active .thankyou-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
 
-      body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .payment-modal-card {
+      body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .payment-modal-card, body.standalone-active .thankyou-modal-card {
         width: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; border-radius: 0 !important; border: none !important; padding: 15px 10px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: flex-start !important;
       }
 
@@ -383,7 +389,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       .standalone-flyer-wrapper { max-width: 100%; height: 260px; }
       
-      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
+      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thankyou-modal-card > .thankyou-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
 
       .standalone-right-col { position: relative; padding-bottom: 70px; }
       
@@ -654,6 +660,60 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           </div>
           <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
         </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL DE AGRADECIMIENTO (#gracias) -->
+  <div id="thankYouView" class="thankyou-modal-container" style="display: none;">
+    <div class="thankyou-modal-card">
+      <button class="thankyou-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
+      
+      <div class="thankyou-card-content">
+        <div style="margin-bottom: 16px; color: var(--accent-gold); font-size: 42px;">
+          <i class="fa-solid fa-circle-check"></i>
+        </div>
+        <h2 class="thankyou-modal-title i18n" data-es="¡Gracias por tu compra!" data-en="Thank you for your purchase!">¡Gracias por tu compra!</h2>
+        <p class="thankyou-modal-subtitle i18n" data-es="Tu transacción se ha completado con éxito. Dentro de poco recibirás tus boletos y los detalles de acceso en el correo electrónico proporcionado." data-en="Your transaction has been successfully completed. Shortly, you will receive your tickets and access details at the provided email address.">Tu transacción se ha completado con éxito. Dentro de poco recibirás tus boletos y los detalles de acceso en el correo electrónico proporcionado.</p>
+
+        <div style="margin: 35px 0 25px 0;">
+          <h4 style="font-family: 'Cinzel', serif; font-size: 14px; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 20px;" class="i18n" data-es="Síguenos para más experiencias musicales" data-en="Follow us for more musical experiences">Síguenos para más experiencias musicales</h4>
+          <div class="social-links-grid">
+            <a href="http://instagram.com/lezzamamusic" target="_blank" rel="noopener" class="social-link-card">
+              <div class="social-icon-box"><i class="fa-brands fa-instagram"></i></div>
+              <div class="social-info">
+                <div class="social-name">Instagram</div>
+                <div class="social-handle">@resonarlive</div>
+              </div>
+              <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://facebook.com/lezzamamusic" target="_blank" rel="noopener" class="social-link-card">
+              <div class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></div>
+              <div class="social-info">
+                <div class="social-name">Facebook</div>
+                <div class="social-handle">RE:SONAR LIVE</div>
+              </div>
+              <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+
+            <a href="https://tiktok.com/@lezzamamusic" target="_blank" rel="noopener" class="social-link-card">
+              <div class="social-icon-box"><i class="fa-brands fa-tiktok"></i></div>
+              <div class="social-info">
+                <div class="social-name">TikTok</div>
+                <div class="social-handle">@lezzamamusic</div>
+              </div>
+              <div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+            </a>
+          </div>
+        </div>
+
+        <div class="thankyou-actions">
+          <a href="#" class="btn-return-home" onclick="closeStandaloneView(); return false;">
+            <i class="fa-solid fa-arrow-left"></i> 
+            <span class="i18n" data-es="Volver a la página principal" data-en="Back to main page">Volver a la página principal</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>
@@ -1316,11 +1376,13 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       const standaloneContainer = document.getElementById('standaloneEventView');
       const socialModalContainer = document.getElementById('socialMediaView');
       const paymentModalContainer = document.getElementById('paymentModalView');
+      const thankyouModalContainer = document.getElementById('thankYouView');
       const mainHomeSections = document.querySelectorAll('.main-home-section');
 
       standaloneContainer.style.display = 'none';
       socialModalContainer.style.display = 'none';
       paymentModalContainer.style.display = 'none';
+      thankyouModalContainer.style.display = 'none';
 
       const paymentRoutes = {
         'cunpagocp': 'cancun-cpdic26',
@@ -1349,6 +1411,15 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         mainHomeSections.forEach(sec => sec.style.display = 'none');
         socialModalContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
+        window.scrollTo(0, 0);
+        return;
+      }
+
+      if (cleanHash === 'gracias') {
+        mainHomeSections.forEach(sec => sec.style.display = 'none');
+        thankyouModalContainer.style.display = 'block';
+        document.body.classList.add('standalone-active');
+        actualizarBotonWhatsApp('Home');
         window.scrollTo(0, 0);
         return;
       }
