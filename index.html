@@ -337,14 +337,14 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .social-arrow { color: var(--text-muted); font-size: 14px; transition: transform 0.3s; }
     .social-link-card:hover .social-arrow { color: var(--accent-gold); transform: translateX(4px); }
 
-    /* ESTILOS ESPECÍFICOS MODAL GRACIAS (#gracias) */
-    .thanks-modal-card { text-align: center; padding: 40px 30px; }
-    .thanks-icon-box { width: 70px; height: 70px; border-radius: 50%; background: var(--accent-gold-gradient); color: #000; display: flex; align-items: center; justify-content: center; font-size: 30px; margin: 0 auto 20px auto; box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4); }
-    .thanks-message { color: var(--text-bright); margin-bottom: 25px; font-size: 15px; opacity: 0.95; }
-    .thanks-social-section { margin-top: 30px; padding-top: 25px; border-top: 1px solid var(--border-subtle); text-align: left; }
-    .thanks-social-title { font-family: 'Cinzel', serif; font-size: 14px; color: var(--accent-gold); margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
-    .thanks-actions { margin-top: 35px; display: flex; justify-content: center; }
-    .btn-return-home { background: var(--accent-gold-gradient); color: #000; border: none; padding: 13px 30px; border-radius: 30px; font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3); }
+    /* ESTILOS ESPECÍFICOS MODAL GRACIAS (#gracias) MEJORADOS PARA MÓVIL */
+    .thanks-modal-card { text-align: center; padding: 35px 20px; max-height: 90vh; overflow-y: auto; }
+    .thanks-icon-box { width: 60px; height: 60px; border-radius: 50%; background: var(--accent-gold-gradient); color: #000; display: flex; align-items: center; justify-content: center; font-size: 26px; margin: 0 auto 15px auto; box-shadow: 0 8px 20px rgba(212, 175, 55, 0.4); }
+    .thanks-message { color: var(--text-bright); margin-bottom: 20px; font-size: 14px; opacity: 0.95; padding: 0 10px; }
+    .thanks-social-section { margin-top: 20px; padding-top: 15px; border-top: 1px solid var(--border-subtle); text-align: left; }
+    .thanks-social-title { font-family: 'Cinzel', serif; font-size: 13px; color: var(--accent-gold); margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; text-align: center; }
+    .thanks-actions { margin-top: 25px; display: flex; justify-content: center; }
+    .btn-return-home { background: var(--accent-gold-gradient); color: #000; border: none; padding: 12px 24px; border-radius: 30px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3); }
     .btn-return-home:hover { transform: translateY(-3px); box-shadow: 0 10px 25px rgba(212, 175, 55, 0.5); }
 
     /* ESTILOS MODAL PAGO DIRECTO EXCLUSIVO */
@@ -384,8 +384,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .payment-modal-container, body.standalone-active .thanks-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
 
       body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .payment-modal-card, body.standalone-active .thanks-modal-card {
-        width: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; border-radius: 0 !important; border: none !important; padding: 25px 15px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: center !important;
+        width: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; border-radius: 0 !important; border: none !important; padding: 20px 12px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: center !important;
       }
+
+      body.standalone-active .thanks-modal-card { padding: 30px 12px !important; justify-content: flex-start !important; overflow-y: auto !important; }
+      .thanks-modal-card .social-links-grid { grid-template-columns: 1fr !important; gap: 10px !important; }
+      .thanks-modal-card .social-link-card { padding: 12px 14px !important; }
 
       body.standalone-active .payment-modal-card { padding: 10px 5px !important; justify-content: flex-start !important; }
       .payment-modal-wrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
@@ -815,24 +819,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         isCombo: false
       },
       {
-        slug: 'cancun-aadic26',
-        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04', dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
-        datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
-        titleEs: 'Michael Jackson + Coldplay', titleEn: 'Michael Jackson + Coldplay',
-        image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/COMBOCUN.jpg',
-        reviewEs: 'Disfruta de 2 tributos: Michael Jackson (19h) y Coldplay (21h), misma noche, mismo lugar. Una interpretación única y poderosa con arreglos instrumentales. -1 hora de intermedio entre shows-',
-        reviewEn: 'Enjoy two tribute acts—Michael Jackson (19h) and Coldplay (21h) —on the same night and at the same venue. Experience unique, powerful performances featuring instrumental arrangements. —1-hour intermission between shows—',
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
-        venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
-        mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
-        addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
-        eventbriteUrl: 'https://www.eventbrite.com.mx/e/2003248899384',
-        ebEventId: '2003248899384', ebHeight: 680,
-        whatsappKey: 'Cancún Combo Michael Jackson + Coldplay en Piano',
-        isCombo: true
-      },
-      {
         slug: 'pdc-mjdic26',
         cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05', dateEs: '5 Dic', dateEn: 'Dec 5', time: '19:00 hrs',
         datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
@@ -905,24 +891,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         isCombo: false
       },
       {
-        slug: 'cdmx-aadic26',
-        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08', dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '19:30 hrs',
-        datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
-        titleEs: 'Michael Jackson + Coldplay', titleEn: 'Michael Jackson + Coldplay',
-        image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/COMBOCDMX.jpg',
-        reviewEs: 'Disfruta de 2 tributos: Michael Jackson (19:30h) y Coldplay (21:30h), misma noche, mismo lugar. Una interpretación única y poderosa con arreglos instrumentales. -1 hora de intermedio entre shows-',
-        reviewEn: 'Enjoy two tribute acts—Michael Jackson (19:30h) and Coldplay (21:30h) —on the same night and at the same venue. Experience unique, powerful performances featuring instrumental arrangements. —1-hour intermission between shows—',
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
-        venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX)',
-        mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
-        addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX',
-        eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002975627019',
-        ebEventId: '2002975627019', ebHeight: 680,
-        whatsappKey: 'CDMX Michael Jackson + Coldplay en Piano',
-        isCombo: true
-      },
-      {
         slug: 'mty-mjdic26',
         cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18', dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '19:00 hrs',
         datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
@@ -957,25 +925,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         ebEventId: '2003120820296', ebHeight: 680,
         whatsappKey: 'Coldplay en Piano en MTY',
         isCombo: false
-      },
-      {
-        slug: 'mty-aadic26',
-        cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18', dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '19:00 hrs',
-        datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
-        titleEs: 'Michael Jackson + Coldplay', titleEn: 'Michael Jackson + Coldplay',
-        image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/COMBOCUN.jpg',
-        reviewEs: 'Disfruta de 2 tributos: Michael Jackson (19h) y Coldplay (21h), misma noche, mismo lugar. Una interpretación única y poderosa con arreglos instrumentales. -1 hora de intermedio entre shows-',
-        reviewEn: 'Enjoy two tribute acts—Michael Jackson (19h) and Coldplay (21h) —on the same night and at the same venue. Experience unique, powerful performances featuring instrumental arrangements. —1-hour intermission between shows—',
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de N.L.',
-        venue: 'Casa de la Cultura de N.L. (Eje Metropolitano 30, Av. Colón 400 Ote, Centro)',
-        mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
-        addressText: 'Eje Metropolitano 30, Av. Colón 400 Ote, Centro, Mty. N.L.',
-        eventbriteUrl: 'https://www.eventbrite.com.mx/e/2003249480121',
-        ebEventId: '2003249480121', ebHeight: 680,
-        whatsappKey: 'MTY Michael Jackson + Coldplay en Piano',
-        isCombo: true
-      },
+      }
     ];
 
     let currentCityFilter = 'all'; 
