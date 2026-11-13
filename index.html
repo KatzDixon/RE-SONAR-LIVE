@@ -185,9 +185,10 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     /* BOTÓN PARA DESPLEGAR EMBED */
     .eb-section-title {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 10px;
+      gap: 4px;
       font-family: 'Cinzel', serif;
       font-size: 13px;
       font-weight: 700;
@@ -196,7 +197,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       letter-spacing: 1.5px;
       background: var(--accent-gold-gradient);
       border: 1px solid var(--border-glass);
-      padding: 14px 20px;
+      padding: 12px 20px;
       border-radius: 12px;
       margin: 22px 0 15px 0;
       text-align: center;
@@ -207,7 +208,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       top: 90px; 
       z-index: 2147483647; 
     }
+    .eb-section-title-main { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
     .eb-section-title i { font-size: 16px; color: #000; }
+    .eb-powered-sub { font-family: 'Montserrat', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 1px; color: rgba(0, 0, 0, 0.65); text-transform: uppercase; }
 
     .standalone-eb-container { display: block; width: 100%; animation: fadeIn 0.4s ease forwards; }
 
@@ -582,9 +585,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
         <div class="standalone-right-col">
           <div class="eb-section-title" role="button" tabindex="0" onclick="handleSelectTicketsClick(event)">
-            <i class="fa-solid fa-ticket-simple"></i>
-            <span class="i18n" data-es="Seleccionar Entradas" data-en="Select Tickets">Seleccionar Entradas</span>
-            <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.3s;"></i>
+            <div class="eb-section-title-main">
+              <i class="fa-solid fa-ticket-simple"></i>
+              <span class="i18n" data-es="Seleccionar Entradas" data-en="Select Tickets">Seleccionar Entradas</span>
+              <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.3s;"></i>
+            </div>
+            <span class="eb-powered-sub">Powered by Eventbrite</span>
           </div>
 
           <div id="standaloneEbContainer" class="standalone-eb-container">
