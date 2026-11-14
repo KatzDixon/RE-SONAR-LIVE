@@ -170,6 +170,20 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .no-events-msg { text-align: center; padding: 50px 20px; background: var(--bg-card); border: 1px dashed var(--border-glass); border-radius: 16px; color: var(--text-muted); font-size: 14px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
     .no-events-msg i { font-size: 28px; color: var(--accent-gold); margin-bottom: 12px; display: block; }
 
+    /* SECCIÓN: GALERÍA DE EVENTOS PASADOS */
+    .past-gallery-section { max-width: var(--maxw); margin: 40px auto; padding: 0 24px; }
+    .gallery-section-title { font-family: 'Cinzel', serif; font-size: 22px; color: var(--accent-gold); text-align: center; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
+    .past-gallery-carousel { display: flex; gap: 20px; overflow-x: auto; scroll-snap-type: x mandatory; scroll-behavior: smooth; padding-bottom: 15px; }
+    .past-gallery-carousel::-webkit-scrollbar { height: 6px; }
+    .past-gallery-carousel::-webkit-scrollbar-thumb { background: var(--accent-gold); border-radius: 10px; }
+    
+    .past-photo-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 16px; overflow: hidden; min-width: 280px; max-width: 320px; scroll-snap-align: start; flex-shrink: 0; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s ease, border-color 0.3s ease; position: relative; }
+    .past-photo-card:hover { transform: translateY(-3px); border-color: var(--accent-gold); }
+    .past-photo-img-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; }
+    .past-photo-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .past-photo-card:hover .past-photo-img { transform: scale(1.05); }
+    .past-photo-badge { position: absolute; top: 12px; left: 12px; background: rgba(11, 11, 14, 0.85); border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 4px 10px; border-radius: 20px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(6px); z-index: 2; }
+
     /* PRUEBA SOCIAL */
     .social-proof-section { max-width: var(--maxw); margin: 30px auto 60px; padding: 0 24px; }
     .proof-title { font-family: 'Cinzel', serif; font-size: 22px; color: var(--accent-gold); text-align: center; margin-bottom: 25px; text-transform: uppercase; letter-spacing: 1px; }
@@ -265,11 +279,25 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-top-actions { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin-bottom: 5px; }
     .standalone-header { display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 0; }
     
-    .standalone-flyer-wrapper { position: relative; width: 100%; max-width: 320px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-glass); flex-shrink: 0; }
+    /* MODAL FLYER / SLIDESHOW INTERACTIVO (ESCRITORIO 1:1) */
+    .standalone-flyer-wrapper { position: relative; width: 100%; max-width: 380px; border-radius: 14px; overflow: hidden; border: 1px solid var(--border-glass); flex-shrink: 0; background: #000; }
+    .modal-slideshow-container { position: relative; width: 100%; height: 380px; }
+    .modal-slide-item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none; }
+    .modal-slide-item.active { opacity: 1; pointer-events: auto; }
     .standalone-flyer { width: 100%; height: 100%; object-fit: cover; background-position: top center; display: block; }
     
-    .st-badge-city { position: absolute; top: 12px; left: 12px; background: rgba(11, 11, 14, 0.85); border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); z-index: 5; }
-    .st-badge-urgency { position: absolute; bottom: 12px; right: 12px; background: rgba(230, 57, 70, 0.9); border: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4); animation: pulse-red 2s infinite; z-index: 5; }
+    /* Controles de navegación del carrusel en el modal */
+    .modal-slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(11,11,14,0.7); border: 1px solid var(--border-glass); color: var(--accent-gold); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s; }
+    .modal-slide-btn:hover { background: var(--accent-gold); color: #000; }
+    .modal-slide-prev { left: 10px; }
+    .modal-slide-next { right: 10px; }
+    
+    .modal-slide-dots { position: absolute; bottom: 12px; left: 0; width: 100%; display: flex; justify-content: center; gap: 6px; z-index: 10; }
+    .modal-dot { width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.4); cursor: pointer; transition: all 0.3s; }
+    .modal-dot.active { background: var(--accent-gold); width: 20px; border-radius: 4px; }
+
+    .st-badge-city { position: absolute; top: 12px; left: 12px; background: rgba(11, 11, 14, 0.85); border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 4px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); z-index: 12; }
+    .st-badge-urgency { position: absolute; bottom: 12px; right: 12px; background: rgba(230, 57, 70, 0.9); border: 1px solid rgba(255, 255, 255, 0.3); color: #ffffff; padding: 5px 12px; border-radius: 20px; font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(8px); box-shadow: 0 4px 12px rgba(230, 57, 70, 0.4); animation: pulse-red 2s infinite; z-index: 12; }
 
     @keyframes pulse-red { 0% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(230, 57, 70, 0); } 100% { box-shadow: 0 0 0 0 rgba(230, 57, 70, 0); } }
 
@@ -398,7 +426,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       .payment-modal-wrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
       #paymentEbWidgetWrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
 
-      .standalone-flyer-wrapper { max-width: 100%; height: 260px; }
+      /* FLUIDO A ANCHO DE PANTALLA EN MÓVIL */
+      .standalone-flyer-wrapper { max-width: 100% !important; width: 100vw !important; margin-left: -12px !important; margin-right: -12px !important; border-radius: 0 !important; border-left: none !important; border-right: none !important; }
+      .modal-slideshow-container { height: 380px !important; }
       
       .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thanks-modal-card > .thanks-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
 
@@ -489,6 +519,41 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       <div id="eventsContainer" class="events-wrapper mode-list"></div>
     </div>
 
+    <!-- SECCIÓN DE MOMENTOS / EVENTOS PASADOS -->
+    <section class="past-gallery-section">
+      <h3 class="gallery-section-title i18n" data-es="Momentos RE:SONAR" data-en="RE:SONAR Moments">Momentos RE:SONAR</h3>
+      
+      <div class="past-gallery-carousel">
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">CDMX</span>
+            <img class="past-photo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg" alt="Concierto en vivo CDMX" loading="lazy">
+          </div>
+        </div>
+
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">Cancún</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg" alt="Concierto en Cancún" loading="lazy">
+          </div>
+        </div>
+
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">Playa del Carmen</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg" alt="Concierto en Playa del Carmen" loading="lazy">
+          </div>
+        </div>
+
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">Monterrey</span>
+            <img class="past-photo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg" alt="Concierto en Monterrey" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="social-proof-section">
       <h3 class="proof-title i18n" data-es="Lo que dicen nuestros asistentes" data-en="What our attendees say">Lo que dicen nuestros asistentes</h3>
       <div class="reviews-carousel">
@@ -541,9 +606,19 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           </div>
           
           <div class="standalone-header">
+            <!-- FLYER / SLIDESHOW INTERACTIVO EN EL MODAL -->
             <div class="standalone-flyer-wrapper">
               <span id="stBadgeCity" class="st-badge-city">--</span>
-              <img id="stImg" class="standalone-flyer" src="" alt="Flyer Evento" loading="lazy" decoding="async"/>
+              
+              <div class="modal-slideshow-container" id="modalSlideshowContainer">
+                <!-- Se inyectan las imágenes dinámicamente -->
+              </div>
+
+              <button class="modal-slide-btn modal-slide-prev" onclick="changeModalSlide(-1)" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
+              <button class="modal-slide-btn modal-slide-next" onclick="changeModalSlide(1)" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
+              
+              <div class="modal-slide-dots" id="modalSlideDots"></div>
+
               <span class="st-badge-urgency"><i class="fa-solid fa-fire" style="margin-right: 4px;"></i> <span class="i18n" data-es="Pocos lugares" data-en="Limited seats">Pocos lugares</span></span>
             </div>
 
@@ -787,6 +862,13 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
     };
 
+    // FOTOS COMUNES DE EVENTOS PASADOS (El mismo slide para todos)
+    const pastEventsSharedGallery = [
+      'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg',
+      'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
+      'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg'
+    ];
+
     const eventosData = [
       {
         slug: 'cancun-mjdic26',
@@ -938,6 +1020,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     let currentViewMode = 'list'; 
     let currentLang = 'es';
     let currentStandaloneSlug = null;
+    let currentModalSlideIndex = 0;
 
     function triggerShare(shareData) {
       if (navigator.share) {
@@ -1113,7 +1196,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             iframeContainerId: `eb-node-${eventId}`,
             iframeContainerHeight: height,
             onOrderComplete: function() { 
-              // Redirección automática a la página de gracias tras la orden completada en Eventbrite
               window.location.hash = '#gracias';
             }
           });
@@ -1148,9 +1230,66 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       checkHashRouting();
     }
 
+    function updateModalSlideshow(galleryImages) {
+      const container = document.getElementById('modalSlideshowContainer');
+      const dotsContainer = document.getElementById('modalSlideDots');
+      
+      currentModalSlideIndex = 0;
+      let slidesHtml = '';
+      let dotsHtml = '';
+
+      galleryImages.forEach((imgUrl, index) => {
+        const activeClass = index === 0 ? 'active' : '';
+        slidesHtml += `
+          <div class="modal-slide-item ${activeClass}">
+            <img class="standalone-flyer" src="${imgUrl}" alt="Flyer o Momento RE:SONAR" loading="lazy" decoding="async"/>
+          </div>
+        `;
+        dotsHtml += `<span class="modal-dot ${activeClass}" onclick="setModalSlide(${index})"></span>`;
+      });
+
+      container.innerHTML = slidesHtml;
+      dotsContainer.innerHTML = dotsHtml;
+    }
+
+    function changeModalSlide(direction) {
+      const foundItem = eventosData.find(e => e.slug === currentStandaloneSlug);
+      if (!foundItem) return;
+
+      const fullGallery = [foundItem.image, ...pastEventsSharedGallery];
+
+      currentModalSlideIndex += direction;
+      if (currentModalSlideIndex < 0) {
+        currentModalSlideIndex = fullGallery.length - 1;
+      } else if (currentModalSlideIndex >= fullGallery.length) {
+        currentModalSlideIndex = 0;
+      }
+      updateModalSlideUI();
+    }
+
+    function setModalSlide(index) {
+      currentModalSlideIndex = index;
+      updateModalSlideUI();
+    }
+
+    function updateModalSlideUI() {
+      const slides = document.querySelectorAll('.modal-slide-item');
+      const dots = document.querySelectorAll('.modal-dot');
+
+      slides.forEach((slide, idx) => {
+        slide.classList.toggle('active', idx === currentModalSlideIndex);
+      });
+      dots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentModalSlideIndex);
+      });
+    }
+
     function updateStandaloneContent(item) {
       currentStandaloneSlug = item.slug;
-      document.getElementById('stImg').src = item.image;
+      
+      const fullGallery = [item.image, ...pastEventsSharedGallery];
+      updateModalSlideshow(fullGallery);
+
       document.getElementById('stBadgeCity').innerText = item.cityName;
       document.getElementById('stTitle').innerText = currentLang === 'es' ? item.titleEs : item.titleEn;
       document.getElementById('stReview').innerText = currentLang === 'es' ? item.reviewEs : item.reviewEn;
