@@ -180,7 +180,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .past-photo-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 16px; overflow: hidden; min-width: 280px; max-width: 320px; scroll-snap-align: start; flex-shrink: 0; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); transition: transform 0.3s ease, border-color 0.3s ease; position: relative; }
     .past-photo-card:hover { transform: translateY(-3px); border-color: var(--accent-gold); }
     .past-photo-img-wrapper { width: 100%; height: 240px; overflow: hidden; position: relative; }
-    .past-photo-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .past-photo-img { width: 100%; height: 100%; object-fit: cover; object-position: top center; transition: transform 0.5s ease; }
     .past-photo-card:hover .past-photo-img { transform: scale(1.05); }
     .past-photo-badge { position: absolute; top: 12px; left: 12px; background: rgba(11, 11, 14, 0.85); border: 1px solid var(--border-glass); color: var(--accent-gold); padding: 4px 10px; border-radius: 20px; font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; backdrop-filter: blur(6px); z-index: 2; }
 
@@ -284,7 +284,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .modal-slideshow-container { position: relative; width: 100%; height: 380px; }
     .modal-slide-item { position: absolute; top: 0; left: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 0.5s ease-in-out; pointer-events: none; }
     .modal-slide-item.active { opacity: 1; pointer-events: auto; }
-    .standalone-flyer { width: 100%; height: 100%; object-fit: cover; background-position: top center; display: block; }
+    .standalone-flyer { width: 100%; height: 100%; object-fit: cover; object-position: top center; display: block; }
     
     /* Controles de navegación del carrusel en el modal */
     .modal-slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(11,11,14,0.7); border: 1px solid var(--border-glass); color: var(--accent-gold); width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 10; transition: all 0.3s; }
@@ -526,29 +526,43 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       <div class="past-gallery-carousel">
         <div class="past-photo-card">
           <div class="past-photo-img-wrapper">
-            <span class="past-photo-badge">CDMX</span>
-            <img class="past-photo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg" alt="Concierto en vivo CDMX" loading="lazy">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G1.jpg" alt="Momento RE:SONAR 1" loading="lazy">
           </div>
         </div>
 
         <div class="past-photo-card">
           <div class="past-photo-img-wrapper">
-            <span class="past-photo-badge">Cancún</span>
-            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg" alt="Concierto en Cancún" loading="lazy">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G2.jpg" alt="Momento RE:SONAR 2" loading="lazy">
           </div>
         </div>
 
         <div class="past-photo-card">
           <div class="past-photo-img-wrapper">
-            <span class="past-photo-badge">Playa del Carmen</span>
-            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg" alt="Concierto en Playa del Carmen" loading="lazy">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G3.jpg" alt="Momento RE:SONAR 3" loading="lazy">
           </div>
         </div>
 
         <div class="past-photo-card">
           <div class="past-photo-img-wrapper">
-            <span class="past-photo-badge">Monterrey</span>
-            <img class="past-photo-img" src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg" alt="Concierto en Monterrey" loading="lazy">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G4.jpg" alt="Momento RE:SONAR 4" loading="lazy">
+          </div>
+        </div>
+
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G5.jpg" alt="Momento RE:SONAR 5" loading="lazy">
+          </div>
+        </div>
+
+        <div class="past-photo-card">
+          <div class="past-photo-img-wrapper">
+            <span class="past-photo-badge">Galería</span>
+            <img class="past-photo-img" src="https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G6.jpg" alt="Momento RE:SONAR 6" loading="lazy">
           </div>
         </div>
       </div>
@@ -1451,7 +1465,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     dragItem.addEventListener("mousedown", dragStart, false);
     document.addEventListener("mouseup", dragEnd, false);
-    document.addEventListener("mousemove", drag, false);
+    document.addEventListener("mousemove", drag, { passive: false });
 
     function dragStart(e) {
       initialX = (e.type === "touchstart") ? e.touches[0].clientX - xOffset : e.clientX - xOffset;
