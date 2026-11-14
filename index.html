@@ -426,9 +426,16 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       .payment-modal-wrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
       #paymentEbWidgetWrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
 
-      /* FLUIDO A ANCHO DE PANTALLA EN MÓVIL */
-      .standalone-flyer-wrapper { max-width: 100% !important; width: 100vw !important; margin-left: -12px !important; margin-right: -12px !important; border-radius: 0 !important; border-left: none !important; border-right: none !important; }
-      .modal-slideshow-container { height: 380px !important; }
+      /* FLYER Y SLIDESHOW CENTRADOS EN MÓVIL */
+      .standalone-flyer-wrapper { 
+        max-width: 300px !important; 
+        width: 100% !important; 
+        margin-left: auto !important; 
+        margin-right: auto !important; 
+        border-radius: 14px !important; 
+        border: 1px solid var(--border-glass) !important; 
+      }
+      .modal-slideshow-container { height: 300px !important; }
       
       .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thanks-modal-card > .thanks-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
 
@@ -1337,7 +1344,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
           <span>General: <strong>$300</strong></span> • 
           <span>Preferente: <strong>$400</strong></span> • 
           <span>VIP: <strong>$500</strong></span> • 
-          <span><i>Ahorra en comisiones comprando en WhatsApp</i></strong></span>
+          <span><i>Ahorra en comisiones comprando en WhatsApp</i></span>
         `;
       }
 
