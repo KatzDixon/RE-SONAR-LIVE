@@ -99,13 +99,26 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .btn-circle { background: rgba(125,125,125,0.1); border: 1px solid var(--border-subtle); color: var(--accent-gold); width: 36px; height: 36px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; transition: all 0.3s; }
     .btn-circle:hover { border-color: var(--accent-gold); transform: scale(1.05); }
 
-    /* HERO BANNER */
+    /* HERO BANNER Y CARRUSEL DE FONDO CENTRADO VERTICALMENTE */
     .hero-banner {
-      position: relative; width: 100%; height: 380px; background-size: cover; background-position: top center;
-      background-image: linear-gradient(rgba(11, 11, 14, 0.45), rgba(11, 11, 14, 0.9)), url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg');
+      position: relative; width: 100%; height: 380px; overflow: hidden;
       display: flex; align-items: flex-end; padding: 50px 24px; margin-bottom: 30px; border-bottom: 1px solid var(--border-glass);
     }
-    .hero-content { max-width: var(--maxw); width: 100%; margin: 0 auto; }
+    .hero-bg-slideshow {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none;
+    }
+    .hero-bg-slide {
+      position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover; background-position: center center; /* IMÁGENES VERTICALMENTE CENTRADAS */
+      opacity: 0; transition: opacity 1s ease-in-out;
+    }
+    .hero-bg-slide.active { opacity: 1; }
+    .hero-banner::after {
+      content: ''; position: absolute; inset: 0; z-index: 2;
+      background: linear-gradient(rgba(11, 11, 14, 0.45), rgba(11, 11, 14, 0.9));
+      pointer-events: none;
+    }
+    .hero-content { max-width: var(--maxw); width: 100%; margin: 0 auto; position: relative; z-index: 3; }
     .hero-title { font-family: 'Cinzel', serif; font-size: clamp(28px, 4.5vw, 48px); font-weight: 700; color: #ffffff; margin: 0 0 10px 0; text-shadow: 0 4px 15px rgba(0,0,0,0.8); }
     .hero-subtitle { font-size: clamp(14px, 1.8vw, 18px); color: #e0e0e0; margin: 0 0 25px 0; font-weight: 400; letter-spacing: 0.5px; text-shadow: 0 2px 8px rgba(0,0,0,0.8); }
     .hero-cta { background: var(--accent-gold-gradient); color: #000; border: none; padding: 14px 32px; border-radius: 30px; font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; cursor: pointer; transition: all 0.3s; box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4); animation: pulse-gold 2.5s infinite; }
@@ -489,6 +502,17 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
   <div class="main-home-section">
     <section id="heroBanner" class="hero-banner">
+      <!-- Carrusel automático de fondo integrado con las imágenes de la galería (verticalmente centradas) -->
+      <div class="hero-bg-slideshow" id="heroBgSlideshow">
+        <div class="hero-bg-slide active" style="background-image: url('https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhJYniKk5f-75JsqZ47NDAxZuVtkJgGbiZJ24pTsgFLHnuuR_yn0N0wjyUBRWyov0RKB_4hbM-j_IyTxCtVfZYWN6CInPmxy3Ny8GdUdkTFTlQGA6AdnYlpsG2jHJYThtDKXIveVcAHFFaxO2fo8cIasTqv0nl17k798sGKzHXdjNTrwnUfPv8GYWC1NKVo/s1600/Plain.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G1.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G2.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G3.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G4.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G5.jpg');"></div>
+        <div class="hero-bg-slide" style="background-image: url('https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/Gallery/G6.jpg');"></div>
+      </div>
+      
       <div class="hero-content">
         <h1 class="hero-title i18n" data-es="Los éxitos del pasado vuelven a RE:SONAR" data-en="Past hits resonate once again">Los éxitos del pasado vuelven a RE:SONAR</h1>
         <p class="hero-subtitle i18n" data-es="Homenajes instrumentales a las leyendas de la música" data-en="Instrumental tributes to music legends">Homenajes instrumentales a las leyendas de la música</p>
@@ -1496,6 +1520,19 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
     }
 
+    // Automatización del carrusel de fondo del Banner Principal cada 3 segundos
+    function initHeroSlideshow() {
+      const slides = document.querySelectorAll('.hero-bg-slide');
+      if (slides.length === 0) return;
+      let currentHeroIndex = 0;
+
+      setInterval(() => {
+        slides[currentHeroIndex].classList.remove('active');
+        currentHeroIndex = (currentHeroIndex + 1) % slides.length;
+        slides[currentHeroIndex].classList.add('active');
+      }, 3000);
+    }
+
     function checkHashRouting() {
       const rawHash = window.location.hash.replace('#', '');
       const cleanHash = decodeURIComponent(rawHash).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
@@ -1603,6 +1640,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     window.onload = function() {
       checkHashRouting();
       injectSEO();
+      initHeroSlideshow();
     };
 
     window.addEventListener('hashchange', () => {
