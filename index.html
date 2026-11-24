@@ -53,7 +53,7 @@
       --accent-gold-gradient: linear-gradient(135deg, #e7c96b 0%, #c79e26 100%);
       --accent-red: #e63946;
       --wa-green: #25d366;
-      --wa-bar-height: 32px;
+      --wa-bar-height: 36px;
       --text-bright: #f5f5f7;
       --text-muted: #9898a6;
       --border-glass: rgba(212, 175, 55, 0.24);
@@ -99,7 +99,7 @@
       padding-top: calc(var(--wa-bar-height) + 66px);
     }
 
-    /* BARRA SUPERIOR WHATSAPP */
+    /* BARRA SUPERIOR WHATSAPP CON MARQUESINA DE DERECHA A IZQUIERDA */
     .whatsapp-top-bar {
       position: fixed;
       top: 0;
@@ -108,42 +108,62 @@
       height: var(--wa-bar-height);
       z-index: 10000;
       background: #101814;
-      border-bottom: 1px solid rgba(37, 211, 102, 0.28);
+      border-bottom: 1px solid rgba(37, 211, 102, 0.34);
       color: #e9fff2;
       text-decoration: none;
       display: flex;
       align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 0 14px;
-      font-size: 11px;
-      font-weight: 600;
-      letter-spacing: 0.2px;
-      white-space: nowrap;
       overflow: hidden;
-      text-overflow: ellipsis;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      white-space: nowrap;
       transition: background-color 0.2s ease, border-color 0.2s ease;
     }
 
     body.light-mode .whatsapp-top-bar {
       background: #eef9f2;
       color: #0e4d2c;
-      border-bottom-color: rgba(18, 140, 126, 0.22);
+      border-bottom-color: rgba(18, 140, 126, 0.26);
     }
 
     .whatsapp-top-bar:hover {
       border-color: var(--wa-green);
     }
 
-    .whatsapp-top-bar i {
-      color: var(--wa-green);
-      font-size: 13px;
+    .whatsapp-marquee-track {
+      display: flex;
+      align-items: center;
+      width: max-content;
+      animation: waMarqueeRightToLeft 22s linear infinite;
+      will-change: transform;
+    }
+
+    .whatsapp-top-bar:hover .whatsapp-marquee-track {
+      animation-play-state: paused;
+    }
+
+    .whatsapp-marquee-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding-right: 64px;
       flex-shrink: 0;
     }
 
-    .whatsapp-top-bar-text {
-      overflow: hidden;
-      text-overflow: ellipsis;
+    .whatsapp-top-bar i {
+      color: var(--wa-green);
+      font-size: 15px;
+      flex-shrink: 0;
+    }
+
+    @keyframes waMarqueeRightToLeft {
+      0% {
+        transform: translateX(0%);
+      }
+      100% {
+        transform: translateX(-50%);
+      }
     }
 
     /* HEADER MINIMALISTA */
@@ -325,7 +345,7 @@
       justify-content: space-between;
       align-items: center;
       gap: 16px;
-      scroll-margin-top: 116px;
+      scroll-margin-top: 120px;
     }
 
     .city-filter-group {
@@ -845,7 +865,7 @@
       text-align: center;
       cursor: pointer;
       position: sticky;
-      top: 112px;
+      top: 116px;
       z-index: 50;
       transition: filter 0.2s ease;
     }
@@ -932,7 +952,7 @@
     .payment-modal-card > .payment-fixed-close,
     .thanks-modal-card > .thanks-fixed-close {
       position: fixed;
-      top: 42px;
+      top: 46px;
       right: 28px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
@@ -1816,7 +1836,9 @@
 
     /* RESPONSIVE MÓVIL */
     @media (max-width: 768px) {
-      .whatsapp-top-bar { font-size: 9.5px; gap: 5px; padding: 0 10px; }
+      .whatsapp-top-bar { font-size: 11px; }
+      .whatsapp-top-bar i { font-size: 13px; }
+      .whatsapp-marquee-group { gap: 8px; padding-right: 48px; }
       header { padding: 0 16px; }
       .logo-provisional { width: 175px; }
       .hero-banner { min-height: 350px; padding: 40px 18px 38px 18px; }
@@ -1859,7 +1881,7 @@
       .social-modal-card > .social-fixed-close,
       .payment-modal-card > .payment-fixed-close,
       .thanks-modal-card > .thanks-fixed-close {
-        top: 40px;
+        top: 44px;
         right: 12px;
         width: 34px;
         height: 34px;
@@ -1873,12 +1895,12 @@
         width: calc(100% - 28px);
         z-index: 9995;
         margin: 0;
-        top: 40px;
+        top: 44px;
         transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
       }
 
       body:not(.embed-expanded-mobile) .standalone-right-col .eb-section-title {
-        transform: translateY(calc(100dvh - 104px));
+        transform: translateY(calc(100dvh - 108px));
       }
 
       body.embed-expanded-mobile .standalone-right-col .eb-section-title {
@@ -1928,8 +1950,24 @@
 <body>
 
   <a id="whatsappTopBar" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-top-bar" aria-label="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" target="_blank" rel="noopener">
-    <i class="fa-brands fa-whatsapp"></i>
-    <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+    <div class="whatsapp-marquee-track">
+      <span class="whatsapp-marquee-group">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+      </span>
+      <span class="whatsapp-marquee-group" aria-hidden="true">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+      </span>
+      <span class="whatsapp-marquee-group" aria-hidden="true">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+      </span>
+      <span class="whatsapp-marquee-group" aria-hidden="true">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+      </span>
+    </div>
   </a>
 
   <header>
