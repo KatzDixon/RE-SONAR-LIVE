@@ -61,7 +61,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       display: none !important; height: 0 !important; visibility: hidden !important; margin: 0 !important; padding: 0 !important; opacity: 0 !important; pointer-events: none !important;
     }
     html, body { top: 0 !important; margin: 0 !important; padding: 0 !important; background-color: var(--bg-main) !important; border-top: none !important; }
-    body { padding-top: 85px !important; font-family: 'Montserrat', sans-serif; color: var(--text-bright); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; scroll-behavior: smooth; }
+    body { padding-top: 117px !important; font-family: 'Montserrat', sans-serif; color: var(--text-bright); overflow-x: hidden; line-height: 1.6; transition: background-color 0.3s ease, color 0.3s ease; scroll-behavior: smooth; }
     .content, .main, .body-uncul, .status-msg-wrap { margin-top: 0 !important; padding-top: 0 !important; }
     .main-inner, .content-inner, .region-inner, .main-wrapper, .content-outer, .post-outer-container, .post-outer, .post-body, .page_body, .centered, .Blog, .blog-posts, .widget, #main, #content {
       max-width: 100% !important; width: 100% !important; padding: 0 !important; margin: 0 !important; float: none !important; background: transparent !important;
@@ -77,6 +77,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       --accent-gold: #d4af37; 
       --accent-gold-gradient: linear-gradient(135deg, #f7e09a 0%, #d4af37 50%, #997a15 100%);
       --accent-red: #e63946;
+      --wa-green: #25d366;
+      --wa-green-dark: #128c7e;
+      --wa-bar-height: 32px;
       --text-bright: #ffffff; 
       --text-muted: #a0a0ab;
       --border-glass: rgba(212, 175, 55, 0.25); 
@@ -90,8 +93,55 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       --border-glass: rgba(179, 135, 21, 0.35); --border-subtle: rgba(0, 0, 0, 0.12); 
     }
 
+    /* BARRA SUPERIOR FIJA DE WHATSAPP */
+    .whatsapp-top-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: var(--wa-bar-height);
+      z-index: 2147483647 !important;
+      background: linear-gradient(90deg, #128c7e 0%, #25d366 50%, #128c7e 100%);
+      color: #ffffff;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 0 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      box-shadow: 0 2px 10px rgba(18, 140, 126, 0.45);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      transition: filter 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .whatsapp-top-bar:hover {
+      filter: brightness(1.06);
+      color: #ffffff;
+    }
+    .whatsapp-top-bar i {
+      font-size: 13px;
+      flex-shrink: 0;
+    }
+    .whatsapp-top-bar-text {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    }
+    .whatsapp-top-bar-phone {
+      background: rgba(0, 0, 0, 0.22);
+      padding: 1px 7px;
+      border-radius: 999px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
     /* HEADER */
-    header { position: fixed; top: 0 !important; left: 0; width: 100%; z-index: 99999; background: var(--bg-header); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); padding: 14px 24px; }
+    header { position: fixed; top: var(--wa-bar-height) !important; left: 0; width: 100%; z-index: 99999; background: var(--bg-header); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-glass); padding: 14px 24px; }
     .header-wrapper { max-width: var(--maxw); margin: 0 auto; display: flex; justify-content: space-between; align-items: center; }
     .brand-container { display: flex; align-items: center; gap: 14px; text-decoration: none; cursor: pointer; }
     .logo-provisional { width: 220px; height: auto; }
@@ -127,7 +177,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     @keyframes pulse-gold { 0% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7); } 70% { box-shadow: 0 0 0 15px rgba(212, 175, 55, 0); } 100% { box-shadow: 0 0 0 0 rgba(212, 175, 55, 0); } }
 
     /* CONTROLES Y FILTROS */
-    .controls-wrapper { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 25px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 15px; scroll-margin-top: 100px; }
+    .controls-wrapper { max-width: var(--maxw); margin: 0 auto; padding: 0 24px 25px 24px; display: flex; justify-content: space-between; align-items: center; flex-wrap: nowrap; gap: 15px; scroll-margin-top: 132px; }
     .city-filter-group { display: flex; align-items: center; gap: 10px; flex-shrink: 1; min-width: 0; }
     .city-filter-icon { color: var(--accent-gold); font-size: 15px; flex-shrink: 0; }
     .city-filter-container { display: inline-flex; background: rgba(125,125,125,0.08); padding: 5px; border-radius: 30px; border: 1px solid var(--border-glass); gap: 6px; overflow-x: auto; white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; flex-shrink: 1; }
@@ -232,8 +282,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       cursor: pointer;
       transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
       position: sticky;
-      top: 90px; 
-      z-index: 2147483647; 
+      top: 122px; 
+      z-index: 2147483646; 
     }
     .eb-section-title-main { display: flex; align-items: center; justify-content: center; gap: 10px; width: 100%; }
     .eb-section-title i { font-size: 16px; color: #000; }
@@ -245,18 +295,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       from { opacity: 0; transform: translateY(-5px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
-    /* WHATSAPP FLOTANTE */
-    .whatsapp-float-wrapper { 
-      position: fixed; bottom: 50%; right: -15px; z-index: 99999999 !important; 
-      display: flex; align-items: center; gap: 12px; pointer-events: auto; cursor: grab; touch-action: none; user-select: none;
-    }
-    .whatsapp-float-wrapper:active { cursor: grabbing; }
-    .whatsapp-tooltip { background: rgba(11, 11, 14, 0.95); border: 1px solid var(--border-glass); color: var(--text-bright); padding: 8px 12px 8px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; box-shadow: 0 4px 15px rgba(0,0,0,0.4); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); white-space: nowrap; display: flex; align-items: center; gap: 8px; transition: opacity 0.4s ease; }
-    .whatsapp-tooltip-close { background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; padding: 0; line-height: 1; transition: color 0.2s; }
-    .whatsapp-tooltip-close:hover { color: var(--text-bright); }
-    .whatsapp-float { width: 55px; height: 55px; background-color: #25d366; color: #fff; border-radius: 50px; text-align: center; font-size: 26px; box-shadow: 0 10px 25px rgba(37,211,102,0.35); display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform 0.3s; animation: pulse 2s infinite; flex-shrink: 0; }
-    @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); } 70% { box-shadow: 0 0 0 15px rgba(37,211,102,0); } 100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); } }
 
     /* NOTIFICACIÓN COPIAR PORTAPAPELES */
     .copy-toast {
@@ -274,7 +312,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     .standalone-card, .social-modal-card, .payment-modal-card, .thanks-modal-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: 20px; padding: 32px 28px; backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); position: relative; box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
     
     .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thanks-modal-card > .thanks-fixed-close {
-      position: fixed !important; top: 32px !important; right: 35px !important;
+      position: fixed !important; top: 46px !important; right: 35px !important;
       background: rgba(11, 11, 14, 0.9) !important; border: 1px solid var(--border-glass) !important; color: var(--text-bright) !important;
       width: 42px !important; height: 42px !important; border-radius: 50% !important; font-size: 24px !important;
       display: flex !important; align-items: center !important; justify-content: center !important; cursor: pointer !important;
@@ -347,15 +385,32 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     /* Estilos para el mapa y notas dentro del cuadro de precios */
     .modal-map-img { width: 100%; height: auto; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border-subtle); display: block; }
-    .modal-map-note { font-size: 11.5px; color: var(--text-muted); font-style: italic; margin-top: 8px; line-height: 1; display: block; }
+    .modal-map-note { font-size: 11.5px; color: var(--text-muted); font-style: italic; margin-top: 8px; line-height: 1.3; display: block; }
 
     /* Estilos para la información adicional del Venue y Aviso de Epilepsia */
-    .venue-extra-info-box { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); padding: 14px 16px; border-radius: 12px; margin-top: 15px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-bright); }
+    .venue-extra-info-box { background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-subtle); padding: 14px 16px; border-radius: 12px; margin-top: 10px; display: flex; flex-direction: column; gap: 8px; font-size: 12px; color: var(--text-bright); }
     .venue-extra-row { display: flex; align-items: center; gap: 8px; color: var(--text-muted); }
     .venue-extra-row i { color: var(--accent-gold); width: 16px; text-align: center; }
     .venue-extra-row span { color: var(--text-bright); font-weight: 600; }
     .venue-epilepsy-warning { margin-top: 4px; padding-top: 8px; border-top: 1px solid var(--border-subtle); font-size: 11px; color: var(--text-muted); line-height: 1.5; font-style: italic; }
     .venue-epilepsy-warning i { color: var(--accent-red); margin-right: 4px; }
+
+    /* SECCIÓN PREGUNTAS FRECUENTES (ACORDEÓN CON + / x) */
+    .modal-faq-section { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--border-subtle); }
+    .modal-faq-kicker { display: flex; align-items: center; gap: 8px; font-size: 10px; font-weight: 700; color: var(--accent-gold); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 4px; }
+    .modal-faq-kicker::before { content: ''; width: 18px; height: 1px; background: var(--accent-gold); opacity: 0.7; }
+    .modal-faq-heading { font-family: 'Cinzel', serif; font-size: 18px; font-weight: 700; color: var(--text-bright); margin: 0 0 14px 0; letter-spacing: 0.5px; }
+    .faq-accordion-list { display: flex; flex-direction: column; gap: 10px; }
+    .faq-item { background: rgba(255, 255, 255, 0.025); border: 1px solid var(--border-subtle); border-radius: 12px; transition: border-color 0.25s ease, background-color 0.25s ease; overflow: hidden; }
+    .faq-item.open { border-color: var(--border-glass); background: rgba(212, 175, 55, 0.04); }
+    .faq-trigger { width: 100%; background: transparent; border: none; padding: 13px 15px; display: flex; align-items: center; justify-content: space-between; gap: 14px; text-align: left; cursor: pointer; color: var(--text-bright); font-family: 'Montserrat', sans-serif; }
+    .faq-question-text { font-family: 'Cinzel', serif; font-size: 13.5px; font-weight: 700; color: var(--text-bright); line-height: 1.35; letter-spacing: 0.3px; }
+    .faq-toggle-btn { width: 26px; height: 26px; border-radius: 50%; background: var(--accent-gold-gradient); color: #000; display: inline-flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 15px; font-weight: 800; line-height: 1; transition: transform 0.28s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.25s ease; box-shadow: 0 2px 8px rgba(212, 175, 55, 0.28); }
+    .faq-item.open .faq-toggle-btn { transform: rotate(45deg); }
+    .faq-answer-panel { display: none; padding: 0 15px 14px 15px; font-size: 12px; color: var(--text-muted); line-height: 1.6; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 10px; }
+    .faq-item.open .faq-answer-panel { display: block; animation: fadeIn 0.25s ease; }
+    .faq-wa-inline-link { color: var(--wa-green); font-weight: 700; text-decoration: underline; white-space: nowrap; }
+    .faq-wa-inline-link:hover { filter: brightness(1.15); }
 
     .standalone-right-col { display: flex; flex-direction: column; width: 100%; }
 
@@ -409,7 +464,9 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
     /* RESPONSIVE MÓVIL */
     @media (max-width: 768px) {
-      body { padding-top: 75px !important; }
+      .whatsapp-top-bar { font-size: 9.5px; gap: 5px; padding: 0 8px; letter-spacing: 0.1px; }
+      .whatsapp-top-bar-phone { padding: 1px 5px; }
+      body { padding-top: 107px !important; }
       .hero-banner { height: auto; padding: 40px 20px 50px 20px; }
       
       .events-wrapper.mode-list .event-card { flex-direction: row; align-items: stretch; }
@@ -424,11 +481,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       .city-select-dropdown { display: block !important; }
 
       body.standalone-active header, body.standalone-active footer { display: none !important; }
-      body.standalone-active { padding-top: 0 !important; }
+      body.standalone-active { padding-top: calc(var(--wa-bar-height) + 10px) !important; }
       body.standalone-active .standalone-event-container, body.standalone-active .social-modal-container, body.standalone-active .payment-modal-container, body.standalone-active .thanks-modal-container { margin: 0 !important; padding: 0 !important; max-width: 100% !important; }
 
       body.standalone-active .standalone-card, body.standalone-active .social-modal-card, body.standalone-active .payment-modal-card, body.standalone-active .thanks-modal-card {
-        width: 100% !important; min-height: 100vh !important; min-height: 100dvh !important; border-radius: 0 !important; border: none !important; padding: 20px 12px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: center !important;
+        width: 100% !important; min-height: calc(100vh - var(--wa-bar-height)) !important; min-height: calc(100dvh - var(--wa-bar-height)) !important; border-radius: 0 !important; border: none !important; padding: 20px 12px !important; box-shadow: none !important; backdrop-filter: none !important; display: flex !important; flex-direction: column !important; justify-content: center !important;
       }
 
       body.standalone-active .thanks-modal-card { padding: 30px 12px !important; justify-content: flex-start !important; overflow-y: auto !important; }
@@ -436,8 +493,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       .thanks-modal-card .social-link-card { padding: 12px 14px !important; }
 
       body.standalone-active .payment-modal-card { padding: 10px 5px !important; justify-content: flex-start !important; }
-      .payment-modal-wrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
-      #paymentEbWidgetWrapper { min-height: calc(100vh - 40px) !important; min-height: calc(100dvh - 40px) !important; }
+      .payment-modal-wrapper { min-height: calc(100vh - 72px) !important; min-height: calc(100dvh - 72px) !important; }
+      #paymentEbWidgetWrapper { min-height: calc(100vh - 72px) !important; min-height: calc(100dvh - 72px) !important; }
 
       /* FLYER Y SLIDESHOW CENTRADOS EN MÓVIL */
       .standalone-flyer-wrapper { 
@@ -450,19 +507,19 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
       .modal-slideshow-container { height: 300px !important; }
       
-      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thanks-modal-card > .thanks-fixed-close { top: 12px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
+      .standalone-card > .standalone-fixed-close, .social-modal-card > .social-fixed-close, .payment-modal-card > .payment-fixed-close, .thanks-modal-card > .thanks-fixed-close { top: 42px !important; right: 12px !important; width: 36px !important; height: 36px !important; font-size: 20px !important; }
 
       .standalone-right-col { position: relative; padding-bottom: 70px; }
       
       .standalone-right-col .eb-section-title {
-        position: fixed !important; left: 20px !important; width: calc(100% - 40px) !important; z-index: 2147483647 !important; 
-        margin: 0 !important; border-radius: 12px !important; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7) !important; top: 15px !important; 
+        position: fixed !important; left: 20px !important; width: calc(100% - 40px) !important; z-index: 2147483646 !important; 
+        margin: 0 !important; border-radius: 12px !important; box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7) !important; top: 44px !important; 
         transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
       }
 
       body:not(.embed-expanded-mobile) .standalone-right-col .eb-section-title {
-        transform: translateY(calc(100vh - 95px)) !important;
-        transform: translateY(calc(100dvh - 95px)) !important;
+        transform: translateY(calc(100vh - 110px)) !important;
+        transform: translateY(calc(100dvh - 110px)) !important;
       }
 
       body.embed-expanded-mobile .standalone-right-col .eb-section-title {
@@ -482,6 +539,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
   </style>
 </head>
 <body>
+
+  <a id="whatsappTopBar" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-top-bar" aria-label="Comprar directo por WhatsApp sin cargos por servicio" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+    <span class="whatsapp-top-bar-text i18n" data-es="100% sin cargos por servicio comprando directo por WhatsApp" data-en="0% service fees when buying direct on WhatsApp">100% sin cargos por servicio comprando directo por WhatsApp</span>
+    <span class="whatsapp-top-bar-phone">984 240 8513</span>
+  </a>
 
   <header>
     <div class="header-wrapper">
@@ -688,6 +751,11 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
+          <!-- Información Adicional del Venue (Arriba del mapa de zonas) -->
+          <div id="stVenueExtraInfo" class="venue-extra-info-box">
+            <!-- Se inyecta dinámicamente -->
+          </div>
+
           <!-- Sección dinámica de Precios y Zonas con Mapa y Nota integrados -->
           <div class="standalone-prices-box">
             <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> Precios de boletos y zonas</div>
@@ -696,8 +764,8 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
             </div>
           </div>
 
-          <!-- Información Adicional del Venue (Centralizada) -->
-          <div id="stVenueExtraInfo" class="venue-extra-info-box">
+          <!-- Preguntas Frecuentes debajo del mapa -->
+          <div id="stFaqSection" class="modal-faq-section">
             <!-- Se inyecta dinámicamente -->
           </div>
         </div>
@@ -863,14 +931,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
     </div>
   </div>
 
-  <div class="whatsapp-float-wrapper" id="whatsappFloatWrapper">
-    <div id="whatsappTooltip" class="whatsapp-tooltip">
-      <span class="i18n" data-es="COMPRAR SIN CARGOS por WhatsApp" data-en="BUY via WhatsApp with NO EXTRA FEES.">COMPRAR SIN CARGOS por WhatsApp</span>
-      <button class="whatsapp-tooltip-close" aria-label="Cerrar notificación" onclick="closeWhatsappTooltip(event)">&times;</button>
-    </div>
-    <a id="whatsappBtnLink" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-float" aria-label="Comprar por WhatsApp" target="_blank" rel="noopener"><i class="fa-brands fa-whatsapp"></i></a>
-  </div>
-
   <div id="copyToast" class="copy-toast">
     <i class="fa-solid fa-check"></i>
     <span class="i18n" data-es="¡Enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
@@ -904,6 +964,13 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         accesibilidad: 'Si, este venue es inclusivo',
         todoPublico: 'Sí'
       }
+    };
+
+    const cityLabels = {
+      cdmx: 'CDMX',
+      cancun: 'Cancún',
+      playadelcarmen: 'Playa del Carmen',
+      monterrey: 'Monterrey'
     };
 
     // FOTOS COMUNES DE EVENTOS PASADOS
@@ -1117,12 +1184,83 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       if (modalKey !== "Home") {
         mensaje = `Hola, me interesa comprar boletos para el concierto de ${modalKey}.`;
+      } else if (currentCityFilter && currentCityFilter !== 'all' && cityLabels[currentCityFilter]) {
+        mensaje = `${mensaje} Estaba viendo los eventos de ${cityLabels[currentCityFilter]}.`;
       }
 
-      const botonWp = document.getElementById("whatsappBtnLink");
-      if (botonWp) {
-        botonWp.href = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
+      const barraWp = document.getElementById("whatsappTopBar");
+      if (barraWp) {
+        barraWp.href = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
       }
+    }
+
+    function toggleFaqItem(triggerBtn) {
+      const item = triggerBtn.closest('.faq-item');
+      if (!item) return;
+      const isOpen = item.classList.toggle('open');
+      triggerBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    }
+
+    function renderModalFaqs() {
+      const container = document.getElementById('stFaqSection');
+      if (!container) return;
+
+      const topBarHref = document.getElementById('whatsappTopBar')?.href || 'https://wa.me/529842408513';
+
+      const faqs = currentLang === 'es' ? [
+        {
+          q: '¿Elijo mi butaca?',
+          a: 'El acomodo es por orden de llegada, respetando la zona que adquiriste al comprar tu boleto. Te recomendamos llegar con anticipación para elegir el mejor lugar disponible dentro de tu sección.'
+        },
+        {
+          q: '¿Cómo recibo mis boletos?',
+          a: 'Una vez confirmado tu pago, recibirás tus boletos con código QR en tu correo electrónico. Solo muéstralos desde tu celular en la entrada; no necesitas imprimir nada.'
+        },
+        {
+          q: '¿Qué incluye el cargo por servicio?',
+          a: `Es un porcentaje aplicado en boletera que cubre la plataforma de venta, el procesamiento del pago y la emisión digital de tus boletos. Puedes evitar este cargo comprando directamente por nuestro WhatsApp <a href="${topBarHref}" target="_blank" rel="noopener" class="faq-wa-inline-link">984 240 8513</a>.`
+        },
+        {
+          q: '¿A qué hora abren las puertas?',
+          a: 'Las puertas abren 20 minutos antes de que inicie la función.'
+        }
+      ] : [
+        {
+          q: 'Do I choose my exact seat?',
+          a: 'Seating is first-come, first-served within the zone you selected when purchasing your ticket. We recommend arriving early to get the best spot available in your section.'
+        },
+        {
+          q: 'How do I receive my tickets?',
+          a: 'Once your payment is confirmed, your tickets with a QR code will be sent to your email. Simply show them on your phone at the entrance—no printing required.'
+        },
+        {
+          q: 'What does the service fee cover?',
+          a: `It is a ticketing platform percentage that covers the sales platform, payment processing, and digital ticket delivery. You can save this fee by buying directly on our WhatsApp <a href="${topBarHref}" target="_blank" rel="noopener" class="faq-wa-inline-link">984 240 8513</a>.`
+        },
+        {
+          q: 'What time do doors open?',
+          a: 'Doors open 20 minutes before the show begins.'
+        }
+      ];
+
+      const kicker = currentLang === 'es' ? 'Antes de comprar' : 'Before you buy';
+      const heading = currentLang === 'es' ? 'Preguntas frecuentes' : 'Frequently asked questions';
+
+      const itemsHtml = faqs.map((faq, idx) => `
+        <div class="faq-item${idx === 0 ? ' open' : ''}">
+          <button type="button" class="faq-trigger" aria-expanded="${idx === 0 ? 'true' : 'false'}" onclick="toggleFaqItem(this)">
+            <span class="faq-question-text">${faq.q}</span>
+            <span class="faq-toggle-btn" aria-hidden="true">+</span>
+          </button>
+          <div class="faq-answer-panel">${faq.a}</div>
+        </div>
+      `).join('');
+
+      container.innerHTML = `
+        <div class="modal-faq-kicker">${kicker}</div>
+        <h3 class="modal-faq-heading">${heading}</h3>
+        <div class="faq-accordion-list">${itemsHtml}</div>
+      `;
     }
 
     function scrollToEvents() {
@@ -1166,6 +1304,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       }
       document.getElementById('citySelectDropdown').value = city;
       currentCityFilter = city;
+      actualizarBotonWhatsApp('Home');
       
       if (updateHistory) {
         if (city === 'all') {
@@ -1348,6 +1487,23 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
       
       actualizarBotonWhatsApp(item.whatsappKey);
 
+      const venueInfo = venuesConfig[item.cityKey] || { estacionamiento: 'Valet Parking con costo', accesibilidad: 'Limitada', todoPublico: 'Sí' };
+      const venueExtraBox = document.getElementById('stVenueExtraInfo');
+      
+      const lblEstacionamiento = currentLang === 'es' ? 'Estacionamiento' : 'Parking';
+      const lblAccesibilidad = currentLang === 'es' ? 'Accesibilidad' : 'Accessibility';
+      const lblAptoEdades = currentLang === 'es' ? 'Evento apto para todas las edades' : 'All ages event';
+      const lblAvisoEpilepsia = currentLang === 'es' 
+        ? '<strong>Aviso:</strong> Este espectáculo contiene efectos visuales y de luces que pueden afectar a personas con epilepsia fotosensible o sensibilidad a la luz.'
+        : '<strong>Notice:</strong> This show contains visual and lighting effects that may affect people with photosensitive epilepsy or light sensitivity.';
+
+      venueExtraBox.innerHTML = `
+        <div class="venue-extra-row"><i class="fa-solid fa-car"></i> ${lblEstacionamiento}: <span>${venueInfo.estacionamiento}</span></div>
+        <div class="venue-extra-row"><i class="fa-solid fa-wheelchair"></i> ${lblAccesibilidad}: <span>${venueInfo.accesibilidad}</span></div>
+        <div class="venue-extra-row"><i class="fa-solid fa-users"></i> ${lblAptoEdades}: <span>${venueInfo.todoPublico}</span></div>
+        <div class="venue-epilepsy-warning"><i class="fa-solid fa-triangle-exclamation"></i> ${lblAvisoEpilepsia}</div>
+      `;
+
       const pricesContainer = document.getElementById('stPricesContent');
       let pricesHtml = '';
       
@@ -1395,22 +1551,7 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
 
       pricesContainer.innerHTML = pricesHtml;
 
-      const venueInfo = venuesConfig[item.cityKey] || { estacionamiento: 'Valet Parking con costo', accesibilidad: 'Limitada', todoPublico: 'Sí' };
-      const venueExtraBox = document.getElementById('stVenueExtraInfo');
-      
-      const lblEstacionamiento = currentLang === 'es' ? 'Estacionamiento' : 'Parking';
-      const lblAccesibilidad = currentLang === 'es' ? 'Accesibilidad' : 'Accessibility';
-      const lblAptoEdades = currentLang === 'es' ? 'Evento apto para todas las edades' : 'All ages event';
-      const lblAvisoEpilepsia = currentLang === 'es' 
-        ? '<strong>Aviso:</strong> Este espectáculo contiene efectos visuales y de luces que pueden afectar a personas con epilepsia fotosensible o sensibilidad a la luz.'
-        : '<strong>Notice:</strong> This show contains visual and lighting effects that may affect people with photosensitive epilepsy or light sensitivity.';
-
-      venueExtraBox.innerHTML = `
-        <div class="venue-extra-row"><i class="fa-solid fa-car"></i> ${lblEstacionamiento}: <span>${venueInfo.estacionamiento}</span></div>
-        <div class="venue-extra-row"><i class="fa-solid fa-wheelchair"></i> ${lblAccesibilidad}: <span>${venueInfo.accesibilidad}</span></div>
-        <div class="venue-extra-row"><i class="fa-solid fa-users"></i> ${lblAptoEdades}: <span>${venueInfo.todoPublico}</span></div>
-        <div class="venue-epilepsy-warning"><i class="fa-solid fa-triangle-exclamation"></i> ${lblAvisoEpilepsia}</div>
-      `;
+      renderModalFaqs();
 
       const chevron = document.getElementById('stEmbedChevron');
       injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight);
@@ -1464,58 +1605,12 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         chevron.style.transform = 'rotate(180deg)';
         if (window.innerWidth <= 768) {
           setTimeout(() => {
-            const yOffset = -95;
+            const yOffset = -125;
             const extraScroll = window.innerHeight * 0.05; 
             const y = container.getBoundingClientRect().top + window.scrollY + yOffset + extraScroll;
             window.scrollTo({ top: y, behavior: 'smooth' });
           }, 100);
         }
-      }
-    }
-
-    function closeWhatsappTooltip(e) {
-      e.stopPropagation();
-      document.getElementById('whatsappTooltip').style.display = 'none';
-    }
-
-    setTimeout(() => {
-      const tooltip = document.getElementById('whatsappTooltip');
-      if(tooltip) {
-        tooltip.style.opacity = '0';
-        setTimeout(() => tooltip.style.display = 'none', 400);
-      }
-    }, 5000);
-
-    const dragItem = document.getElementById("whatsappFloatWrapper");
-    let active = false, currentX, currentY, initialX, initialY, xOffset = 0, yOffset = 0;
-
-    dragItem.addEventListener("touchstart", dragStart, { passive: true });
-    document.addEventListener("touchend", dragEnd, { passive: true });
-    document.addEventListener("touchmove", drag, { passive: false });
-
-    dragItem.addEventListener("mousedown", dragStart, false);
-    document.addEventListener("mouseup", dragEnd, false);
-    document.addEventListener("mousemove", drag, { passive: false });
-
-    function dragStart(e) {
-      initialX = (e.type === "touchstart") ? e.touches[0].clientX - xOffset : e.clientX - xOffset;
-      initialY = (e.type === "touchstart") ? e.touches[0].clientY - yOffset : e.clientY - yOffset;
-      if (e.target === dragItem || dragItem.contains(e.target)) active = true;
-    }
-
-    function dragEnd() {
-      initialX = currentX;
-      initialY = currentY;
-      active = false;
-    }
-
-    function drag(e) {
-      if (active) {
-        currentX = (e.type === "touchmove") ? e.touches[0].clientX - initialX : e.clientX - initialX;
-        currentY = (e.type === "touchmove") ? e.touches[0].clientY - initialY : e.clientY - initialY;
-        xOffset = currentX;
-        yOffset = currentY;
-        dragItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
       }
     }
 
@@ -1598,8 +1693,6 @@ src="https://www.facebook.com/tr?id=1651365015353464&ev=PageView&noscript=1"
         document.body.classList.remove('standalone-active');
         document.body.classList.remove('embed-expanded-mobile');
         mainHomeSections.forEach(sec => sec.style.display = 'block');
-        
-        actualizarBotonWhatsApp('Home');
         
         if (['all', 'cdmx', 'cancun', 'playadelcarmen', 'monterrey'].includes(cleanHash)) {
           filterCity(cleanHash, null, false);
