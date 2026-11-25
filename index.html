@@ -166,6 +166,48 @@
       }
     }
 
+    /* BOTÓN CIRCULAR FLOTANTE Y ARRASTRABLE DE WHATSAPP */
+    .whatsapp-floating-btn {
+      position: fixed;
+      top: 50%;
+      right: 18px;
+      transform: translateY(-50%);
+      z-index: 9980;
+      width: 56px;
+      height: 56px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #25d366 0%, #169c4b 100%);
+      color: #ffffff;
+      text-decoration: none;
+      border: 1px solid rgba(255, 255, 255, 0.28);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
+      cursor: grab;
+      touch-action: none;
+      user-select: none;
+      -webkit-user-select: none;
+      transition: box-shadow 0.2s ease, filter 0.2s ease;
+    }
+
+    .whatsapp-floating-btn:hover {
+      filter: brightness(1.06);
+      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.32);
+    }
+
+    .whatsapp-floating-btn.is-dragging {
+      cursor: grabbing;
+      filter: brightness(1.08);
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.48);
+    }
+
+    .whatsapp-floating-btn i {
+      font-size: 27px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
     /* HEADER MINIMALISTA */
     header {
       position: fixed;
@@ -1839,6 +1881,14 @@
       .whatsapp-top-bar { font-size: 11px; }
       .whatsapp-top-bar i { font-size: 13px; }
       .whatsapp-marquee-group { gap: 8px; padding-right: 48px; }
+      .whatsapp-floating-btn {
+        width: 50px;
+        height: 50px;
+        right: 12px;
+      }
+      .whatsapp-floating-btn i {
+        font-size: 24px;
+      }
       header { padding: 0 16px; }
       .logo-provisional { width: 175px; }
       .hero-banner { min-height: 350px; padding: 40px 18px 38px 18px; }
@@ -1970,6 +2020,10 @@
     </div>
   </a>
 
+  <a id="whatsappFloatingBtn" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-floating-btn" aria-label="Comprar boletos por WhatsApp" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+  </a>
+
   <header>
     <div class="header-wrapper">
       <div class="brand-container" onclick="closeStandaloneView()">
@@ -2036,7 +2090,7 @@
       <div id="eventsContainer" class="events-wrapper mode-list"></div>
     </div>
 
-    <section class="past-gallery-section">
+    <section class="past-gallery-section" data-wa-section="gallery">
       <div class="section-header-minimal">
         <span class="section-kicker i18n" data-es="Archivo visual" data-en="Visual archive">Archivo visual</span>
         <h3 class="gallery-section-title i18n" data-es="Momentos RE:SONAR" data-en="RE:SONAR Moments">Momentos RE:SONAR</h3>
@@ -2051,7 +2105,7 @@
       </div>
     </section>
 
-    <section class="social-proof-section">
+    <section class="social-proof-section" data-wa-section="reviews">
       <div class="section-header-minimal">
         <span class="section-kicker i18n" data-es="Experiencias reales" data-en="Audience feedback">Experiencias reales</span>
         <h3 class="proof-title i18n" data-es="Lo que dicen nuestros asistentes" data-en="What our attendees say">Lo que dicen nuestros asistentes</h3>
@@ -2495,6 +2549,7 @@
     let currentModalSlideIndex = 0;
     let activeMapItem = null;
     let activeHoveredZone = null;
+    let currentWaContext = { mode: 'home', eventItem: null, zoneKey: null, sectionKey: null };
 
     function triggerShare(shareData) {
       if (navigator.share) {
@@ -2531,20 +2586,202 @@
       setTimeout(() => toast.classList.remove('show'), 3000);
     }
 
-    function actualizarBotonWhatsApp(modalKey) {
-      const numeroTelefono = "529842408513";
-      let mensaje = "Hola, me interesa comprar boletos para los eventos de RE:SONAR.";
+    function construirMensajeWhatsApp(ctx = currentWaContext) {
+      const ev = ctx.eventItem;
+      const evTitle = ev ? (currentLang === 'es' ? ev.titleEs : ev.titleEn) : '';
+      const evDates = ev ? (currentLang === 'es' ? ev.datesEs : ev.datesEn) : '';
+      const zoneInfo = (ev && ctx.zoneKey) ? getZoneDisplayData(ev, ctx.zoneKey) : null;
 
-      if (modalKey !== "Home") {
-        mensaje = `Hola, me interesa comprar boletos para el concierto de ${modalKey}.`;
-      } else if (currentCityFilter && currentCityFilter !== 'all' && cityLabels[currentCityFilter]) {
-        mensaje = `${mensaje} Estaba viendo los eventos de ${cityLabels[currentCityFilter]}.`;
+      if (ctx.mode === 'payment' && ev) {
+        return currentLang === 'es'
+          ? `Hola, estaba en el checkout de ${evTitle} (${ev.cityName}, ${evDates} • ${ev.time}) y quiero comprar mis boletos sin cargos por servicio por WhatsApp.`
+          : `Hi, I was on the checkout for ${evTitle} (${ev.cityName}, ${evDates} • ${ev.time}) and want to buy tickets with zero service fees via WhatsApp.`;
       }
+
+      if (ctx.mode === 'event' && ev) {
+        if (zoneInfo) {
+          return currentLang === 'es'
+            ? `Hola, me interesa comprar boletos en zona ${zoneInfo.label} (${zoneInfo.priceText}) para ${evTitle} en ${ev.cityName} (${evDates} • ${ev.time}).`
+            : `Hi, I'm interested in ${zoneInfo.label} (${zoneInfo.priceText}) tickets for ${evTitle} in ${ev.cityName} (${evDates} • ${ev.time}).`;
+        }
+        return currentLang === 'es'
+          ? `Hola, me interesa comprar boletos para el concierto de ${ev.whatsappKey || evTitle} (${evDates} • ${ev.time}).`
+          : `Hi, I'm interested in buying tickets for ${evTitle} in ${ev.cityName} (${evDates} • ${ev.time}).`;
+      }
+
+      if (ctx.mode === 'redes') {
+        return currentLang === 'es'
+          ? 'Hola, vi sus redes sociales de RE:SONAR LIVE y quiero información sobre próximos conciertos y boletos.'
+          : 'Hi, I saw RE:SONAR LIVE social media and would like info on upcoming concerts and tickets.';
+      }
+
+      if (ctx.mode === 'gracias') {
+        return currentLang === 'es'
+          ? 'Hola, acabo de realizar una compra de boletos en RE:SONAR LIVE y quería confirmar detalles de mi acceso.'
+          : 'Hi, I just completed a ticket purchase on RE:SONAR LIVE and wanted to confirm my admission details.';
+      }
+
+      if (ctx.mode === 'gallery') {
+        return currentLang === 'es'
+          ? 'Hola, vi la galería de Momentos RE:SONAR y me gustaría asistir a la próxima función.'
+          : 'Hi, I checked out the RE:SONAR Moments gallery and would love to attend the next show.';
+      }
+
+      if (ctx.mode === 'reviews') {
+        return currentLang === 'es'
+          ? 'Hola, leí las reseñas de RE:SONAR LIVE y me interesa comprar boletos para los próximos conciertos.'
+          : 'Hi, I read the RE:SONAR LIVE reviews and want to get tickets for upcoming shows.';
+      }
+
+      if (currentCityFilter && currentCityFilter !== 'all' && cityLabels[currentCityFilter]) {
+        return currentLang === 'es'
+          ? `Hola, me interesa comprar boletos para los eventos de RE:SONAR. Estaba viendo los eventos de ${cityLabels[currentCityFilter]}.`
+          : `Hi, I'm interested in buying tickets for RE:SONAR events. I was checking out the shows in ${cityLabels[currentCityFilter]}.`;
+      }
+
+      return currentLang === 'es'
+        ? 'Hola, me interesa comprar boletos para los eventos de RE:SONAR.'
+        : 'Hi, I am interested in buying tickets for RE:SONAR events.';
+    }
+
+    function actualizarBotonWhatsApp(modalKey, extraContext = null) {
+      const numeroTelefono = "529842408513";
+
+      if (extraContext && typeof extraContext === 'object') {
+        currentWaContext = { ...currentWaContext, ...extraContext };
+      } else if (modalKey === 'Payment') {
+        const foundPayment = eventosData.find(e => e.whatsappKey === currentWaContext.eventItem?.whatsappKey) || currentWaContext.eventItem || null;
+        currentWaContext = { mode: 'payment', eventItem: foundPayment, zoneKey: null, sectionKey: null };
+      } else if (modalKey === 'Redes') {
+        currentWaContext = { mode: 'redes', eventItem: null, zoneKey: null, sectionKey: 'redes' };
+      } else if (modalKey === 'Gracias') {
+        currentWaContext = { mode: 'gracias', eventItem: null, zoneKey: null, sectionKey: 'gracias' };
+      } else if (modalKey && modalKey !== 'Home') {
+        const foundByKey = eventosData.find(e => e.whatsappKey === modalKey || e.slug === modalKey);
+        currentWaContext = { mode: 'event', eventItem: foundByKey || null, zoneKey: null, sectionKey: null };
+      } else {
+        currentWaContext = { mode: 'home', eventItem: null, zoneKey: null, sectionKey: null };
+      }
+
+      const mensaje = construirMensajeWhatsApp(currentWaContext);
+      const waUrl = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
 
       const barraWp = document.getElementById("whatsappTopBar");
-      if (barraWp) {
-        barraWp.href = `https://wa.me/${numeroTelefono}?text=${encodeURIComponent(mensaje)}`;
-      }
+      if (barraWp) barraWp.href = waUrl;
+
+      const floatingBtn = document.getElementById("whatsappFloatingBtn");
+      if (floatingBtn) floatingBtn.href = waUrl;
+    }
+
+    function setupSectionWhatsAppListeners() {
+      document.querySelectorAll('[data-wa-section]').forEach(sec => {
+        if (sec.dataset.waBound) return;
+        sec.dataset.waBound = '1';
+        const sectionKey = sec.getAttribute('data-wa-section');
+        sec.addEventListener('pointerdown', () => {
+          if (!document.body.classList.contains('standalone-active')) {
+            actualizarBotonWhatsApp('Home', { mode: sectionKey, sectionKey });
+          }
+        }, { passive: true });
+      });
+    }
+
+    function setupDraggableFloatingButton() {
+      const btn = document.getElementById('whatsappFloatingBtn');
+      if (!btn || btn.dataset.draggableBound) return;
+      btn.dataset.draggableBound = '1';
+
+      let isPointerDown = false;
+      let hasMoved = false;
+      let startX = 0;
+      let startY = 0;
+      let originLeft = 0;
+      let originTop = 0;
+      const dragThreshold = 6;
+
+      const clampPosition = (left, top) => {
+        const rect = btn.getBoundingClientRect();
+        const width = rect.width || 56;
+        const height = rect.height || 56;
+        const minLeft = 8;
+        const minTop = 44;
+        const maxLeft = Math.max(minLeft, window.innerWidth - width - 8);
+        const maxTop = Math.max(minTop, window.innerHeight - height - 8);
+        return {
+          left: Math.min(Math.max(left, minLeft), maxLeft),
+          top: Math.min(Math.max(top, minTop), maxTop)
+        };
+      };
+
+      btn.addEventListener('pointerdown', (e) => {
+        if (e.button !== undefined && e.button !== 0 && e.pointerType === 'mouse') return;
+        const rect = btn.getBoundingClientRect();
+        isPointerDown = true;
+        hasMoved = false;
+        startX = e.clientX;
+        startY = e.clientY;
+        originLeft = rect.left;
+        originTop = rect.top;
+        btn.setPointerCapture(e.pointerId);
+      });
+
+      btn.addEventListener('pointermove', (e) => {
+        if (!isPointerDown) return;
+        const dx = e.clientX - startX;
+        const dy = e.clientY - startY;
+
+        if (!hasMoved && Math.hypot(dx, dy) > dragThreshold) {
+          hasMoved = true;
+          btn.classList.add('is-dragging');
+          btn.style.right = 'auto';
+          btn.style.bottom = 'auto';
+          btn.style.transform = 'none';
+          btn.style.left = `${originLeft}px`;
+          btn.style.top = `${originTop}px`;
+        }
+
+        if (hasMoved) {
+          const clamped = clampPosition(originLeft + dx, originTop + dy);
+          btn.style.left = `${clamped.left}px`;
+          btn.style.top = `${clamped.top}px`;
+        }
+      });
+
+      const finishPointer = (e) => {
+        if (!isPointerDown) return;
+        isPointerDown = false;
+        if (btn.hasPointerCapture && btn.hasPointerCapture(e.pointerId)) {
+          btn.releasePointerCapture(e.pointerId);
+        }
+        if (hasMoved) {
+          btn.classList.remove('is-dragging');
+          setTimeout(() => {
+            hasMoved = false;
+          }, 0);
+        }
+      };
+
+      btn.addEventListener('pointerup', finishPointer);
+      btn.addEventListener('pointercancel', finishPointer);
+
+      btn.addEventListener('click', (e) => {
+        if (hasMoved) {
+          e.preventDefault();
+          e.stopPropagation();
+        }
+      });
+
+      window.addEventListener('resize', () => {
+        if (btn.style.left && btn.style.top) {
+          const currentLeft = parseFloat(btn.style.left);
+          const currentTop = parseFloat(btn.style.top);
+          if (!Number.isNaN(currentLeft) && !Number.isNaN(currentTop)) {
+            const clamped = clampPosition(currentLeft, currentTop);
+            btn.style.left = `${clamped.left}px`;
+            btn.style.top = `${clamped.top}px`;
+          }
+        }
+      });
     }
 
     function toggleFaqItem(triggerBtn) {
@@ -2648,6 +2885,7 @@
         priceEl.textContent = '';
         priceEl.classList.remove('soldout');
         if (descEl) descEl.textContent = '';
+        actualizarBotonWhatsApp(item.whatsappKey, { mode: 'event', eventItem: item, zoneKey: null });
         return;
       }
 
@@ -2671,6 +2909,8 @@
           }
         });
       }
+
+      actualizarBotonWhatsApp(item.whatsappKey, { mode: 'event', eventItem: item, zoneKey });
     }
 
     function renderInteractiveMapForEvent(item) {
@@ -2787,7 +3027,11 @@
       const rawHash = window.location.hash.replace('#', '');
       const cleanHash = decodeURIComponent(rawHash).normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim();
       const foundItem = eventosData.find(e => e.slug === cleanHash);
-      if (foundItem) updateStandaloneContent(foundItem);
+      if (foundItem) {
+        updateStandaloneContent(foundItem);
+      } else {
+        actualizarBotonWhatsApp('Home', currentWaContext);
+      }
     }
 
     function setViewMode(mode) {
@@ -2966,7 +3210,7 @@
       document.getElementById('stVenue').innerHTML = `<a href="${item.mapsUrl}" target="_blank" rel="noopener">${item.venue} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>`;
       document.getElementById('stArtist').innerText = item.artist;
 
-      actualizarBotonWhatsApp(item.whatsappKey);
+      actualizarBotonWhatsApp(item.whatsappKey, { mode: 'event', eventItem: item, zoneKey: null });
 
       const venueInfo = venuesConfig[item.cityKey] || { estacionamiento: 'Valet Parking con costo', accesibilidad: 'Limitada', todoPublico: 'Sí' };
       const lblEstacionamiento = currentLang === 'es' ? 'Estacionamiento' : 'Parking';
@@ -3099,7 +3343,7 @@
           paymentModalContainer.style.display = 'block';
           document.body.classList.add('standalone-active');
           injectEventbriteWidget('paymentEbWidgetWrapper', foundItem.ebEventId, foundItem.ebHeight);
-          actualizarBotonWhatsApp(foundItem.whatsappKey);
+          actualizarBotonWhatsApp('Payment', { mode: 'payment', eventItem: foundItem, zoneKey: null });
           window.scrollTo(0, 0);
           return;
         }
@@ -3109,6 +3353,7 @@
         mainHomeSections.forEach(sec => sec.style.display = 'none');
         socialModalContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
+        actualizarBotonWhatsApp('Redes');
         window.scrollTo(0, 0);
         return;
       }
@@ -3117,6 +3362,7 @@
         mainHomeSections.forEach(sec => sec.style.display = 'none');
         thanksModalContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
+        actualizarBotonWhatsApp('Gracias');
         window.scrollTo(0, 0);
         return;
       }
@@ -3170,6 +3416,8 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      setupDraggableFloatingButton();
+      setupSectionWhatsAppListeners();
       checkHashRouting();
       injectSEO();
       initHeroSlideshow();
