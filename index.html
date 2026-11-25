@@ -45,7 +45,7 @@
     :root {
       --bg-main: #09090c;
       --bg-surface: #111116;
-      --bg-header: rgba(9, 9, 12, 0.86);
+      --bg-header: rgba(9, 9, 12, 0.88);
       --bg-card: #121218;
       --bg-card-hover: #171720;
       --accent-gold: #d4af37;
@@ -56,7 +56,7 @@
       --wa-bar-height: 36px;
       --text-bright: #f5f5f7;
       --text-muted: #9898a6;
-      --border-glass: rgba(212, 175, 55, 0.24);
+      --border-glass: rgba(212, 175, 55, 0.28);
       --border-subtle: rgba(255, 255, 255, 0.08);
       --maxw: 1160px;
 
@@ -69,7 +69,7 @@
     body.light-mode {
       --bg-main: #f7f6f2;
       --bg-surface: #ffffff;
-      --bg-header: rgba(247, 246, 242, 0.9);
+      --bg-header: rgba(247, 246, 242, 0.92);
       --bg-card: #ffffff;
       --bg-card-hover: #fcfbf8;
       --accent-gold: #a67c12;
@@ -77,7 +77,7 @@
       --accent-gold-gradient: linear-gradient(135deg, #c99d24 0%, #9c730e 100%);
       --text-bright: #141418;
       --text-muted: #5c5c69;
-      --border-glass: rgba(166, 124, 18, 0.28);
+      --border-glass: rgba(166, 124, 18, 0.3);
       --border-subtle: rgba(15, 15, 20, 0.09);
     }
 
@@ -157,55 +157,104 @@
       flex-shrink: 0;
     }
 
+    .wa-click-here {
+      font-style: italic;
+      color: var(--wa-green);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      font-weight: 700;
+    }
+
+    body.light-mode .wa-click-here {
+      color: #0b8a42;
+    }
+
     @keyframes waMarqueeRightToLeft {
-      0% {
-        transform: translateX(0%);
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    /* BOTÓN CIRCULAR FLOTANTE DE WHATSAPP CON EFECTO GLOW VIVO */
+    @keyframes waAliveGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 0 0 rgba(37, 211, 102, 0.58),
+          0 0 18px rgba(37, 211, 102, 0.55),
+          0 10px 24px rgba(0, 0, 0, 0.45);
+        filter: brightness(1);
       }
-      100% {
-        transform: translateX(-50%);
+      50% {
+        box-shadow:
+          0 0 0 11px rgba(37, 211, 102, 0),
+          0 0 32px rgba(37, 211, 102, 0.9),
+          0 12px 28px rgba(0, 0, 0, 0.5);
+        filter: brightness(1.08);
       }
     }
 
-    /* BOTÓN CIRCULAR FLOTANTE Y ARRASTRABLE DE WHATSAPP */
+    @keyframes waRingPulse {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.75;
+      }
+      70% {
+        transform: scale(1.42);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1.42);
+        opacity: 0;
+      }
+    }
+
     .whatsapp-floating-btn {
       position: fixed;
       top: 50%;
       right: 18px;
       transform: translateY(-50%);
       z-index: 9980;
-      width: 56px;
-      height: 56px;
+      width: 58px;
+      height: 58px;
       border-radius: 50%;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #25d366 0%, #169c4b 100%);
+      background: linear-gradient(135deg, #2ee673 0%, #16a34a 100%);
       color: #ffffff;
       text-decoration: none;
-      border: 1px solid rgba(255, 255, 255, 0.28);
-      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.38);
+      border: 1.5px solid rgba(255, 255, 255, 0.42);
       cursor: grab;
       touch-action: none;
       user-select: none;
       -webkit-user-select: none;
-      transition: box-shadow 0.2s ease, filter 0.2s ease;
+      animation: waAliveGlow 2.4s ease-in-out infinite;
+    }
+
+    .whatsapp-floating-btn::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      border-radius: 50%;
+      border: 2px solid rgba(37, 211, 102, 0.75);
+      pointer-events: none;
+      animation: waRingPulse 2.4s cubic-bezier(0.22, 1, 0.36, 1) infinite;
     }
 
     .whatsapp-floating-btn:hover {
-      filter: brightness(1.06);
-      box-shadow: 0 14px 30px rgba(37, 211, 102, 0.32);
+      filter: brightness(1.12);
     }
 
     .whatsapp-floating-btn.is-dragging {
       cursor: grabbing;
-      filter: brightness(1.08);
-      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.48);
+      animation-play-state: paused;
+      box-shadow: 0 0 34px rgba(37, 211, 102, 0.95), 0 18px 36px rgba(0, 0, 0, 0.52);
     }
 
     .whatsapp-floating-btn i {
-      font-size: 27px;
+      font-size: 28px;
       line-height: 1;
       pointer-events: none;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.25));
     }
 
     /* HEADER MINIMALISTA */
@@ -487,7 +536,9 @@
       color: var(--accent-gold);
     }
 
-    /* CARTELERA */
+    /* ==========================================================================
+       CARTELERA ESTILO CANDLELIGHT + FLYER RE:SONAR LIVE (LISTA Y FICHAS SIN SLIDE)
+       ========================================================================== */
     .content-container {
       max-width: var(--maxw);
       margin: 0 auto;
@@ -497,110 +548,260 @@
     .event-card {
       background: var(--bg-card);
       border: 1px solid var(--border-subtle);
-      border-radius: 14px;
+      border-radius: 16px;
       overflow: hidden;
       display: flex;
-      transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease;
+      transition: border-color 0.22s ease, background-color 0.22s ease, transform 0.22s ease, box-shadow 0.22s ease;
       position: relative;
+      cursor: pointer;
     }
 
     .event-card:hover {
       border-color: var(--border-glass);
       background: var(--bg-card-hover);
       transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
     }
 
+    /* Columna de fecha grande tipo Candlelight */
+    .cl-date-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 16px 14px;
+      min-width: 78px;
+      background: rgba(212, 175, 55, 0.04);
+      border-right: 1px solid var(--border-subtle);
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    .cl-day-num {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--text-bright);
+      letter-spacing: -0.5px;
+    }
+
+    .cl-day-num.is-range {
+      font-size: 20px;
+      letter-spacing: -0.3px;
+    }
+
+    .cl-month-label {
+      font-size: 10.5px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+      color: var(--accent-gold);
+      margin-top: 4px;
+    }
+
+    .cl-weekday-label {
+      font-size: 9.5px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* Flyer en cartelera */
     .card-banner {
       background-size: cover;
       background-position: top center;
       position: relative;
+      flex-shrink: 0;
     }
 
     .card-city-badge {
       position: absolute;
       top: 10px;
       left: 10px;
-      background: rgba(9, 9, 12, 0.82);
-      border: 1px solid rgba(255, 255, 255, 0.14);
+      background: rgba(9, 9, 12, 0.84);
+      border: 1px solid rgba(212, 175, 55, 0.32);
       color: #f5f5f7;
-      padding: 3px 9px;
+      padding: 3px 10px;
       border-radius: 999px;
       font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.9px;
       z-index: 2;
+      backdrop-filter: blur(6px);
     }
 
     .card-title {
       font-family: 'Cinzel', serif;
       color: var(--text-bright);
-      margin: 0 0 5px 0;
-      font-weight: 600;
+      margin: 0 0 6px 0;
+      font-weight: 700;
       line-height: 1.25;
     }
 
-    .btn-buy {
+    .cl-venue-line {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .cl-venue-line i {
+      color: var(--accent-gold);
+      font-size: 11.5px;
+      flex-shrink: 0;
+    }
+
+    .cl-meta-pills {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Píldora de horario estilo ticket Candlelight adaptada a RE:SONAR */
+    .cl-time-ticket {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
       background: var(--accent-gold-gradient);
       color: #09090c;
-      border: none;
+      font-size: 12px;
+      font-weight: 800;
+      padding: 6px 14px;
+      border-radius: 6px;
+      letter-spacing: 0.3px;
+      box-shadow: 0 4px 12px rgba(212, 175, 55, 0.22);
+    }
+
+    .cl-time-ticket::before,
+    .cl-time-ticket::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      transform: translateY(-50%);
+    }
+
+    .cl-time-ticket::before { left: -4px; }
+    .cl-time-ticket::after { right: -4px; }
+
+    .cl-sub-detail {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .cl-sub-detail i {
+      color: var(--accent-gold);
+    }
+
+    /* Bloque de precio estilo Candlelight ("Desde MX$300.00") */
+    .cl-price-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 10px;
+      flex-shrink: 0;
+    }
+
+    .cl-price-box {
+      text-align: right;
+      line-height: 1.2;
+    }
+
+    .cl-price-from {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .cl-price-amount {
+      display: block;
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--text-bright);
+      letter-spacing: -0.2px;
+      margin-top: 2px;
+    }
+
+    .cl-price-fee-note {
+      display: block;
+      font-size: 9.5px;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .btn-buy {
+      background: transparent;
+      color: var(--accent-gold);
+      border: 1px solid var(--border-glass);
       border-radius: 8px;
       font-weight: 700;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 0.9px;
       text-align: center;
       text-decoration: none;
-      transition: filter 0.2s ease, transform 0.2s ease;
-      display: flex;
+      transition: all 0.2s ease;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 6px;
       cursor: pointer;
       white-space: nowrap;
+      padding: 8px 14px;
+      font-size: 10.5px;
     }
 
+    .event-card:hover .btn-buy,
     .btn-buy:hover {
-      filter: brightness(1.06);
+      background: var(--accent-gold-gradient);
+      color: #09090c;
+      border-color: transparent;
     }
 
-    /* VISTA LISTA */
+    /* VISTA LISTA (CON FECHA GRANDE + FLYER + HORARIO + PRECIO MÍNIMO) */
     .events-wrapper.mode-list {
       display: flex;
       flex-direction: column;
-      gap: 12px;
+      gap: 14px;
     }
 
     .events-wrapper.mode-list .event-card {
       flex-direction: row;
       align-items: stretch;
-      min-height: 112px;
+      min-height: 132px;
     }
 
     .events-wrapper.mode-list .card-banner {
-      width: 152px;
-      min-width: 128px;
-      flex-shrink: 0;
+      width: 144px;
+      min-width: 132px;
     }
 
     .events-wrapper.mode-list .card-body {
-      padding: 14px 20px;
+      padding: 16px 20px;
       flex-grow: 1;
       display: flex;
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      gap: 16px;
+      gap: 18px;
       min-width: 0;
-    }
-
-    .events-wrapper.mode-list .list-meta-info {
-      display: block;
-      font-size: 10.5px;
-      font-weight: 700;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 3px;
     }
 
     .events-wrapper.mode-list .info-col {
@@ -609,112 +810,67 @@
     }
 
     .events-wrapper.mode-list .card-title {
-      font-size: 15.5px;
-      margin-bottom: 5px;
+      font-size: 17px;
     }
 
-    .events-wrapper.mode-list .list-extra-inline {
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 14px;
-      font-size: 11px;
-      color: var(--text-muted);
-    }
-
-    .events-wrapper.mode-list .list-extra-inline i {
-      color: var(--accent-gold);
-      font-size: 11px;
-      margin-right: 4px;
-    }
-
-    .events-wrapper.mode-list .card-actions {
-      display: flex;
-      flex-direction: column;
-      min-width: 122px;
-      flex-shrink: 0;
-    }
-
-    .events-wrapper.mode-list .btn-buy {
-      padding: 9px 14px;
-      font-size: 10.5px;
-      width: 100%;
-    }
-
-    /* VISTA CARRUSEL / CUADRÍCULA */
+    /* VISTA FICHAS / CUADRÍCULA (SIN SLIDE — TODOS LOS EVENTOS VISIBLES A LA VEZ) */
     .events-wrapper.mode-slideshow {
-      display: flex;
-      gap: 18px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding-bottom: 16px;
-    }
-
-    .events-wrapper.mode-slideshow::-webkit-scrollbar { height: 5px; }
-    .events-wrapper.mode-slideshow::-webkit-scrollbar-thumb {
-      background: var(--border-glass);
-      border-radius: 999px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 20px;
+      overflow: visible;
     }
 
     .events-wrapper.mode-slideshow .event-card {
       flex-direction: column;
-      min-width: 296px;
-      max-width: 312px;
-      scroll-snap-align: start;
-      flex-shrink: 0;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+    }
+
+    .events-wrapper.mode-slideshow .cl-card-top-media {
+      position: relative;
+      display: flex;
+      height: 196px;
+      width: 100%;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .events-wrapper.mode-slideshow .cl-date-col {
+      min-width: 76px;
+      background: var(--bg-surface);
     }
 
     .events-wrapper.mode-slideshow .card-banner {
-      height: 156px;
-      width: 100%;
+      flex: 1;
+      height: 100%;
+      width: auto;
     }
 
     .events-wrapper.mode-slideshow .card-body {
-      padding: 16px;
+      padding: 16px 18px;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      gap: 12px;
+      gap: 14px;
       flex-grow: 1;
     }
 
-    .events-wrapper.mode-slideshow .list-meta-info {
-      display: block;
-      font-size: 10px;
-      font-weight: 700;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 3px;
-    }
-
     .events-wrapper.mode-slideshow .card-title {
-      font-size: 16.5px;
+      font-size: 17.5px;
     }
 
-    .events-wrapper.mode-slideshow .list-extra-inline {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 11px;
-      color: var(--text-muted);
+    .events-wrapper.mode-slideshow .cl-price-cta-col {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      padding-top: 12px;
+      border-top: 1px solid var(--border-subtle);
     }
 
-    .events-wrapper.mode-slideshow .list-extra-inline i {
-      color: var(--accent-gold);
-      margin-right: 5px;
-      width: 12px;
-    }
-
-    .events-wrapper.mode-slideshow .card-actions {
-      display: grid;
-      grid-template-columns: 1fr;
-    }
-
-    .events-wrapper.mode-slideshow .btn-buy {
-      padding: 10px 14px;
-      font-size: 10.5px;
+    .events-wrapper.mode-slideshow .cl-price-box {
+      text-align: left;
     }
 
     .no-events-msg {
@@ -886,7 +1042,9 @@
       letter-spacing: 0.6px;
     }
 
-    /* BOTÓN EVENTBRITE */
+    /* ==========================================================================
+       MODAL DE EVENTO CON DISTRIBUCIÓN ESTILO EVENTBRITE + BARRA INFERIOR FIJA
+       ========================================================================== */
     .eb-section-title {
       display: flex;
       flex-direction: column;
@@ -938,10 +1096,109 @@
       width: 100%;
     }
 
+    /* Barra inferior fija estilo Eventbrite en vista de evento */
+    .eb-sticky-ticket-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: 9996;
+      background: rgba(14, 14, 19, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-top: 1px solid var(--border-glass);
+      box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
+      padding: 11px 20px;
+      display: none;
+    }
+
+    body.light-mode .eb-sticky-ticket-bar {
+      background: rgba(255, 255, 255, 0.96);
+      box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+    }
+
+    body.standalone-active.event-modal-open .eb-sticky-ticket-bar {
+      display: block;
+    }
+
+    .eb-sticky-bar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .eb-sticky-price-info {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+      min-width: 0;
+    }
+
+    .eb-sticky-price-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .eb-sticky-price-main {
+      font-size: 16px;
+      font-weight: 800;
+      color: var(--text-bright);
+      line-height: 1.2;
+    }
+
+    .eb-sticky-price-main span {
+      color: var(--accent-gold);
+    }
+
+    .eb-sticky-fee-small {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--text-muted);
+      letter-spacing: 0.2px;
+    }
+
+    .eb-sticky-datetime {
+      font-size: 11.5px;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .eb-sticky-cta-btn {
+      background: var(--accent-gold-gradient);
+      color: #09090c;
+      border: none;
+      border-radius: 10px;
+      padding: 13px 26px;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-shrink: 0;
+      box-shadow: 0 6px 18px rgba(212, 175, 55, 0.28);
+      transition: transform 0.18s ease, filter 0.18s ease;
+    }
+
+    .eb-sticky-cta-btn:hover {
+      transform: translateY(-1px);
+      filter: brightness(1.06);
+    }
+
     /* TOAST */
     .copy-toast {
       position: fixed;
-      bottom: 24px;
+      bottom: 84px;
       left: 50%;
       transform: translateX(-50%) translateY(90px);
       background: var(--bg-surface);
@@ -973,7 +1230,7 @@
     .payment-modal-container,
     .thanks-modal-container {
       max-width: 1220px;
-      margin: 16px auto 52px auto;
+      margin: 16px auto 96px auto;
       padding: 0 20px;
       position: relative;
     }
@@ -1029,7 +1286,7 @@
     @media (min-width: 992px) {
       .standalone-layout-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1.08fr 0.92fr;
         align-items: start;
         gap: 32px;
       }
@@ -1038,7 +1295,7 @@
     .standalone-left-col {
       display: flex;
       flex-direction: column;
-      gap: 18px;
+      gap: 20px;
     }
 
     .standalone-top-actions {
@@ -1048,27 +1305,26 @@
       gap: 10px;
     }
 
-    .standalone-header {
+    /* Bloque hero de Eventbrite dentro del modal */
+    .eb-event-hero-card {
       display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .standalone-flyer-wrapper {
       position: relative;
       width: 100%;
-      max-width: 350px;
-      border-radius: 12px;
+      border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
-      flex-shrink: 0;
       background: #000;
     }
 
     .modal-slideshow-container {
       position: relative;
       width: 100%;
-      height: 350px;
+      height: 340px;
     }
 
     .modal-slide-item {
@@ -1099,8 +1355,8 @@
       background: rgba(9, 9, 12, 0.72);
       border: 1px solid rgba(255, 255, 255, 0.16);
       color: #ffffff;
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 999px;
       display: flex;
       align-items: center;
@@ -1115,12 +1371,12 @@
       color: var(--accent-gold);
     }
 
-    .modal-slide-prev { left: 10px; }
-    .modal-slide-next { right: 10px; }
+    .modal-slide-prev { left: 12px; }
+    .modal-slide-next { right: 12px; }
 
     .modal-slide-dots {
       position: absolute;
-      bottom: 10px;
+      bottom: 12px;
       left: 0;
       width: 100%;
       display: flex;
@@ -1145,12 +1401,12 @@
 
     .st-badge-city {
       position: absolute;
-      top: 10px;
-      left: 10px;
-      background: rgba(9, 9, 12, 0.82);
+      top: 12px;
+      left: 12px;
+      background: rgba(9, 9, 12, 0.84);
       border: 1px solid rgba(255, 255, 255, 0.16);
       color: #f5f5f7;
-      padding: 4px 10px;
+      padding: 4px 11px;
       border-radius: 999px;
       font-size: 9.5px;
       font-weight: 700;
@@ -1161,11 +1417,11 @@
 
     .st-badge-urgency {
       position: absolute;
-      bottom: 10px;
-      right: 10px;
-      background: rgba(230, 57, 70, 0.9);
+      bottom: 12px;
+      right: 12px;
+      background: rgba(230, 57, 70, 0.92);
       color: #ffffff;
-      padding: 4px 10px;
+      padding: 4px 11px;
       border-radius: 999px;
       font-size: 9.5px;
       font-weight: 700;
@@ -1174,57 +1430,165 @@
       z-index: 12;
     }
 
-    .standalone-details {
-      flex: 1;
-      min-width: 240px;
+    /* Cabecera editorial estilo Eventbrite */
+    .eb-header-section {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      gap: 14px;
     }
 
     .standalone-title {
       font-family: 'Cinzel', serif;
-      font-size: 24px;
-      font-weight: 600;
+      font-size: clamp(23px, 3vw, 30px);
+      font-weight: 700;
       color: var(--text-bright);
-      margin: 0 0 8px 0;
-      line-height: 1.2;
+      margin: 0;
+      line-height: 1.22;
     }
 
-    .standalone-datetime-block {
+    /* Tarjeta de organizador estilo Eventbrite */
+    .eb-organizer-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 12px 14px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .eb-organizer-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .eb-organizer-avatar {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #09090c;
+      border: 1.5px solid var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-bright);
+      flex-shrink: 0;
+    }
+
+    .eb-organizer-avatar span {
+      color: var(--accent-gold);
+    }
+
+    .eb-organizer-name {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text-bright);
+      line-height: 1.25;
+    }
+
+    .eb-organizer-meta {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .eb-verified-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--border-glass);
+      padding: 5px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    /* Bloque de Fecha, Hora y Ubicación estilo Eventbrite */
+    .eb-logistics-list {
       display: flex;
       flex-direction: column;
-      gap: 4px;
-      font-size: 12.5px;
-      font-weight: 600;
-      color: var(--accent-gold);
-      margin-bottom: 12px;
+      gap: 12px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
     }
 
-    .standalone-datetime-row {
+    .eb-logistics-item {
       display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      gap: 10px;
+      align-items: flex-start;
+      gap: 12px;
     }
 
-    .standalone-datetime-block a {
-      font-weight: 400;
+    .eb-logistics-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 9px;
+      background: var(--accent-gold-soft);
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .eb-logistics-label {
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.9px;
+      color: var(--text-muted);
+    }
+
+    .eb-logistics-value {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-bright);
+      line-height: 1.4;
+    }
+
+    .eb-logistics-value a {
       color: var(--text-bright);
       text-decoration: underline;
       text-underline-offset: 2px;
     }
 
-    .standalone-datetime-block a:hover {
+    .eb-logistics-value a:hover {
       color: var(--accent-gold);
+    }
+
+    /* Secciones de Introducción e Información útil estilo Eventbrite */
+    .eb-section-block {
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .eb-block-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-bright);
+      margin: 0 0 10px 0;
     }
 
     .standalone-review {
       font-size: 13px;
       color: var(--text-bright);
-      line-height: 1.58;
+      line-height: 1.62;
       margin: 0 0 12px 0;
-      opacity: 0.9;
+      opacity: 0.92;
     }
 
     .standalone-setlist-box, .standalone-artist-box {
@@ -1244,30 +1608,33 @@
 
     .standalone-artist-box span {
       color: var(--text-bright);
+      font-weight: 600;
     }
 
-    .venue-extra-info-box {
-      background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
-      padding: 14px 16px;
-      border-radius: 12px;
-      display: flex;
-      flex-direction: column;
-      gap: 7px;
-      font-size: 12px;
+    .eb-highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .venue-extra-row {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
+      font-size: 12px;
       color: var(--text-muted);
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
     }
 
     .venue-extra-row i {
       color: var(--accent-gold);
       width: 15px;
       text-align: center;
+      flex-shrink: 0;
     }
 
     .venue-extra-row span {
@@ -1276,8 +1643,8 @@
     }
 
     .venue-epilepsy-warning {
-      margin-top: 4px;
-      padding-top: 8px;
+      margin-top: 8px;
+      padding-top: 10px;
       border-top: 1px solid var(--border-subtle);
       font-size: 11px;
       color: var(--text-muted);
@@ -1293,20 +1660,23 @@
     .standalone-prices-box {
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
-      padding: 16px;
+      padding: 16px 18px;
       border-radius: 12px;
     }
 
     .standalone-prices-title {
-      font-size: 11px;
+      font-family: 'Cinzel', serif;
+      font-size: 15px;
       font-weight: 700;
-      color: var(--accent-gold);
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
+      color: var(--text-bright);
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 8px;
+    }
+
+    .standalone-prices-title i {
+      color: var(--accent-gold);
     }
 
     .standalone-prices-grid {
@@ -1590,7 +1960,7 @@
 
     /* FAQ */
     .modal-faq-section {
-      margin-top: 16px;
+      margin-top: 4px;
       padding-top: 16px;
       border-top: 1px solid var(--border-subtle);
     }
@@ -1882,12 +2252,12 @@
       .whatsapp-top-bar i { font-size: 13px; }
       .whatsapp-marquee-group { gap: 8px; padding-right: 48px; }
       .whatsapp-floating-btn {
-        width: 50px;
-        height: 50px;
+        width: 52px;
+        height: 52px;
         right: 12px;
       }
       .whatsapp-floating-btn i {
-        font-size: 24px;
+        font-size: 25px;
       }
       header { padding: 0 16px; }
       .logo-provisional { width: 175px; }
@@ -1895,12 +2265,27 @@
       .controls-wrapper, .content-container, .past-gallery-section, .social-proof-section { padding-left: 16px; padding-right: 16px; }
 
       .events-wrapper.mode-list .event-card { flex-direction: row; align-items: stretch; }
-      .events-wrapper.mode-list .card-banner { width: 96px; min-width: 96px; }
+      .events-wrapper.mode-list .cl-date-col { min-width: 60px; padding: 10px 6px; }
+      .events-wrapper.mode-list .cl-day-num { font-size: 21px; }
+      .events-wrapper.mode-list .cl-day-num.is-range { font-size: 15px; }
+      .events-wrapper.mode-list .card-banner { width: 88px; min-width: 88px; }
       .events-wrapper.mode-list .card-body { padding: 11px 12px; flex-direction: column; align-items: stretch; gap: 10px; }
-      .events-wrapper.mode-list .card-title { font-size: 13.5px; }
-      .events-wrapper.mode-list .list-extra-inline { font-size: 10px; gap: 8px; }
-      .events-wrapper.mode-list .card-actions { width: 100%; min-width: 0; }
-      .events-wrapper.mode-list .btn-buy { width: 100%; padding: 8px 10px; font-size: 10px; }
+      .events-wrapper.mode-list .card-title { font-size: 14px; }
+      .events-wrapper.mode-list .cl-price-cta-col {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding-top: 8px;
+        border-top: 1px solid var(--border-subtle);
+      }
+      .events-wrapper.mode-list .cl-price-box { text-align: left; }
+      .events-wrapper.mode-list .cl-price-amount { font-size: 14.5px; }
+      .events-wrapper.mode-list .btn-buy { padding: 7px 11px; font-size: 10px; }
+
+      .events-wrapper.mode-slideshow {
+        grid-template-columns: 1fr;
+      }
 
       .city-filter-container { display: none; }
       .city-select-dropdown { display: inline-block; }
@@ -1921,11 +2306,10 @@
         min-height: calc(100dvh - var(--wa-bar-height));
         border-radius: 0;
         border: none;
-        padding: 18px 14px;
+        padding: 18px 14px 96px 14px;
       }
 
-      .standalone-flyer-wrapper { max-width: 300px; margin: 0 auto; }
-      .modal-slideshow-container { height: 300px; }
+      .modal-slideshow-container { height: 270px; }
 
       .standalone-card > .standalone-fixed-close,
       .social-modal-card > .social-fixed-close,
@@ -1938,40 +2322,31 @@
         font-size: 19px;
       }
 
-      .standalone-right-col { position: relative; padding-bottom: 68px; }
+      /* Ocultar el botón viejo de abajo en móvil porque ahora está la barra fija estilo Eventbrite */
       .standalone-right-col .eb-section-title {
-        position: fixed;
-        left: 14px;
-        width: calc(100% - 28px);
-        z-index: 9995;
-        margin: 0;
-        top: 44px;
-        transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
-      }
-
-      body:not(.embed-expanded-mobile) .standalone-right-col .eb-section-title {
-        transform: translateY(calc(100dvh - 108px));
-      }
-
-      body.embed-expanded-mobile .standalone-right-col .eb-section-title {
-        transform: translateY(0);
+        display: none;
       }
 
       .standalone-eb-container {
-        position: absolute;
-        visibility: hidden;
-        opacity: 0;
-        pointer-events: none;
-        z-index: -1;
+        display: none;
       }
 
       body.embed-expanded-mobile .standalone-eb-container {
-        position: relative;
-        visibility: visible;
-        opacity: 1;
-        pointer-events: auto;
-        z-index: 1;
-        margin-top: 76px;
+        display: block;
+        margin-top: 8px;
+      }
+
+      .eb-sticky-ticket-bar {
+        padding: 10px 14px;
+      }
+
+      .eb-sticky-price-main {
+        font-size: 14.5px;
+      }
+
+      .eb-sticky-cta-btn {
+        padding: 12px 18px;
+        font-size: 12.5px;
       }
 
       .map-side-butacas, .pdc-side-gen, .cdmx-side-gen {
@@ -1999,23 +2374,23 @@
 </head>
 <body>
 
-  <a id="whatsappTopBar" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-top-bar" aria-label="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" target="_blank" rel="noopener">
+  <a id="whatsappTopBar" href="https://wa.me/529842408513?text=Hola,%20me%20interesa%20comprar%20boletos%20para%20los%20eventos%20de%20RE:SONAR." class="whatsapp-top-bar" aria-label="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 clic aquí" target="_blank" rel="noopener">
     <div class="whatsapp-marquee-track">
       <span class="whatsapp-marquee-group">
         <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+        <span class="whatsapp-top-bar-text i18n-html" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class='wa-click-here'>clic aquí</em>" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513 — <em class='wa-click-here'>click here</em>">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class="wa-click-here">clic aquí</em></span>
       </span>
       <span class="whatsapp-marquee-group" aria-hidden="true">
         <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+        <span class="whatsapp-top-bar-text i18n-html" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class='wa-click-here'>clic aquí</em>" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513 — <em class='wa-click-here'>click here</em>">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class="wa-click-here">clic aquí</em></span>
       </span>
       <span class="whatsapp-marquee-group" aria-hidden="true">
         <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+        <span class="whatsapp-top-bar-text i18n-html" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class='wa-click-here'>clic aquí</em>" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513 — <em class='wa-click-here'>click here</em>">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class="wa-click-here">clic aquí</em></span>
       </span>
       <span class="whatsapp-marquee-group" aria-hidden="true">
         <i class="fa-brands fa-whatsapp"></i>
-        <span class="whatsapp-top-bar-text i18n" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513</span>
+        <span class="whatsapp-top-bar-text i18n-html" data-es="100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class='wa-click-here'>clic aquí</em>" data-en="100% DISCOUNT on service fees buying on Whatsapp 984 240 8513 — <em class='wa-click-here'>click here</em>">100% DESCUENTO en cargos por servicio comprando en Whatsapp 984 240 8513 — <em class="wa-click-here">clic aquí</em></span>
       </span>
     </div>
   </a>
@@ -2081,7 +2456,7 @@
       <div class="view-controls">
         <div class="view-btn-group">
           <button id="btnList" class="view-btn active" aria-label="Vista de lista" onclick="setViewMode('list')"><i class="fa-solid fa-list"></i></button>
-          <button id="btnSlideshow" class="view-btn" aria-label="Vista de cuadrícula" onclick="setViewMode('slideshow')"><i class="fa-solid fa-grip"></i></button>
+          <button id="btnSlideshow" class="view-btn" aria-label="Vista de fichas" onclick="setViewMode('slideshow')"><i class="fa-solid fa-grip"></i></button>
         </div>
       </div>
     </div>
@@ -2147,7 +2522,7 @@
     </section>
   </div>
 
-  <!-- VISTA INDIVIDUAL DE EVENTO -->
+  <!-- VISTA INDIVIDUAL DE EVENTO (DISTRIBUCIÓN ESTILO EVENTBRITE) -->
   <div id="standaloneEventView" class="standalone-event-container" style="display: none;">
     <div class="standalone-card">
       <button class="standalone-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
@@ -2159,7 +2534,7 @@
             <button class="btn-share-standalone" onclick="shareCurrentStandaloneEvent()"><i class="fa-solid fa-share-nodes"></i> <span class="i18n" data-es="Compartir" data-en="Share">Compartir</span></button>
           </div>
 
-          <div class="standalone-header">
+          <div class="eb-event-hero-card">
             <div class="standalone-flyer-wrapper">
               <span id="stBadgeCity" class="st-badge-city">--</span>
               <div class="modal-slideshow-container" id="modalSlideshowContainer"></div>
@@ -2169,28 +2544,60 @@
               <span class="st-badge-urgency"><i class="fa-solid fa-fire" style="margin-right: 4px;"></i> <span class="i18n" data-es="Pocos lugares" data-en="Limited seats">Pocos lugares</span></span>
             </div>
 
-            <div class="standalone-details">
+            <div class="eb-header-section">
               <h2 id="stTitle" class="standalone-title">--</h2>
-              <div class="standalone-datetime-block">
-                <div class="standalone-datetime-row">
-                  <span><i class="fa-solid fa-calendar-days"></i> <span id="stDates">--</span></span>
-                  <span>•</span>
-                  <span><i class="fa-solid fa-clock"></i> <span id="stTime">--</span></span>
+
+              <!-- Tarjeta de organizador estilo Eventbrite -->
+              <div class="eb-organizer-card">
+                <div class="eb-organizer-left">
+                  <div class="eb-organizer-avatar">R<span>:</span>S</div>
+                  <div>
+                    <div class="eb-organizer-name"><span class="i18n" data-es="Por" data-en="By">Por</span> RE:SONAR LIVE</div>
+                    <div class="eb-organizer-meta i18n" data-es="Experiencias Musicales • +50 conciertos realizados" data-en="Musical Experiences • +50 concerts produced">Experiencias Musicales • +50 conciertos realizados</div>
+                  </div>
                 </div>
-                <div><i class="fa-solid fa-location-dot"></i> <span id="stVenue">--</span></div>
+                <span class="eb-verified-badge"><i class="fa-solid fa-circle-check"></i> <span class="i18n" data-es="Oficial" data-en="Official">Oficial</span></span>
               </div>
 
-              <p id="stReview" class="standalone-review"></p>
-
-              <div class="standalone-setlist-box">
-                <i>SET LIST:</i> <span id="stSetlist">--</span>
-              </div>
-              <div class="standalone-artist-box">
-                <i>Pianista:</i> <span id="stArtist">--</span>
+              <!-- Fecha, hora y ubicación estilo Eventbrite -->
+              <div class="eb-logistics-list">
+                <div class="eb-logistics-item">
+                  <div class="eb-logistics-icon"><i class="fa-solid fa-calendar-days"></i></div>
+                  <div>
+                    <div class="eb-logistics-label i18n" data-es="Fecha y hora" data-en="Date and time">Fecha y hora</div>
+                    <div class="eb-logistics-value"><span id="stDates">--</span> • <span id="stTime">--</span></div>
+                  </div>
+                </div>
+                <div class="eb-logistics-item">
+                  <div class="eb-logistics-icon"><i class="fa-solid fa-location-dot"></i></div>
+                  <div>
+                    <div class="eb-logistics-label i18n" data-es="Ubicación" data-en="Location">Ubicación</div>
+                    <div class="eb-logistics-value" id="stVenue">--</div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
+          <!-- Introducción y programa estilo Eventbrite -->
+          <div class="eb-section-block">
+            <h3 class="eb-block-heading i18n" data-es="Introducción" data-en="About this event">Introducción</h3>
+            <p id="stReview" class="standalone-review"></p>
+            <div class="standalone-setlist-box">
+              <i>SET LIST:</i> <span id="stSetlist">--</span>
+            </div>
+            <div class="standalone-artist-box">
+              <i class="i18n" data-es="Pianista:" data-en="Pianist:">Pianista:</i> <span id="stArtist">--</span>
+            </div>
+          </div>
+
+          <!-- Información útil estilo Eventbrite -->
+          <div class="eb-section-block">
+            <h3 class="eb-block-heading i18n" data-es="Información útil" data-en="Good to know">Información útil</h3>
+            <div id="stVenueExtraInfo"></div>
+          </div>
+
+          <!-- Zonas, precios y mapa -->
           <div class="standalone-prices-box">
             <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> <span class="i18n" data-es="Precios de boletos y mapa de zonas" data-en="Ticket prices and seating map">Precios de boletos y mapa de zonas</span></div>
             <div id="stPricesContent" class="standalone-prices-grid"></div>
@@ -2205,16 +2612,14 @@
             <span id="stMapNote" class="modal-map-note"></span>
           </div>
 
-          <div id="stVenueExtraInfo" class="venue-extra-info-box"></div>
-
           <div id="stFaqSection" class="modal-faq-section"></div>
         </div>
 
-        <div class="standalone-right-col">
+        <div class="standalone-right-col" id="stCheckoutColumn">
           <div class="eb-section-title" role="button" tabindex="0" onclick="handleSelectTicketsClick(event)">
             <div class="eb-section-title-main">
               <i class="fa-solid fa-ticket-simple"></i>
-              <span class="i18n" data-es="Seleccionar Entradas" data-en="Select Tickets">Seleccionar Entradas</span>
+              <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
               <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.25s;"></i>
             </div>
             <span class="eb-powered-sub">Powered by Eventbrite</span>
@@ -2225,6 +2630,23 @@
           </div>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- BARRA INFERIOR FIJA ESTILO EVENTBRITE EN MODAL DE EVENTO -->
+  <div id="ebStickyTicketBar" class="eb-sticky-ticket-bar" role="region" aria-label="Comprar boletos">
+    <div class="eb-sticky-bar-inner">
+      <div class="eb-sticky-price-info">
+        <div class="eb-sticky-price-row">
+          <span class="eb-sticky-price-main" id="stStickyPriceLabel">A partir de <span>$300 MXN</span></span>
+          <span class="eb-sticky-fee-small i18n" data-es="+ cargo por servicio" data-en="+ service fee">+ cargo por servicio</span>
+        </div>
+        <div class="eb-sticky-datetime" id="stStickyDateTime">--</div>
+      </div>
+      <button type="button" class="eb-sticky-cta-btn" onclick="handleStickyTicketBarClick()">
+        <i class="fa-solid fa-ticket"></i>
+        <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
+      </button>
     </div>
   </div>
 
@@ -2334,7 +2756,9 @@
     const eventosData = [
       {
         slug: 'cancun-mjdic26',
-        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04', dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
+        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04',
+        dayNum: '04', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE', weekdayEn: 'FRI',
+        dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
         datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
@@ -2360,7 +2784,9 @@
       },
       {
         slug: 'cancun-cpdic26',
-        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04', dateEs: '4 Dic', dateEn: 'Dec 4', time: '21:00 hrs',
+        cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04',
+        dayNum: '04', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE', weekdayEn: 'FRI',
+        dateEs: '4 Dic', dateEn: 'Dec 4', time: '21:00 hrs',
         datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
@@ -2386,7 +2812,9 @@
       },
       {
         slug: 'pdc-mjdic26',
-        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05', dateEs: '5 Dic', dateEn: 'Dec 5', time: '19:00 hrs',
+        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05',
+        dayNum: '05', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'SÁB', weekdayEn: 'SAT',
+        dateEs: '5 Dic', dateEn: 'Dec 5', time: '19:00 hrs',
         datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
@@ -2412,7 +2840,9 @@
       },
       {
         slug: 'pdc-cpdic26',
-        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05', dateEs: '5 Dic', dateEn: 'Dec 5', time: '21:00 hrs',
+        cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05',
+        dayNum: '05', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'SÁB', weekdayEn: 'SAT',
+        dateEs: '5 Dic', dateEn: 'Dec 5', time: '21:00 hrs',
         datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
@@ -2438,7 +2868,9 @@
       },
       {
         slug: 'cdmx-mjdic26',
-        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08', dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '19:30 hrs',
+        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08',
+        dayNum: '08–09', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'MAR-MIÉ', weekdayEn: 'TUE-WED',
+        dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '19:30 hrs',
         datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
@@ -2464,7 +2896,9 @@
       },
       {
         slug: 'cdmx-cpdic26',
-        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08', dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '21:30 hrs',
+        cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08',
+        dayNum: '08–09', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'MAR-MIÉ', weekdayEn: 'TUE-WED',
+        dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '21:30 hrs',
         datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
@@ -2490,7 +2924,9 @@
       },
       {
         slug: 'mty-mjdic26',
-        cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18', dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '19:00 hrs',
+        cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18',
+        dayNum: '18–19', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE-SÁB', weekdayEn: 'FRI-SAT',
+        dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '19:00 hrs',
         datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
@@ -2516,7 +2952,9 @@
       },
       {
         slug: 'mty-cpdic26',
-        cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18', dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '21:00 hrs',
+        cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18',
+        dayNum: '18–19', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE-SÁB', weekdayEn: 'FRI-SAT',
+        dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '21:00 hrs',
         datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
@@ -2550,6 +2988,16 @@
     let activeMapItem = null;
     let activeHoveredZone = null;
     let currentWaContext = { mode: 'home', eventItem: null, zoneKey: null, sectionKey: null };
+
+    function getMinAvailablePrice(ev) {
+      if (!ev || !ev.zones) return 300;
+      const prices = Object.values(ev.zones)
+        .filter(z => !z.soldOut && typeof z.price === 'number')
+        .map(z => z.price);
+      if (prices.length > 0) return Math.min(...prices);
+      const allPrices = Object.values(ev.zones).map(z => Number(z.price) || 300);
+      return allPrices.length > 0 ? Math.min(...allPrices) : 300;
+    }
 
     function triggerShare(shareData) {
       if (navigator.share) {
@@ -2701,8 +3149,8 @@
 
       const clampPosition = (left, top) => {
         const rect = btn.getBoundingClientRect();
-        const width = rect.width || 56;
-        const height = rect.height || 56;
+        const width = rect.width || 58;
+        const height = rect.height || 58;
         const minLeft = 8;
         const minTop = 44;
         const maxLeft = Math.max(minLeft, window.innerWidth - width - 8);
@@ -2800,7 +3248,7 @@
       const faqs = currentLang === 'es' ? [
         {
           q: '¿Elijo mi butaca?',
-          a: 'Los asitentes pueden elegir cualquier lugar dentro de la zona marcada en tu boleto, respetando el orden de llegada. Te recomendamos llegar con anticipación para elegir el mejor lugar disponible dentro de tu sección.'
+          a: 'Los asistentes pueden elegir cualquier lugar dentro de la zona marcada en tu boleto, respetando el orden de llegada. Te recomendamos llegar con anticipación para elegir el mejor lugar disponible dentro de tu sección.'
         },
         {
           q: '¿Cómo recibo mis boletos?',
@@ -3022,6 +3470,7 @@
       currentLang = currentLang === 'es' ? 'en' : 'es';
       document.getElementById('btnLangToggle').innerText = currentLang === 'es' ? 'EN' : 'ES';
       document.querySelectorAll('.i18n').forEach(el => el.innerText = el.getAttribute('data-' + currentLang));
+      document.querySelectorAll('.i18n-html').forEach(el => el.innerHTML = el.getAttribute('data-' + currentLang));
       renderEvents();
 
       const rawHash = window.location.hash.replace('#', '');
@@ -3039,6 +3488,7 @@
       document.getElementById('btnList').classList.toggle('active', mode === 'list');
       document.getElementById('btnSlideshow').classList.toggle('active', mode === 'slideshow');
       document.getElementById('eventsContainer').className = `events-wrapper mode-${mode}`;
+      renderEvents();
     }
 
     function filterCity(city, btn, updateHistory = true) {
@@ -3080,26 +3530,58 @@
         return;
       }
 
+      const fromLabel = currentLang === 'es' ? 'Desde' : 'From';
+      const feeSmall = currentLang === 'es' ? '+ cargo por servicio' : '+ service fee';
+      const ctaText = currentLang === 'es' ? 'Conseguir boletos' : 'Get tickets';
+
       container.innerHTML = filtered.map(ev => {
         const title = currentLang === 'es' ? ev.titleEs : ev.titleEn;
-        const date = currentLang === 'es' ? ev.dateEs : ev.dateEn;
+        const monthLbl = currentLang === 'es' ? ev.monthEs : ev.monthEn;
+        const weekdayLbl = currentLang === 'es' ? ev.weekdayEs : ev.weekdayEn;
+        const minPrice = getMinAvailablePrice(ev);
+
+        const dateBlockHtml = `
+          <div class="cl-date-col">
+            <span class="cl-day-num${ev.isRange ? ' is-range' : ''}">${ev.dayNum}</span>
+            <span class="cl-month-label">${monthLbl}</span>
+            <span class="cl-weekday-label">${weekdayLbl}</span>
+          </div>
+        `;
+
+        const bannerHtml = `
+          <div class="card-banner" style="background-image: url('${ev.image}');">
+            <div class="card-city-badge">${ev.cityName}</div>
+          </div>
+        `;
+
+        const topMediaHtml = currentViewMode === 'slideshow'
+          ? `<div class="cl-card-top-media">${dateBlockHtml}${bannerHtml}</div>`
+          : `${dateBlockHtml}${bannerHtml}`;
+
         return `
-          <div class="event-card">
-            <div class="card-banner" style="background-image: url('${ev.image}');">
-              <div class="card-city-badge">${ev.cityName}</div>
-            </div>
+          <div class="event-card" onclick="goToStandalonePage('${ev.slug}')">
+            ${topMediaHtml}
             <div class="card-body">
               <div class="info-col">
-                <span class="list-meta-info">${date} • ${ev.time}</span>
                 <h3 class="card-title">${title}</h3>
-                <div class="list-extra-inline">
-                  <span><i class="fa-solid fa-clock"></i> 60 mins</span>
-                  <span><i class="fa-solid fa-user"></i> ${ev.artist}</span>
-                  <span><i class="fa-solid fa-location-dot"></i> ${ev.venueName}</span>
+                <div class="cl-venue-line">
+                  <i class="fa-solid fa-landmark"></i>
+                  <span>${ev.venueName} • ${ev.cityName}</span>
+                </div>
+                <div class="cl-meta-pills">
+                  <span class="cl-time-ticket"><i class="fa-regular fa-clock"></i> ${ev.time}</span>
+                  <span class="cl-sub-detail"><i class="fa-solid fa-music"></i> ${ev.artist} • 60 min</span>
                 </div>
               </div>
-              <div class="card-actions">
-                <button class="btn-buy" onclick="goToStandalonePage('${ev.slug}')"><i class="fa-solid fa-ticket"></i> ${currentLang === 'es' ? 'Boletos' : 'Tickets'}</button>
+              <div class="cl-price-cta-col">
+                <div class="cl-price-box">
+                  <span class="cl-price-from">${fromLabel}</span>
+                  <span class="cl-price-amount">MX$${Number(minPrice).toLocaleString('es-MX')}.00</span>
+                  <span class="cl-price-fee-note">${feeSmall}</span>
+                </div>
+                <button type="button" class="btn-buy" onclick="event.stopPropagation(); goToStandalonePage('${ev.slug}')">
+                  <i class="fa-solid fa-ticket"></i> ${ctaText}
+                </button>
               </div>
             </div>
           </div>
@@ -3148,6 +3630,7 @@
       }
 
       document.body.classList.remove('standalone-active');
+      document.body.classList.remove('event-modal-open');
       document.body.classList.remove('embed-expanded-mobile');
 
       if (history.pushState) {
@@ -3210,20 +3693,40 @@
       document.getElementById('stVenue').innerHTML = `<a href="${item.mapsUrl}" target="_blank" rel="noopener">${item.venue} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>`;
       document.getElementById('stArtist').innerText = item.artist;
 
+      /* Actualizar barra inferior fija estilo Eventbrite */
+      const minPrice = getMinAvailablePrice(item);
+      const stickyPriceEl = document.getElementById('stStickyPriceLabel');
+      const stickyDateTimeEl = document.getElementById('stStickyDateTime');
+      if (stickyPriceEl) {
+        stickyPriceEl.innerHTML = currentLang === 'es'
+          ? `A partir de <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`
+          : `From <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`;
+      }
+      if (stickyDateTimeEl) {
+        const shortDate = currentLang === 'es' ? item.dateEs : item.dateEn;
+        stickyDateTimeEl.textContent = `${shortDate} • ${item.time} • ${item.cityName}`;
+      }
+
       actualizarBotonWhatsApp(item.whatsappKey, { mode: 'event', eventItem: item, zoneKey: null });
 
       const venueInfo = venuesConfig[item.cityKey] || { estacionamiento: 'Valet Parking con costo', accesibilidad: 'Limitada', todoPublico: 'Sí' };
+      const lblDuracion = currentLang === 'es' ? 'Duración' : 'Duration';
+      const valDuracion = currentLang === 'es' ? '1 hora (60 min)' : '1 hour (60 min)';
       const lblEstacionamiento = currentLang === 'es' ? 'Estacionamiento' : 'Parking';
       const lblAccesibilidad = currentLang === 'es' ? 'Accesibilidad' : 'Accessibility';
-      const lblAptoEdades = currentLang === 'es' ? 'Evento apto para todas las edades' : 'All ages event';
+      const lblAptoEdades = currentLang === 'es' ? 'Público' : 'Ages';
+      const valAptoEdades = currentLang === 'es' ? 'Todas las edades' : 'All ages';
       const lblAvisoEpilepsia = currentLang === 'es'
         ? '<strong>Aviso:</strong> Este espectáculo contiene efectos visuales y de luces que pueden afectar a personas con epilepsia fotosensible o sensibilidad a la luz.'
         : '<strong>Notice:</strong> This show contains visual and lighting effects that may affect people with photosensitive epilepsy or light sensitivity.';
 
       document.getElementById('stVenueExtraInfo').innerHTML = `
-        <div class="venue-extra-row"><i class="fa-solid fa-car"></i> ${lblEstacionamiento}: <span>${venueInfo.estacionamiento}</span></div>
-        <div class="venue-extra-row"><i class="fa-solid fa-wheelchair"></i> ${lblAccesibilidad}: <span>${venueInfo.accesibilidad}</span></div>
-        <div class="venue-extra-row"><i class="fa-solid fa-users"></i> ${lblAptoEdades}: <span>${venueInfo.todoPublico}</span></div>
+        <div class="eb-highlights-grid">
+          <div class="venue-extra-row"><i class="fa-regular fa-clock"></i> ${lblDuracion}: <span>${valDuracion}</span></div>
+          <div class="venue-extra-row"><i class="fa-solid fa-users"></i> ${lblAptoEdades}: <span>${valAptoEdades}</span></div>
+          <div class="venue-extra-row"><i class="fa-solid fa-car"></i> ${lblEstacionamiento}: <span>${venueInfo.estacionamiento}</span></div>
+          <div class="venue-extra-row"><i class="fa-solid fa-wheelchair"></i> ${lblAccesibilidad}: <span>${venueInfo.accesibilidad}</span></div>
+        </div>
         <div class="venue-epilepsy-warning"><i class="fa-solid fa-triangle-exclamation"></i> ${lblAvisoEpilepsia}</div>
       `;
 
@@ -3263,6 +3766,36 @@
           content_name: currentLang === 'es' ? item.titleEs : item.titleEn,
           content_category: item.cityName
         });
+      }
+    }
+
+    function handleStickyTicketBarClick() {
+      const foundItem = eventosData.find(ev => ev.slug === currentStandaloneSlug);
+      if (foundItem && typeof fbq === 'function') {
+        fbq('track', 'Lead', {
+          content_ids: [foundItem.ebEventId],
+          content_name: currentLang === 'es' ? foundItem.titleEs : foundItem.titleEn,
+          content_category: foundItem.cityName,
+          action: 'Sticky Get Tickets Click'
+        });
+      }
+
+      const container = document.getElementById('standaloneEbContainer');
+      const checkoutCol = document.getElementById('stCheckoutColumn');
+      if (window.innerWidth <= 768) {
+        if (!document.body.classList.contains('embed-expanded-mobile')) {
+          document.body.classList.add('embed-expanded-mobile');
+        }
+        setTimeout(() => {
+          const target = container || checkoutCol;
+          if (target) {
+            const y = target.getBoundingClientRect().top + window.scrollY - 64;
+            window.scrollTo({ top: y, behavior: 'smooth' });
+          }
+        }, 80);
+      } else if (checkoutCol) {
+        const y = checkoutCol.getBoundingClientRect().top + window.scrollY - 96;
+        window.scrollTo({ top: y, behavior: 'smooth' });
       }
     }
 
@@ -3326,6 +3859,7 @@
       socialModalContainer.style.display = 'none';
       paymentModalContainer.style.display = 'none';
       thanksModalContainer.style.display = 'none';
+      document.body.classList.remove('event-modal-open');
 
       const paymentRoutes = {
         'cunpagocp': 'cancun-cpdic26',
@@ -3374,9 +3908,11 @@
         updateStandaloneContent(foundItem);
         standaloneContainer.style.display = 'block';
         document.body.classList.add('standalone-active');
+        document.body.classList.add('event-modal-open');
         window.scrollTo(0, 0);
       } else {
         document.body.classList.remove('standalone-active');
+        document.body.classList.remove('event-modal-open');
         document.body.classList.remove('embed-expanded-mobile');
         mainHomeSections.forEach(sec => sec.style.display = 'block');
 
