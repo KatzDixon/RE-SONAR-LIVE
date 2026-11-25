@@ -52,6 +52,7 @@
       --accent-gold-soft: rgba(212, 175, 55, 0.14);
       --accent-gold-gradient: linear-gradient(135deg, #e7c96b 0%, #c79e26 100%);
       --accent-red: #e63946;
+      --eb-orange: #f05537;
       --wa-green: #25d366;
       --wa-bar-height: 36px;
       --text-bright: #f5f5f7;
@@ -537,12 +538,12 @@
     }
 
     /* ==========================================================================
-       CARTELERA ESTILO CANDLELIGHT + FLYER RE:SONAR LIVE (LISTA Y FICHAS SIN SLIDE)
+       CARTELERA ESTILO CANDLELIGHT + FLYER RE:SONAR LIVE
        ========================================================================== */
     .content-container {
       max-width: var(--maxw);
       margin: 0 auto;
-      padding: 0 24px 48px 24px;
+      padding: 0 24px 28px 24px;
     }
 
     .event-card {
@@ -563,7 +564,6 @@
       box-shadow: 0 14px 30px rgba(0, 0, 0, 0.28);
     }
 
-    /* Columna de fecha grande tipo Candlelight */
     .cl-date-col {
       display: flex;
       flex-direction: column;
@@ -609,7 +609,6 @@
       margin-top: 2px;
     }
 
-    /* Flyer en cartelera */
     .card-banner {
       background-size: cover;
       background-position: top center;
@@ -664,7 +663,6 @@
       gap: 8px;
     }
 
-    /* Píldora de horario estilo ticket Candlelight adaptada a RE:SONAR */
     .cl-time-ticket {
       position: relative;
       display: inline-flex;
@@ -707,7 +705,6 @@
       color: var(--accent-gold);
     }
 
-    /* Bloque de precio estilo Candlelight ("Desde MX$300.00") */
     .cl-price-cta-col {
       display: flex;
       flex-direction: column;
@@ -775,7 +772,6 @@
       border-color: transparent;
     }
 
-    /* VISTA LISTA (CON FECHA GRANDE + FLYER + HORARIO + PRECIO MÍNIMO) */
     .events-wrapper.mode-list {
       display: flex;
       flex-direction: column;
@@ -813,7 +809,6 @@
       font-size: 17px;
     }
 
-    /* VISTA FICHAS / CUADRÍCULA (SIN SLIDE — TODOS LOS EVENTOS VISIBLES A LA VEZ) */
     .events-wrapper.mode-slideshow {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
@@ -888,6 +883,122 @@
       color: var(--accent-gold);
       margin-bottom: 10px;
       display: block;
+    }
+
+    /* ==========================================================================
+       BANNER DE CONFIANZA Y PERFIL OFICIAL EN EVENTBRITE (HOME)
+       ========================================================================== */
+    .eb-trust-banner-section {
+      max-width: var(--maxw);
+      margin: 12px auto 36px auto;
+      padding: 0 24px;
+    }
+
+    .eb-trust-card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 18px 22px;
+      border-radius: 16px;
+      background: linear-gradient(135deg, rgba(240, 85, 55, 0.08) 0%, rgba(212, 175, 55, 0.08) 100%);
+      border: 1px solid var(--border-glass);
+      text-decoration: none;
+      color: var(--text-bright);
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .eb-trust-card:hover {
+      transform: translateY(-2px);
+      border-color: var(--eb-orange);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.22);
+    }
+
+    .eb-trust-left {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      min-width: 0;
+    }
+
+    .eb-logo-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 9px 14px;
+      border-radius: 10px;
+      background: #ffffff;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+      flex-shrink: 0;
+    }
+
+    .eb-wordmark {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 16px;
+      letter-spacing: -0.4px;
+      color: var(--eb-orange);
+      line-height: 1;
+    }
+
+    .eb-trust-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+      min-width: 0;
+    }
+
+    .eb-trust-title-row {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 8px;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .eb-verified-pill-orange {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 10px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+      color: #ffffff;
+      background: var(--eb-orange);
+      padding: 3px 9px;
+      border-radius: 999px;
+    }
+
+    .eb-trust-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.45;
+    }
+
+    .eb-trust-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-bright);
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .eb-trust-card:hover .eb-trust-cta {
+      border-color: var(--eb-orange);
+      color: var(--eb-orange);
     }
 
     /* SECCIONES DE GALERÍA Y RESEÑAS */
@@ -1043,7 +1154,7 @@
     }
 
     /* ==========================================================================
-       MODAL DE EVENTO CON DISTRIBUCIÓN ESTILO EVENTBRITE + BARRA INFERIOR FIJA
+       MODAL DE EVENTO CON FICHAS DESLIZABLES + PERFIL EVENTBRITE + BARRA FIJA
        ========================================================================== */
     .eb-section-title {
       display: flex;
@@ -1085,10 +1196,13 @@
     .eb-powered-sub {
       font-family: 'Montserrat', sans-serif;
       font-size: 9px;
-      font-weight: 600;
+      font-weight: 700;
       letter-spacing: 1px;
-      color: rgba(9, 9, 12, 0.72);
+      color: rgba(9, 9, 12, 0.78);
       text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
     }
 
     .standalone-eb-container {
@@ -1096,7 +1210,6 @@
       width: 100%;
     }
 
-    /* Barra inferior fija estilo Eventbrite en vista de evento */
     .eb-sticky-ticket-bar {
       position: fixed;
       bottom: 0;
@@ -1195,35 +1308,6 @@
       filter: brightness(1.06);
     }
 
-    /* TOAST */
-    .copy-toast {
-      position: fixed;
-      bottom: 84px;
-      left: 50%;
-      transform: translateX(-50%) translateY(90px);
-      background: var(--bg-surface);
-      border: 1px solid var(--accent-gold);
-      color: var(--text-bright);
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 12px;
-      font-weight: 600;
-      z-index: 20000;
-      transition: transform 0.3s ease;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      pointer-events: none;
-    }
-
-    .copy-toast.show {
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .copy-toast i {
-      color: var(--accent-gold);
-    }
-
     /* VISTAS INDEPENDIENTES / MODALES */
     .standalone-event-container,
     .social-modal-container,
@@ -1296,6 +1380,7 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      min-width: 0;
     }
 
     .standalone-top-actions {
@@ -1305,7 +1390,6 @@
       gap: 10px;
     }
 
-    /* Bloque hero de Eventbrite dentro del modal */
     .eb-event-hero-card {
       display: flex;
       flex-direction: column;
@@ -1430,7 +1514,6 @@
       z-index: 12;
     }
 
-    /* Cabecera editorial estilo Eventbrite */
     .eb-header-section {
       display: flex;
       flex-direction: column;
@@ -1446,16 +1529,26 @@
       line-height: 1.22;
     }
 
-    /* Tarjeta de organizador estilo Eventbrite */
+    /* Tarjeta de organizador verificada en Eventbrite con link al perfil oficial */
     .eb-organizer-card {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      flex-wrap: wrap;
       gap: 12px;
-      padding: 12px 14px;
-      border-radius: 12px;
+      padding: 14px 16px;
+      border-radius: 13px;
       background: var(--bg-surface);
-      border: 1px solid var(--border-subtle);
+      border: 1px solid var(--border-glass);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+    }
+
+    .eb-organizer-card:hover {
+      transform: translateY(-1px);
+      border-color: var(--eb-orange);
+      box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
     }
 
     .eb-organizer-left {
@@ -1465,8 +1558,8 @@
     }
 
     .eb-organizer-avatar {
-      width: 42px;
-      height: 42px;
+      width: 44px;
+      height: 44px;
       border-radius: 50%;
       background: #09090c;
       border: 1.5px solid var(--accent-gold);
@@ -1476,7 +1569,7 @@
       font-family: 'Cinzel', serif;
       font-size: 13px;
       font-weight: 700;
-      color: var(--text-bright);
+      color: #f5f5f7;
       flex-shrink: 0;
     }
 
@@ -1485,16 +1578,40 @@
     }
 
     .eb-organizer-name {
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 700;
       color: var(--text-bright);
       line-height: 1.25;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .eb-organizer-meta {
       font-size: 11px;
       color: var(--text-muted);
       margin-top: 2px;
+    }
+
+    .eb-profile-pill-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .eb-mini-brand-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      background: #ffffff;
+      color: var(--eb-orange);
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
     }
 
     .eb-verified-badge {
@@ -1511,7 +1628,7 @@
       white-space: nowrap;
     }
 
-    /* Bloque de Fecha, Hora y Ubicación estilo Eventbrite */
+    /* Bloque de Fecha, Hora y Ubicación */
     .eb-logistics-list {
       display: flex;
       flex-direction: column;
@@ -1567,72 +1684,270 @@
       color: var(--accent-gold);
     }
 
-    /* Secciones de Introducción e Información útil estilo Eventbrite */
-    .eb-section-block {
-      padding: 16px 18px;
-      border-radius: 12px;
+    /* ==========================================================================
+       FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO) DENTRO DEL MODAL
+       Introducción | Set list | Artista | Información útil
+       ========================================================================== */
+    .info-cards-carousel-section {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 16px;
+      border-radius: 14px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
+      min-width: 0;
     }
 
-    .eb-block-heading {
+    .info-cards-top-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .info-swipe-hint {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      animation: swipeHintPulse 2.2s ease-in-out infinite;
+    }
+
+    @keyframes swipeHintPulse {
+      0%, 100% { transform: translateX(0); opacity: 0.85; }
+      50% { transform: translateX(4px); opacity: 1; }
+    }
+
+    .info-cards-nav-arrows {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .info-arrow-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-bright);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+
+    .info-arrow-btn:hover {
+      border-color: var(--accent-gold);
+      color: var(--accent-gold);
+    }
+
+    /* Pestañas / píldoras indicadoras de cada ficha */
+    .info-tabs-bar {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding-bottom: 2px;
+    }
+
+    .info-tabs-bar::-webkit-scrollbar { display: none; }
+
+    .info-tab-pill {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+    }
+
+    .info-tab-pill.active {
+      background: var(--accent-gold-gradient);
+      color: #09090c;
+      border-color: transparent;
+    }
+
+    /* Track deslizable horizontal con peek de la siguiente tarjeta */
+    .info-cards-track {
+      display: flex;
+      gap: 14px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 2px 2px 10px 2px;
+    }
+
+    .info-cards-track::-webkit-scrollbar {
+      height: 5px;
+    }
+
+    .info-cards-track::-webkit-scrollbar-thumb {
+      background: var(--border-glass);
+      border-radius: 999px;
+    }
+
+    .info-slide-card {
+      flex: 0 0 88%;
+      min-width: 88%;
+      scroll-snap-align: start;
+      background: var(--bg-card);
+      border: 1px solid var(--border-glass);
+      border-radius: 12px;
+      padding: 16px 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      position: relative;
+    }
+
+    .info-slide-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .info-slide-title-group {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .info-slide-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 8px;
+      background: var(--accent-gold-soft);
+      color: var(--accent-gold);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12.5px;
+      flex-shrink: 0;
+    }
+
+    .info-slide-heading {
       font-family: 'Cinzel', serif;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
       color: var(--text-bright);
-      margin: 0 0 10px 0;
+      margin: 0;
+    }
+
+    .info-slide-counter {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-muted);
+      background: var(--bg-surface);
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid var(--border-subtle);
     }
 
     .standalone-review {
       font-size: 13px;
       color: var(--text-bright);
       line-height: 1.62;
-      margin: 0 0 12px 0;
-      opacity: 0.92;
+      margin: 0;
+      opacity: 0.94;
     }
 
-    .standalone-setlist-box, .standalone-artist-box {
+    .setlist-chips-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin-top: 2px;
+    }
+
+    .setlist-song-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 11px;
+      border-radius: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-bright);
+    }
+
+    .setlist-song-chip i {
+      color: var(--accent-gold);
+      font-size: 10.5px;
+    }
+
+    .artist-profile-box {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .artist-avatar-circle {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--border-glass);
+      color: var(--accent-gold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .artist-name-main {
+      font-family: 'Cinzel', serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-bright);
+    }
+
+    .artist-bio-sub {
       font-size: 12px;
       color: var(--text-muted);
-      margin-bottom: 6px;
-    }
-
-    .standalone-setlist-box i, .standalone-artist-box i {
-      color: var(--accent-gold);
-      font-style: normal;
-      font-weight: 700;
-      margin-right: 4px;
-      font-size: 10.5px;
-      letter-spacing: 0.6px;
-    }
-
-    .standalone-artist-box span {
-      color: var(--text-bright);
-      font-weight: 600;
+      margin-top: 3px;
+      line-height: 1.45;
     }
 
     .eb-highlights-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
-      gap: 10px;
-      margin-bottom: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+      gap: 8px;
     }
 
     .venue-extra-row {
       display: flex;
       align-items: center;
-      gap: 9px;
-      font-size: 12px;
+      gap: 8px;
+      font-size: 11.5px;
       color: var(--text-muted);
-      padding: 6px 10px;
+      padding: 6px 9px;
       border-radius: 8px;
-      background: var(--bg-card);
+      background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
     }
 
     .venue-extra-row i {
       color: var(--accent-gold);
-      width: 15px;
+      width: 14px;
       text-align: center;
       flex-shrink: 0;
     }
@@ -1644,16 +1959,37 @@
 
     .venue-epilepsy-warning {
       margin-top: 8px;
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid var(--border-subtle);
-      font-size: 11px;
+      font-size: 10.5px;
       color: var(--text-muted);
-      line-height: 1.5;
+      line-height: 1.45;
     }
 
     .venue-epilepsy-warning i {
       color: var(--accent-red);
       margin-right: 4px;
+    }
+
+    .info-dots-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .info-slide-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--border-subtle);
+      cursor: pointer;
+      transition: width 0.22s ease, background-color 0.22s ease;
+    }
+
+    .info-slide-dot.active {
+      width: 20px;
+      background: var(--accent-gold);
     }
 
     /* PRECIOS Y MAPA RECTANGULAR MINIMALISTA */
@@ -2262,7 +2598,18 @@
       header { padding: 0 16px; }
       .logo-provisional { width: 175px; }
       .hero-banner { min-height: 350px; padding: 40px 18px 38px 18px; }
-      .controls-wrapper, .content-container, .past-gallery-section, .social-proof-section { padding-left: 16px; padding-right: 16px; }
+      .controls-wrapper, .content-container, .past-gallery-section, .social-proof-section, .eb-trust-banner-section { padding-left: 16px; padding-right: 16px; }
+
+      .eb-trust-card {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 16px;
+      }
+
+      .eb-trust-cta {
+        width: 100%;
+        justify-content: center;
+      }
 
       .events-wrapper.mode-list .event-card { flex-direction: row; align-items: stretch; }
       .events-wrapper.mode-list .cl-date-col { min-width: 60px; padding: 10px 6px; }
@@ -2322,7 +2669,12 @@
         font-size: 19px;
       }
 
-      /* Ocultar el botón viejo de abajo en móvil porque ahora está la barra fija estilo Eventbrite */
+      .info-slide-card {
+        flex: 0 0 90%;
+        min-width: 90%;
+        padding: 14px 15px;
+      }
+
       .standalone-right-col .eb-section-title {
         display: none;
       }
@@ -2465,6 +2817,28 @@
       <div id="eventsContainer" class="events-wrapper mode-list"></div>
     </div>
 
+    <!-- BANNER DE CONFIANZA Y PERFIL OFICIAL DE EVENTBRITE -->
+    <section class="eb-trust-banner-section" aria-label="Organizador oficial en Eventbrite">
+      <a href="https://www.eventbrite.com.mx/o/74000773583" target="_blank" rel="noopener" class="eb-trust-card">
+        <div class="eb-trust-left">
+          <div class="eb-logo-badge" aria-hidden="true">
+            <span class="eb-wordmark">eventbrite</span>
+          </div>
+          <div class="eb-trust-copy">
+            <div class="eb-trust-title-row">
+              <span class="i18n" data-es="Boletos oficiales y compra protegida" data-en="Official tickets & protected checkout">Boletos oficiales y compra protegida</span>
+              <span class="eb-verified-pill-orange"><i class="fa-solid fa-shield-halved"></i> <span class="i18n" data-es="Organizador verificado" data-en="Verified organizer">Organizador verificado</span></span>
+            </div>
+            <span class="eb-trust-desc i18n" data-es="Consulta nuestro historial de eventos, funciones realizadas y perfil oficial de RE:SONAR LIVE en Eventbrite México." data-en="Explore our event history, past productions, and official RE:SONAR LIVE organizer profile on Eventbrite Mexico.">Consulta nuestro historial de eventos, funciones realizadas y perfil oficial de RE:SONAR LIVE en Eventbrite México.</span>
+          </div>
+        </div>
+        <span class="eb-trust-cta">
+          <span class="i18n" data-es="Ver perfil en Eventbrite" data-en="View Eventbrite profile">Ver perfil en Eventbrite</span>
+          <i class="fa-solid fa-arrow-up-right-from-square"></i>
+        </span>
+      </a>
+    </section>
+
     <section class="past-gallery-section" data-wa-section="gallery">
       <div class="section-header-minimal">
         <span class="section-kicker i18n" data-es="Archivo visual" data-en="Visual archive">Archivo visual</span>
@@ -2522,7 +2896,7 @@
     </section>
   </div>
 
-  <!-- VISTA INDIVIDUAL DE EVENTO (DISTRIBUCIÓN ESTILO EVENTBRITE) -->
+  <!-- VISTA INDIVIDUAL DE EVENTO -->
   <div id="standaloneEventView" class="standalone-event-container" style="display: none;">
     <div class="standalone-card">
       <button class="standalone-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
@@ -2547,19 +2921,25 @@
             <div class="eb-header-section">
               <h2 id="stTitle" class="standalone-title">--</h2>
 
-              <!-- Tarjeta de organizador estilo Eventbrite -->
-              <div class="eb-organizer-card">
+              <!-- Tarjeta de organizador enlazada al perfil oficial en Eventbrite -->
+              <a href="https://www.eventbrite.com.mx/o/74000773583" target="_blank" rel="noopener" class="eb-organizer-card" aria-label="Ver perfil oficial de RE:SONAR LIVE en Eventbrite">
                 <div class="eb-organizer-left">
                   <div class="eb-organizer-avatar">R<span>:</span>S</div>
                   <div>
-                    <div class="eb-organizer-name"><span class="i18n" data-es="Por" data-en="By">Por</span> RE:SONAR LIVE</div>
-                    <div class="eb-organizer-meta i18n" data-es="Experiencias Musicales • +50 conciertos realizados" data-en="Musical Experiences • +50 concerts produced">Experiencias Musicales • +50 conciertos realizados</div>
+                    <div class="eb-organizer-name">
+                      <span><span class="i18n" data-es="Por" data-en="By">Por</span> RE:SONAR LIVE</span>
+                      <i class="fa-solid fa-arrow-up-right-from-square" style="font-size: 11px; color: var(--accent-gold);"></i>
+                    </div>
+                    <div class="eb-organizer-meta i18n" data-es="Organizador verificado • +50 conciertos realizados" data-en="Verified organizer • +50 concerts produced">Organizador verificado • +50 conciertos realizados</div>
                   </div>
                 </div>
-                <span class="eb-verified-badge"><i class="fa-solid fa-circle-check"></i> <span class="i18n" data-es="Oficial" data-en="Official">Oficial</span></span>
-              </div>
+                <div class="eb-profile-pill-group">
+                  <span class="eb-mini-brand-badge">eventbrite</span>
+                  <span class="eb-verified-badge"><i class="fa-solid fa-shield-halved"></i> <span class="i18n" data-es="Perfil oficial" data-en="Official profile">Perfil oficial</span></span>
+                </div>
+              </a>
 
-              <!-- Fecha, hora y ubicación estilo Eventbrite -->
+              <!-- Fecha, hora y ubicación -->
               <div class="eb-logistics-list">
                 <div class="eb-logistics-item">
                   <div class="eb-logistics-icon"><i class="fa-solid fa-calendar-days"></i></div>
@@ -2579,22 +2959,97 @@
             </div>
           </div>
 
-          <!-- Introducción y programa estilo Eventbrite -->
-          <div class="eb-section-block">
-            <h3 class="eb-block-heading i18n" data-es="Introducción" data-en="About this event">Introducción</h3>
-            <p id="stReview" class="standalone-review"></p>
-            <div class="standalone-setlist-box">
-              <i>SET LIST:</i> <span id="stSetlist">--</span>
+          <!-- FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO): Introducción, Set list, Artista, Información útil -->
+          <div class="info-cards-carousel-section" aria-label="Detalles del concierto">
+            <div class="info-cards-top-header">
+              <span class="info-swipe-hint">
+                <i class="fa-solid fa-hand-pointer"></i>
+                <span class="i18n" data-es="Desliza las fichas para explorar" data-en="Swipe cards to explore">Desliza las fichas para explorar</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </span>
+              <div class="info-cards-nav-arrows">
+                <button type="button" class="info-arrow-btn" onclick="stepInfoCardSlide(-1)" aria-label="Ficha anterior"><i class="fa-solid fa-chevron-left"></i></button>
+                <button type="button" class="info-arrow-btn" onclick="stepInfoCardSlide(1)" aria-label="Siguiente ficha"><i class="fa-solid fa-chevron-right"></i></button>
+              </div>
             </div>
-            <div class="standalone-artist-box">
-              <i class="i18n" data-es="Pianista:" data-en="Pianist:">Pianista:</i> <span id="stArtist">--</span>
-            </div>
-          </div>
 
-          <!-- Información útil estilo Eventbrite -->
-          <div class="eb-section-block">
-            <h3 class="eb-block-heading i18n" data-es="Información útil" data-en="Good to know">Información útil</h3>
-            <div id="stVenueExtraInfo"></div>
+            <div class="info-tabs-bar" id="infoTabsBar">
+              <button type="button" class="info-tab-pill active i18n" data-slide-idx="0" onclick="goToInfoCardSlide(0)" data-es="Introducción" data-en="Introduction">Introducción</button>
+              <button type="button" class="info-tab-pill" data-slide-idx="1" onclick="goToInfoCardSlide(1)">Set list</button>
+              <button type="button" class="info-tab-pill i18n" data-slide-idx="2" onclick="goToInfoCardSlide(2)" data-es="Artista" data-en="Artist">Artista</button>
+              <button type="button" class="info-tab-pill i18n" data-slide-idx="3" onclick="goToInfoCardSlide(3)" data-es="Información útil" data-en="Good to know">Información útil</button>
+            </div>
+
+            <div class="info-cards-track" id="infoCardsTrack">
+              <!-- Ficha 1: Introducción -->
+              <article class="info-slide-card" data-slide-idx="0">
+                <div>
+                  <div class="info-slide-card-header">
+                    <div class="info-slide-title-group">
+                      <span class="info-slide-icon"><i class="fa-solid fa-sparkles"></i></span>
+                      <h3 class="info-slide-heading i18n" data-es="Introducción" data-en="Introduction">Introducción</h3>
+                    </div>
+                    <span class="info-slide-counter">1 / 4</span>
+                  </div>
+                  <p id="stReview" class="standalone-review" style="margin-top: 10px;"></p>
+                </div>
+              </article>
+
+              <!-- Ficha 2: Set list -->
+              <article class="info-slide-card" data-slide-idx="1">
+                <div>
+                  <div class="info-slide-card-header">
+                    <div class="info-slide-title-group">
+                      <span class="info-slide-icon"><i class="fa-solid fa-list-music"></i></span>
+                      <h3 class="info-slide-heading">Set list</h3>
+                    </div>
+                    <span class="info-slide-counter">2 / 4</span>
+                  </div>
+                  <div id="stSetlistChips" class="setlist-chips-list" style="margin-top: 10px;"></div>
+                </div>
+              </article>
+
+              <!-- Ficha 3: Artista -->
+              <article class="info-slide-card" data-slide-idx="2">
+                <div>
+                  <div class="info-slide-card-header">
+                    <div class="info-slide-title-group">
+                      <span class="info-slide-icon"><i class="fa-solid fa-music"></i></span>
+                      <h3 class="info-slide-heading i18n" data-es="Artista" data-en="Artist">Artista</h3>
+                    </div>
+                    <span class="info-slide-counter">3 / 4</span>
+                  </div>
+                  <div class="artist-profile-box" style="margin-top: 12px;">
+                    <div class="artist-avatar-circle"><i class="fa-solid fa-user-tie"></i></div>
+                    <div>
+                      <div class="artist-name-main" id="stArtist">--</div>
+                      <div class="artist-bio-sub i18n" data-es="Pianista solista de RE:SONAR LIVE • Arreglos instrumentales en vivo." data-en="RE:SONAR LIVE Solo Pianist • Live instrumental arrangements.">Pianista solista de RE:SONAR LIVE • Arreglos instrumentales en vivo.</div>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Ficha 4: Información útil -->
+              <article class="info-slide-card" data-slide-idx="3">
+                <div>
+                  <div class="info-slide-card-header">
+                    <div class="info-slide-title-group">
+                      <span class="info-slide-icon"><i class="fa-solid fa-circle-info"></i></span>
+                      <h3 class="info-slide-heading i18n" data-es="Información útil" data-en="Good to know">Información útil</h3>
+                    </div>
+                    <span class="info-slide-counter">4 / 4</span>
+                  </div>
+                  <div id="stVenueExtraInfo" style="margin-top: 10px;"></div>
+                </div>
+              </article>
+            </div>
+
+            <div class="info-dots-row" id="infoDotsRow">
+              <span class="info-slide-dot active" onclick="goToInfoCardSlide(0)"></span>
+              <span class="info-slide-dot" onclick="goToInfoCardSlide(1)"></span>
+              <span class="info-slide-dot" onclick="goToInfoCardSlide(2)"></span>
+              <span class="info-slide-dot" onclick="goToInfoCardSlide(3)"></span>
+            </div>
           </div>
 
           <!-- Zonas, precios y mapa -->
@@ -2622,7 +3077,7 @@
               <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
               <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.25s;"></i>
             </div>
-            <span class="eb-powered-sub">Powered by Eventbrite</span>
+            <span class="eb-powered-sub"><i class="fa-solid fa-lock"></i> Compra oficial respaldada por Eventbrite</span>
           </div>
 
           <div id="standaloneEbContainer" class="standalone-eb-container">
@@ -2660,6 +3115,7 @@
         <p class="social-modal-subtitle i18n" data-es="Conéctate con RE:SONAR LIVE, descubre contenido exclusivo, detrás de cámaras y mantente al tanto de nuestros próximos conciertos." data-en="Connect with RE:SONAR LIVE, discover exclusive content, behind-the-scenes, and stay updated on our upcoming concerts.">Conéctate con RE:SONAR LIVE, descubre contenido exclusivo, detrás de cámaras y mantente al tanto de nuestros próximos conciertos.</p>
       </div>
       <div class="social-links-grid">
+        <a href="https://www.eventbrite.com.mx/o/74000773583" target="_blank" rel="noopener" class="social-link-card"><div class="social-icon-box" style="color: var(--eb-orange);"><i class="fa-solid fa-ticket"></i></div><div class="social-info"><div class="social-name">Eventbrite Oficial</div><div class="social-handle">Perfil de Organizador</div></div><div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div></a>
         <a href="http://instagram.com/lezzamamusic" target="_blank" rel="noopener" class="social-link-card"><div class="social-icon-box"><i class="fa-brands fa-instagram"></i></div><div class="social-info"><div class="social-name">Instagram</div><div class="social-handle">@resonarlive</div></div><div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div></a>
         <a href="https://facebook.com/lezzamamusic" target="_blank" rel="noopener" class="social-link-card"><div class="social-icon-box"><i class="fa-brands fa-facebook-f"></i></div><div class="social-info"><div class="social-name">Facebook</div><div class="social-handle">RE:SONAR LIVE</div></div><div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div></a>
         <a href="https://tiktok.com/@lezzamamusic" target="_blank" rel="noopener" class="social-link-card"><div class="social-icon-box"><i class="fa-brands fa-tiktok"></i></div><div class="social-info"><div class="social-name">TikTok</div><div class="social-handle">@lezzamamusic</div></div><div class="social-arrow"><i class="fa-solid fa-arrow-right"></i></div></a>
@@ -2702,11 +3158,6 @@
         <div id="paymentEbWidgetWrapper"></div>
       </div>
     </div>
-  </div>
-
-  <div id="copyToast" class="copy-toast">
-    <i class="fa-solid fa-check"></i>
-    <span class="i18n" data-es="¡Enlace copiado al portapapeles!" data-en="Link copied to clipboard!">¡Enlace copiado al portapapeles!</span>
   </div>
 
   <footer>
@@ -2764,7 +3215,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
         artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
@@ -2792,7 +3243,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
+        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
         artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
@@ -2820,7 +3271,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
         artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
         venue: 'Planetario SAYAB, Playa del Carmen',
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
@@ -2848,7 +3299,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
+        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
         artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
         venue: 'Planetario SAYAB, Playa del Carmen',
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
@@ -2876,7 +3327,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
         artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX — a una cuadra del Metrobús La Bombilla)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
@@ -2904,7 +3355,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
+        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
         artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX — a una cuadra del Metrobús La Bombilla)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
@@ -2932,7 +3383,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
         reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
         reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal y más',
+        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
         artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de N.L.',
         venue: 'Casa de la Cultura de N.L. (Eje Metropolitano 30, Av. Colón 400 Ote, Centro)',
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
@@ -2960,7 +3411,7 @@
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
         reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
         reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks y más',
+        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
         artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de N.L.',
         venue: 'Casa de la Cultura de N.L. (Eje Metropolitano 30, Av. Colón 400 Ote, Centro)',
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
@@ -2985,6 +3436,7 @@
     let currentLang = 'es';
     let currentStandaloneSlug = null;
     let currentModalSlideIndex = 0;
+    let currentInfoSlideIndex = 0;
     let activeMapItem = null;
     let activeHoveredZone = null;
     let currentWaContext = { mode: 'home', eventItem: null, zoneKey: null, sectionKey: null };
@@ -3003,9 +3455,7 @@
       if (navigator.share) {
         navigator.share(shareData).catch((err) => console.log('Error al compartir:', err));
       } else if (navigator.clipboard) {
-        navigator.clipboard.writeText(shareData.url).then(() => {
-          showCopyToast();
-        }).catch(() => {});
+        navigator.clipboard.writeText(shareData.url).catch(() => {});
       }
     }
 
@@ -3028,10 +3478,63 @@
       });
     }
 
-    function showCopyToast() {
-      const toast = document.getElementById('copyToast');
-      toast.classList.add('show');
-      setTimeout(() => toast.classList.remove('show'), 3000);
+    /* ==========================================================================
+       CONTROLES DEL CARRUSEL DE FICHAS (Introducción, Set list, Artista, Info)
+       ========================================================================== */
+    function updateInfoCardsIndicators(activeIdx) {
+      currentInfoSlideIndex = activeIdx;
+      document.querySelectorAll('#infoTabsBar .info-tab-pill').forEach((btn, idx) => {
+        btn.classList.toggle('active', idx === activeIdx);
+      });
+      document.querySelectorAll('#infoDotsRow .info-slide-dot').forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === activeIdx);
+      });
+    }
+
+    function goToInfoCardSlide(index) {
+      const track = document.getElementById('infoCardsTrack');
+      if (!track) return;
+      const cards = track.querySelectorAll('.info-slide-card');
+      const clamped = Math.max(0, Math.min(index, cards.length - 1));
+      const targetCard = cards[clamped];
+      if (targetCard) {
+        track.scrollTo({
+          left: targetCard.offsetLeft - track.offsetLeft,
+          behavior: 'smooth'
+        });
+      }
+      updateInfoCardsIndicators(clamped);
+    }
+
+    function stepInfoCardSlide(direction) {
+      const total = 4;
+      const next = (currentInfoSlideIndex + direction + total) % total;
+      goToInfoCardSlide(next);
+    }
+
+    function initInfoCardsScrollSync() {
+      const track = document.getElementById('infoCardsTrack');
+      if (!track || track.dataset.scrollBound) return;
+      track.dataset.scrollBound = '1';
+
+      track.addEventListener('scroll', () => {
+        const cards = track.querySelectorAll('.info-slide-card');
+        if (!cards.length) return;
+        let closestIdx = 0;
+        let minDistance = Infinity;
+        const trackCenter = track.scrollLeft + track.clientWidth * 0.45;
+        cards.forEach((card, idx) => {
+          const cardCenter = (card.offsetLeft - track.offsetLeft) + card.offsetWidth * 0.5;
+          const dist = Math.abs(trackCenter - cardCenter);
+          if (dist < minDistance) {
+            minDistance = dist;
+            closestIdx = idx;
+          }
+        });
+        if (closestIdx !== currentInfoSlideIndex) {
+          updateInfoCardsIndicators(closestIdx);
+        }
+      }, { passive: true });
     }
 
     function construirMensajeWhatsApp(ctx = currentWaContext) {
@@ -3252,7 +3755,7 @@
         },
         {
           q: '¿Cómo recibo mis boletos?',
-          a: 'Una vez confirmado tu pago, recibirás tus boletos con código QR en tu correo electrónico. Solo muéstralos desde tu celular en la entrada; no necesitas imprimir nada.'
+          a: 'Una vez confirmado tu pago, recibirás tus boletos oficiales de Eventbrite con código QR en tu correo electrónico. Solo muéstralos desde tu celular en la entrada; no necesitas imprimir nada.'
         },
         {
           q: '¿Qué incluye el cargo por servicio?',
@@ -3269,7 +3772,7 @@
         },
         {
           q: 'How do I receive my tickets?',
-          a: 'Once your payment is confirmed, your tickets with a QR code will be sent to your email. Simply show them on your phone at the entrance—no printing required.'
+          a: 'Once your payment is confirmed, your official Eventbrite tickets with a QR code will be sent to your email. Simply show them on your phone at the entrance—no printing required.'
         },
         {
           q: 'What does the service fee cover?',
@@ -3687,11 +4190,26 @@
       document.getElementById('stBadgeCity').innerText = item.cityName;
       document.getElementById('stTitle').innerText = currentLang === 'es' ? item.titleEs : item.titleEn;
       document.getElementById('stReview').innerText = currentLang === 'es' ? item.reviewEs : item.reviewEn;
-      document.getElementById('stSetlist').innerText = item.setlist;
+
+      /* Renderizar canciones del Set list como chips elegantes dentro de su ficha deslizable */
+      const setlistChipsContainer = document.getElementById('stSetlistChips');
+      if (setlistChipsContainer) {
+        const songs = item.setlist.split(',').map(s => s.trim()).filter(Boolean);
+        setlistChipsContainer.innerHTML = songs.map(song => `
+          <span class="setlist-song-chip"><i class="fa-solid fa-music"></i> ${song}</span>
+        `).join('');
+      }
+
       document.getElementById('stDates').innerText = currentLang === 'es' ? item.datesEs : item.datesEn;
       document.getElementById('stTime').innerText = item.time;
       document.getElementById('stVenue').innerHTML = `<a href="${item.mapsUrl}" target="_blank" rel="noopener">${item.venue} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>`;
       document.getElementById('stArtist').innerText = item.artist;
+
+      /* Reiniciar carrusel de fichas a la primera tarjeta (Introducción) */
+      initInfoCardsScrollSync();
+      const infoTrack = document.getElementById('infoCardsTrack');
+      if (infoTrack) infoTrack.scrollLeft = 0;
+      updateInfoCardsIndicators(0);
 
       /* Actualizar barra inferior fija estilo Eventbrite */
       const minPrice = getMinAvailablePrice(item);
