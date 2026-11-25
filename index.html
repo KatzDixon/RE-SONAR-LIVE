@@ -537,9 +537,7 @@
       color: var(--accent-gold);
     }
 
-    /* ==========================================================================
-       CARTELERA ESTILO CANDLELIGHT + FLYER RE:SONAR LIVE
-       ========================================================================== */
+    /* CARTELERA */
     .content-container {
       max-width: var(--maxw);
       margin: 0 auto;
@@ -571,7 +569,7 @@
       justify-content: center;
       padding: 16px 14px;
       min-width: 78px;
-      background: rgba(212, 175, 55, 0.04);
+      background: rgba(212, 175, 55, 0.05);
       border-right: 1px solid var(--border-subtle);
       text-align: center;
       flex-shrink: 0;
@@ -610,8 +608,10 @@
     }
 
     .card-banner {
+      background-color: #0b0b0f;
       background-size: cover;
-      background-position: top center;
+      background-position: center 22%;
+      background-repeat: no-repeat;
       position: relative;
       flex-shrink: 0;
     }
@@ -620,8 +620,8 @@
       position: absolute;
       top: 10px;
       left: 10px;
-      background: rgba(9, 9, 12, 0.84);
-      border: 1px solid rgba(212, 175, 55, 0.32);
+      background: rgba(9, 9, 12, 0.86);
+      border: 1px solid rgba(212, 175, 55, 0.36);
       color: #f5f5f7;
       padding: 3px 10px;
       border-radius: 999px;
@@ -692,18 +692,6 @@
 
     .cl-time-ticket::before { left: -4px; }
     .cl-time-ticket::after { right: -4px; }
-
-    .cl-sub-detail {
-      font-size: 11px;
-      color: var(--text-muted);
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-    }
-
-    .cl-sub-detail i {
-      color: var(--accent-gold);
-    }
 
     .cl-price-cta-col {
       display: flex;
@@ -785,8 +773,8 @@
     }
 
     .events-wrapper.mode-list .card-banner {
-      width: 144px;
-      min-width: 132px;
+      width: 156px;
+      min-width: 144px;
     }
 
     .events-wrapper.mode-list .card-body {
@@ -826,7 +814,7 @@
     .events-wrapper.mode-slideshow .cl-card-top-media {
       position: relative;
       display: flex;
-      height: 196px;
+      height: 206px;
       width: 100%;
       border-bottom: 1px solid var(--border-subtle);
     }
@@ -840,6 +828,7 @@
       flex: 1;
       height: 100%;
       width: auto;
+      background-position: center 20%;
     }
 
     .events-wrapper.mode-slideshow .card-body {
@@ -885,9 +874,7 @@
       display: block;
     }
 
-    /* ==========================================================================
-       BANNER DE CONFIANZA Y PERFIL OFICIAL EN EVENTBRITE (HOME)
-       ========================================================================== */
+    /* BANNER DE CONFIANZA Y PERFIL OFICIAL EN EVENTBRITE (HOME) */
     .eb-trust-banner-section {
       max-width: var(--maxw);
       margin: 12px auto 36px auto;
@@ -1153,9 +1140,7 @@
       letter-spacing: 0.6px;
     }
 
-    /* ==========================================================================
-       MODAL DE EVENTO CON FICHAS DESLIZABLES + PERFIL EVENTBRITE + BARRA FIJA
-       ========================================================================== */
+    /* MODAL DE EVENTO CON FICHAS DESLIZABLES + PERFIL EVENTBRITE + BARRA FIJA */
     .eb-section-title {
       display: flex;
       flex-direction: column;
@@ -1402,13 +1387,13 @@
       border-radius: 14px;
       overflow: hidden;
       border: 1px solid var(--border-subtle);
-      background: #000;
+      background: #09090c;
     }
 
     .modal-slideshow-container {
       position: relative;
       width: 100%;
-      height: 340px;
+      height: 360px;
     }
 
     .modal-slide-item {
@@ -1428,7 +1413,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      object-position: top center;
+      object-position: center 18%;
       display: block;
     }
 
@@ -1684,10 +1669,7 @@
       color: var(--accent-gold);
     }
 
-    /* ==========================================================================
-       FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO) DENTRO DEL MODAL
-       Introducción | Set list | Artista | Información útil
-       ========================================================================== */
+    /* FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO) DENTRO DEL MODAL */
     .info-cards-carousel-section {
       display: flex;
       flex-direction: column;
@@ -1750,7 +1732,6 @@
       color: var(--accent-gold);
     }
 
-    /* Pestañas / píldoras indicadoras de cada ficha */
     .info-tabs-bar {
       display: flex;
       align-items: center;
@@ -1781,7 +1762,6 @@
       border-color: transparent;
     }
 
-    /* Track deslizable horizontal con peek de la siguiente tarjeta */
     .info-cards-track {
       display: flex;
       gap: 14px;
@@ -1802,8 +1782,8 @@
     }
 
     .info-slide-card {
-      flex: 0 0 88%;
-      min-width: 88%;
+      flex: 0 0 90%;
+      min-width: 90%;
       scroll-snap-align: start;
       background: var(--bg-card);
       border: 1px solid var(--border-glass);
@@ -1863,68 +1843,140 @@
     .standalone-review {
       font-size: 13px;
       color: var(--text-bright);
-      line-height: 1.62;
+      line-height: 1.65;
       margin: 0;
       opacity: 0.94;
     }
 
-    .setlist-chips-list {
+    .intro-resonar-pill {
+      margin-top: 12px;
+      padding: 8px 11px;
+      border-radius: 8px;
+      background: var(--accent-gold-soft);
+      border: 1px solid var(--border-glass);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-bright);
       display: flex;
-      flex-wrap: wrap;
-      gap: 7px;
-      margin-top: 2px;
+      align-items: center;
+      gap: 8px;
+      line-height: 1.4;
     }
 
-    .setlist-song-chip {
-      display: inline-flex;
-      align-items: center;
+    .intro-resonar-pill i {
+      color: var(--accent-gold);
+      flex-shrink: 0;
+    }
+
+    .setlist-ordered-list {
+      display: flex;
+      flex-direction: column;
       gap: 6px;
-      padding: 6px 11px;
+      margin-top: 10px;
+    }
+
+    .setlist-song-row {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      padding: 7px 11px;
       border-radius: 8px;
       background: var(--bg-surface);
       border: 1px solid var(--border-subtle);
       font-size: 12px;
-      font-weight: 600;
       color: var(--text-bright);
+      line-height: 1.38;
     }
 
-    .setlist-song-chip i {
-      color: var(--accent-gold);
+    .setlist-song-num {
+      font-family: 'Montserrat', sans-serif;
       font-size: 10.5px;
+      font-weight: 800;
+      color: var(--accent-gold);
+      min-width: 20px;
+      flex-shrink: 0;
+    }
+
+    .setlist-song-title {
+      font-weight: 600;
     }
 
     .artist-profile-box {
       display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .artist-profile-top {
+      display: flex;
       align-items: center;
-      gap: 14px;
+      gap: 13px;
     }
 
     .artist-avatar-circle {
-      width: 48px;
-      height: 48px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       background: var(--accent-gold-soft);
-      border: 1px solid var(--border-glass);
+      border: 1.5px solid var(--border-glass);
       color: var(--accent-gold);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 19px;
       flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .artist-avatar-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
     }
 
     .artist-name-main {
       font-family: 'Cinzel', serif;
-      font-size: 16px;
+      font-size: 15.5px;
       font-weight: 700;
       color: var(--text-bright);
+      line-height: 1.25;
     }
 
-    .artist-bio-sub {
-      font-size: 12px;
-      color: var(--text-muted);
+    .artist-role-sub {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--accent-gold);
+      margin-top: 2px;
+    }
+
+    .artist-bio-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .artist-bio-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      font-size: 11.8px;
+      color: var(--text-bright);
+      line-height: 1.48;
+    }
+
+    .artist-bio-item i {
+      color: var(--accent-gold);
+      font-size: 11px;
       margin-top: 3px;
-      line-height: 1.45;
+      flex-shrink: 0;
     }
 
     .eb-highlights-grid {
@@ -2582,22 +2634,28 @@
       letter-spacing: 1px;
     }
 
-    /* RESPONSIVE MÓVIL */
+    /* RESPONSIVE MÓVIL ELEGANTE */
     @media (max-width: 768px) {
       .whatsapp-top-bar { font-size: 11px; }
       .whatsapp-top-bar i { font-size: 13px; }
       .whatsapp-marquee-group { gap: 8px; padding-right: 48px; }
       .whatsapp-floating-btn {
-        width: 52px;
-        height: 52px;
+        width: 48px;
+        height: 48px;
         right: 12px;
+        top: auto;
+        bottom: 22px;
+        transform: none;
+      }
+      body.standalone-active.event-modal-open .whatsapp-floating-btn {
+        bottom: 84px;
       }
       .whatsapp-floating-btn i {
-        font-size: 25px;
+        font-size: 23px;
       }
       header { padding: 0 16px; }
       .logo-provisional { width: 175px; }
-      .hero-banner { min-height: 350px; padding: 40px 18px 38px 18px; }
+      .hero-banner { min-height: 340px; padding: 38px 18px 34px 18px; }
       .controls-wrapper, .content-container, .past-gallery-section, .social-proof-section, .eb-trust-banner-section { padding-left: 16px; padding-right: 16px; }
 
       .eb-trust-card {
@@ -2611,27 +2669,123 @@
         justify-content: center;
       }
 
-      .events-wrapper.mode-list .event-card { flex-direction: row; align-items: stretch; }
-      .events-wrapper.mode-list .cl-date-col { min-width: 60px; padding: 10px 6px; }
-      .events-wrapper.mode-list .cl-day-num { font-size: 21px; }
-      .events-wrapper.mode-list .cl-day-num.is-range { font-size: 15px; }
-      .events-wrapper.mode-list .card-banner { width: 88px; min-width: 88px; }
-      .events-wrapper.mode-list .card-body { padding: 11px 12px; flex-direction: column; align-items: stretch; gap: 10px; }
-      .events-wrapper.mode-list .card-title { font-size: 14px; }
+      .events-wrapper.mode-list {
+        gap: 18px;
+      }
+
+      .events-wrapper.mode-list .event-card {
+        flex-direction: column;
+        align-items: stretch;
+        border-radius: 18px;
+        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.34);
+      }
+
+      .events-wrapper.mode-list .cl-card-top-media {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        border-bottom: 1px solid var(--border-subtle);
+        background: #09090c;
+      }
+
+      .events-wrapper.mode-list .cl-date-col {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        min-width: 56px;
+        padding: 7px 8px;
+        border-radius: 10px;
+        border: 1px solid rgba(212, 175, 55, 0.35);
+        border-right: 1px solid rgba(212, 175, 55, 0.35);
+        background: rgba(9, 9, 12, 0.88);
+        backdrop-filter: blur(8px);
+        z-index: 3;
+      }
+
+      .events-wrapper.mode-list .cl-day-num {
+        font-size: 18px;
+        color: #ffffff;
+      }
+
+      .events-wrapper.mode-list .cl-day-num.is-range {
+        font-size: 14px;
+      }
+
+      .events-wrapper.mode-list .cl-month-label {
+        font-size: 9px;
+        margin-top: 2px;
+      }
+
+      .events-wrapper.mode-list .cl-weekday-label {
+        font-size: 8.5px;
+        color: #d0d0dc;
+        margin-top: 1px;
+      }
+
+      .events-wrapper.mode-list .card-banner {
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        background-size: cover;
+        background-position: center 22%;
+      }
+
+      .events-wrapper.mode-list .card-body {
+        padding: 14px 15px 15px 15px;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+      }
+
+      .events-wrapper.mode-list .card-title {
+        font-size: 16.5px;
+        margin-bottom: 4px;
+      }
+
+      .events-wrapper.mode-list .cl-venue-line {
+        font-size: 11.5px;
+        margin-bottom: 9px;
+      }
+
       .events-wrapper.mode-list .cl-price-cta-col {
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
+        gap: 10px;
         width: 100%;
-        padding-top: 8px;
+        padding-top: 11px;
+        padding-right: 54px;
         border-top: 1px solid var(--border-subtle);
       }
-      .events-wrapper.mode-list .cl-price-box { text-align: left; }
-      .events-wrapper.mode-list .cl-price-amount { font-size: 14.5px; }
-      .events-wrapper.mode-list .btn-buy { padding: 7px 11px; font-size: 10px; }
+
+      .events-wrapper.mode-list .cl-price-box {
+        text-align: left;
+      }
+
+      .events-wrapper.mode-list .cl-price-amount {
+        font-size: 15.5px;
+      }
+
+      .events-wrapper.mode-list .btn-buy {
+        padding: 9px 14px;
+        font-size: 10.5px;
+        border-radius: 9px;
+      }
 
       .events-wrapper.mode-slideshow {
         grid-template-columns: 1fr;
+        gap: 18px;
+      }
+
+      .events-wrapper.mode-slideshow .cl-card-top-media {
+        height: auto;
+        aspect-ratio: 16 / 10;
+      }
+
+      .events-wrapper.mode-slideshow .cl-price-cta-col {
+        padding-right: 54px;
       }
 
       .city-filter-container { display: none; }
@@ -2653,10 +2807,14 @@
         min-height: calc(100dvh - var(--wa-bar-height));
         border-radius: 0;
         border: none;
-        padding: 18px 14px 96px 14px;
+        padding: 18px 14px 104px 14px;
       }
 
-      .modal-slideshow-container { height: 270px; }
+      .modal-slideshow-container {
+        height: auto;
+        aspect-ratio: 4 / 3;
+        min-height: 240px;
+      }
 
       .standalone-card > .standalone-fixed-close,
       .social-modal-card > .social-fixed-close,
@@ -2670,8 +2828,8 @@
       }
 
       .info-slide-card {
-        flex: 0 0 90%;
-        min-width: 90%;
+        flex: 0 0 92%;
+        min-width: 92%;
         padding: 14px 15px;
       }
 
@@ -2981,7 +3139,6 @@
             </div>
 
             <div class="info-cards-track" id="infoCardsTrack">
-              <!-- Ficha 1: Introducción -->
               <article class="info-slide-card" data-slide-idx="0">
                 <div>
                   <div class="info-slide-card-header">
@@ -2992,10 +3149,13 @@
                     <span class="info-slide-counter">1 / 4</span>
                   </div>
                   <p id="stReview" class="standalone-review" style="margin-top: 10px;"></p>
+                  <div id="stIntroBadge" class="intro-resonar-pill">
+                    <i class="fa-solid fa-piano"></i>
+                    <span id="stIntroBadgeText"></span>
+                  </div>
                 </div>
               </article>
 
-              <!-- Ficha 2: Set list -->
               <article class="info-slide-card" data-slide-idx="1">
                 <div>
                   <div class="info-slide-card-header">
@@ -3005,11 +3165,10 @@
                     </div>
                     <span class="info-slide-counter">2 / 4</span>
                   </div>
-                  <div id="stSetlistChips" class="setlist-chips-list" style="margin-top: 10px;"></div>
+                  <div id="stSetlistOrdered" class="setlist-ordered-list"></div>
                 </div>
               </article>
 
-              <!-- Ficha 3: Artista -->
               <article class="info-slide-card" data-slide-idx="2">
                 <div>
                   <div class="info-slide-card-header">
@@ -3019,17 +3178,21 @@
                     </div>
                     <span class="info-slide-counter">3 / 4</span>
                   </div>
-                  <div class="artist-profile-box" style="margin-top: 12px;">
-                    <div class="artist-avatar-circle"><i class="fa-solid fa-user-tie"></i></div>
-                    <div>
-                      <div class="artist-name-main" id="stArtist">--</div>
-                      <div class="artist-bio-sub i18n" data-es="Pianista solista de RE:SONAR LIVE • Arreglos instrumentales en vivo." data-en="RE:SONAR LIVE Solo Pianist • Live instrumental arrangements.">Pianista solista de RE:SONAR LIVE • Arreglos instrumentales en vivo.</div>
+                  <div class="artist-profile-box">
+                    <div class="artist-profile-top">
+                      <div id="stArtistAvatarCircle" class="artist-avatar-circle">
+                        <i class="fa-solid fa-user-tie"></i>
+                      </div>
+                      <div>
+                        <div class="artist-name-main" id="stArtist">Rodrigo Acevedo Traba</div>
+                        <div class="artist-role-sub i18n" data-es="RE:SONAR desde 2026 • Tributos a Michael Jackson y Coldplay" data-en="RE:SONAR since 2026 • Michael Jackson & Coldplay Tributes">RE:SONAR desde 2026 • Tributos a Michael Jackson y Coldplay</div>
+                      </div>
                     </div>
+                    <div id="stArtistBioList" class="artist-bio-bullets"></div>
                   </div>
                 </div>
               </article>
 
-              <!-- Ficha 4: Información útil -->
               <article class="info-slide-card" data-slide-idx="3">
                 <div>
                   <div class="info-slide-card-header">
@@ -3173,11 +3336,73 @@
       monterrey: { estacionamiento: 'Gratuito, Limitado', accesibilidad: 'Si, este venue es inclusivo', todoPublico: 'Sí' }
     };
 
+    // Coloca aquí la URL de la fotografía circular del pianista
+    const PIANIST_PHOTO_URL = 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/refs/heads/main/Artists/rodrigoace.jpeg';
+
     const cityLabels = {
       cdmx: 'CDMX',
       cancun: 'Cancún',
       playadelcarmen: 'Playa del Carmen',
       monterrey: 'Monterrey'
+    };
+
+    const artistBioData = {
+      name: 'Rodrigo Acevedo Traba',
+      bulletsEs: [
+        'Forma parte de RE:SONAR desde 2026 con los tributos de Michael Jackson y Coldplay.',
+        'Pianista con trayectoria internacional, formado en la UNAM y en la Academia Rainier III de Mónaco.',
+        'Se ha dedicado al rescate, grabación y difusión de música de compositores mexicanos.',
+        'Se ha presentado en las salas de concierto más importantes del país.'
+      ],
+      bulletsEn: [
+        'Part of RE:SONAR since 2026 with the Michael Jackson and Coldplay tributes.',
+        'Internationally active pianist trained at UNAM and the Rainier III Academy of Monaco.',
+        'Dedicated to the preservation, recording, and promotion of works by Mexican composers.',
+        'Has performed in the most prominent concert halls across Mexico.'
+      ]
+    };
+
+    const programIntros = {
+      mj: {
+        reviewEs: 'Este concierto reúne el repertorio más icónico de Michael Jackson en arreglos originales para piano solo. La propuesta busca trasladar la precisión rítmica, los acentos y el carácter dramático de sus composiciones a una escucha cercana, donde cada matiz armónico adquiere claridad y presencia.',
+        reviewEn: 'This concert brings together Michael Jackson’s most iconic repertoire in original solo piano arrangements. It translates the rhythmic precision, accents, and dramatic character of his songs into an intimate listening experience where every harmonic nuance gains clarity and presence.',
+        badgeEs: 'RE:SONAR • Tributos de Michael Jackson y Coldplay desde 2026',
+        badgeEn: 'RE:SONAR • Michael Jackson & Coldplay Tributes since 2026'
+      },
+      coldplay: {
+        reviewEs: 'Un recorrido instrumental por las canciones más representativas de Coldplay, pensadas para destacar su amplitud melódica y su carga emocional desde el piano. El formato resalta la intimidad de los pasajes más serenos y el impulso expresivo de sus estribillos más conocidos.',
+        reviewEn: 'An instrumental journey through Coldplay’s signature songs, crafted to highlight their melodic breadth and emotional weight on solo piano. The setting emphasizes the quiet intimacy of softer passages and the expressive drive of their best-known choruses.',
+        badgeEs: 'RE:SONAR • Tributos de Michael Jackson y Coldplay desde 2026',
+        badgeEn: 'RE:SONAR • Michael Jackson & Coldplay Tributes since 2026'
+      }
+    };
+
+    const setlistsByProgram = {
+      mj: [
+        'Bad',
+        "Don't Stop 'Til You Get Enough",
+        'Human Nature',
+        'The Way You Make Me Feel',
+        'Medley: I Want You Back / ABC / The Love You Save',
+        'Billie Jean',
+        'Smooth Criminal',
+        'Black or White',
+        "They Don't Care About Us",
+        'Beat It',
+        'Thriller'
+      ],
+      coldplay: [
+        'Fix You',
+        'Yellow',
+        'Clocks',
+        'Hymn for the Weekend',
+        'Paradise',
+        'A Sky Full of Stars',
+        'Something Just Like This',
+        'Speed of Sound',
+        'Viva La Vida',
+        'The Scientist'
+      ]
     };
 
     const pastEventsSharedGallery = [
@@ -3207,16 +3432,14 @@
     const eventosData = [
       {
         slug: 'cancun-mjdic26',
+        programKey: 'mj',
         cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04',
         dayNum: '04', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE', weekdayEn: 'FRI',
         dateEs: '4 Dic', dateEn: 'Dec 4', time: '19:00 hrs',
         datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
-        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
-        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
         addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
@@ -3235,16 +3458,14 @@
       },
       {
         slug: 'cancun-cpdic26',
+        programKey: 'coldplay',
         cityKey: 'cancun', cityName: 'Cancún', date: '2026-12-04',
         dayNum: '04', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE', weekdayEn: 'FRI',
         dateEs: '4 Dic', dateEn: 'Dec 4', time: '21:00 hrs',
         datesEs: 'Viernes 4 de Diciembre, 2026', datesEn: 'Friday, December 4, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
-        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
-        reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de Cancún',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Casa de la Cultura de Cancún',
         venue: 'Casa de la Cultura de Cancún (Av. Yaxchilán 21-21)',
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
         addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
@@ -3263,16 +3484,14 @@
       },
       {
         slug: 'pdc-mjdic26',
+        programKey: 'mj',
         cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05',
         dayNum: '05', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'SÁB', weekdayEn: 'SAT',
         dateEs: '5 Dic', dateEn: 'Dec 5', time: '19:00 hrs',
         datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
-        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
-        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Planetario SAYAB',
         venue: 'Planetario SAYAB, Playa del Carmen',
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
         addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
@@ -3291,16 +3510,14 @@
       },
       {
         slug: 'pdc-cpdic26',
+        programKey: 'coldplay',
         cityKey: 'playadelcarmen', cityName: 'Playa del Carmen', date: '2026-12-05',
         dayNum: '05', monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'SÁB', weekdayEn: 'SAT',
         dateEs: '5 Dic', dateEn: 'Dec 5', time: '21:00 hrs',
         datesEs: 'Sábado 5 de Diciembre, 2026', datesEn: 'Saturday, December 5, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
-        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
-        reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Planetario SAYAB',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Planetario SAYAB',
         venue: 'Planetario SAYAB, Playa del Carmen',
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
         addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
@@ -3319,16 +3536,14 @@
       },
       {
         slug: 'cdmx-mjdic26',
+        programKey: 'mj',
         cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08',
         dayNum: '08–09', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'MAR-MIÉ', weekdayEn: 'TUE-WED',
         dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '19:30 hrs',
         datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
-        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
-        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX — a una cuadra del Metrobús La Bombilla)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX (a una cuadra del Metrobús La Bombilla)',
@@ -3347,16 +3562,14 @@
       },
       {
         slug: 'cdmx-cpdic26',
+        programKey: 'coldplay',
         cityKey: 'cdmx', cityName: 'CDMX', date: '2026-12-08',
         dayNum: '08–09', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'MAR-MIÉ', weekdayEn: 'TUE-WED',
         dateEs: '8 y 9 de Dic', dateEn: 'Dec 8 & 9', time: '21:30 hrs',
         datesEs: '8 y 9 de Diciembre, 2026', datesEn: 'December 8 & 9, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
-        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
-        reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Foro Lanzilotti, San Ángel',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Foro Lanzilotti, San Ángel',
         venue: 'Foro Lanzilotti (Av. Insurgentes Sur 2135, San Ángel, CDMX — a una cuadra del Metrobús La Bombilla)',
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX (a una cuadra del Metrobús La Bombilla)',
@@ -3375,16 +3588,14 @@
       },
       {
         slug: 'mty-mjdic26',
+        programKey: 'mj',
         cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18',
         dayNum: '18–19', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE-SÁB', weekdayEn: 'FRI-SAT',
         dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '19:00 hrs',
         datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
         titleEs: 'Tributo a Michael Jackson', titleEn: 'Michael Jackson Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/MJ11.jpg',
-        reviewEs: 'Los grandes éxitos del Rey del Pop reimaginados al piano, una interpretación única y poderosa con arreglos instrumentales.',
-        reviewEn: "The greatest hits of the King of Pop reimagined for the piano—a unique and powerful performance featuring instrumental arrangements.",
-        setlist: 'Billie Jean, Beat It, Thriller, Smooth Criminal, Man in the Mirror, Earth Song y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de N.L.',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Casa de la Cultura de N.L.',
         venue: 'Casa de la Cultura de N.L. (Eje Metropolitano 30, Av. Colón 400 Ote, Centro)',
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
         addressText: 'Eje Metropolitano 30, Av. Colón 400 Ote, Centro, Mty. N.L.',
@@ -3403,16 +3614,14 @@
       },
       {
         slug: 'mty-cpdic26',
+        programKey: 'coldplay',
         cityKey: 'monterrey', cityName: 'Monterrey', date: '2026-12-18',
         dayNum: '18–19', isRange: true, monthEs: 'DIC', monthEn: 'DEC', weekdayEs: 'VIE-SÁB', weekdayEn: 'FRI-SAT',
         dateEs: '18 y 19 Dic', dateEn: 'Dec 18 & 19', time: '21:00 hrs',
         datesEs: '18 y 19 de Diciembre, 2026', datesEn: 'December 18 & 19, 2026',
         titleEs: 'Tributo a Coldplay', titleEn: 'Coldplay Tribute',
         image: 'https://raw.githubusercontent.com/KatzDixon/RE-SONAR-LIVE/main/images/CP11.jpg',
-        reviewEs: 'Los himnos de una generación ahora llevados al Piano, en una versión emocional única e irrepetible.',
-        reviewEn: 'The anthems of a generation now brought to the Piano, in a unique and unrepeatable emotional version.',
-        setlist: 'Yellow, Viva la Vida, Fix You, The Scientist, Clocks, A Sky Full of Stars y más',
-        artist: 'Rodrigo Acevedo', venueName: 'Casa de la Cultura de N.L.',
+        artist: 'Rodrigo Acevedo Traba', venueName: 'Casa de la Cultura de N.L.',
         venue: 'Casa de la Cultura de N.L. (Eje Metropolitano 30, Av. Colón 400 Ote, Centro)',
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
         addressText: 'Eje Metropolitano 30, Av. Colón 400 Ote, Centro, Mty. N.L.',
@@ -3440,6 +3649,16 @@
     let activeMapItem = null;
     let activeHoveredZone = null;
     let currentWaContext = { mode: 'home', eventItem: null, zoneKey: null, sectionKey: null };
+
+    function renderArtistAvatar(containerEl, artistName) {
+      if (!containerEl) return;
+      const trimmedUrl = (PIANIST_PHOTO_URL || '').trim();
+      if (trimmedUrl) {
+        containerEl.innerHTML = `<img class="artist-avatar-img" src="${trimmedUrl}" alt="${artistName}" loading="lazy">`;
+      } else {
+        containerEl.innerHTML = `<i class="fa-solid fa-user-tie"></i>`;
+      }
+    }
 
     function getMinAvailablePrice(ev) {
       if (!ev || !ev.zones) return 300;
@@ -3478,9 +3697,6 @@
       });
     }
 
-    /* ==========================================================================
-       CONTROLES DEL CARRUSEL DE FICHAS (Introducción, Set list, Artista, Info)
-       ========================================================================== */
     function updateInfoCardsIndicators(activeIdx) {
       currentInfoSlideIndex = activeIdx;
       document.querySelectorAll('#infoTabsBar .info-tab-pill').forEach((btn, idx) => {
@@ -4036,6 +4252,7 @@
       const fromLabel = currentLang === 'es' ? 'Desde' : 'From';
       const feeSmall = currentLang === 'es' ? '+ cargo por servicio' : '+ service fee';
       const ctaText = currentLang === 'es' ? 'Conseguir boletos' : 'Get tickets';
+      const isMobile = window.innerWidth <= 768;
 
       container.innerHTML = filtered.map(ev => {
         const title = currentLang === 'es' ? ev.titleEs : ev.titleEn;
@@ -4057,7 +4274,8 @@
           </div>
         `;
 
-        const topMediaHtml = currentViewMode === 'slideshow'
+        const useTopMedia = currentViewMode === 'slideshow' || isMobile;
+        const topMediaHtml = useTopMedia
           ? `<div class="cl-card-top-media">${dateBlockHtml}${bannerHtml}</div>`
           : `${dateBlockHtml}${bannerHtml}`;
 
@@ -4073,7 +4291,6 @@
                 </div>
                 <div class="cl-meta-pills">
                   <span class="cl-time-ticket"><i class="fa-regular fa-clock"></i> ${ev.time}</span>
-                  <span class="cl-sub-detail"><i class="fa-solid fa-music"></i> ${ev.artist} • 60 min</span>
                 </div>
               </div>
               <div class="cl-price-cta-col">
@@ -4091,6 +4308,14 @@
         `;
       }).join('');
     }
+
+    let resizeRenderTimer = null;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeRenderTimer);
+      resizeRenderTimer = setTimeout(() => {
+        renderEvents();
+      }, 120);
+    });
 
     function goToStandalonePage(slug) {
       window.location.hash = '#' + slug;
@@ -4187,31 +4412,54 @@
       const fullGallery = [item.image, ...pastEventsSharedGallery];
       updateModalSlideshow(fullGallery);
 
+      const introInfo = programIntros[item.programKey] || programIntros.mj;
       document.getElementById('stBadgeCity').innerText = item.cityName;
       document.getElementById('stTitle').innerText = currentLang === 'es' ? item.titleEs : item.titleEn;
-      document.getElementById('stReview').innerText = currentLang === 'es' ? item.reviewEs : item.reviewEn;
+      document.getElementById('stReview').innerText = currentLang === 'es' ? introInfo.reviewEs : introInfo.reviewEn;
 
-      /* Renderizar canciones del Set list como chips elegantes dentro de su ficha deslizable */
-      const setlistChipsContainer = document.getElementById('stSetlistChips');
-      if (setlistChipsContainer) {
-        const songs = item.setlist.split(',').map(s => s.trim()).filter(Boolean);
-        setlistChipsContainer.innerHTML = songs.map(song => `
-          <span class="setlist-song-chip"><i class="fa-solid fa-music"></i> ${song}</span>
-        `).join('');
+      const introBadgeText = document.getElementById('stIntroBadgeText');
+      if (introBadgeText) {
+        introBadgeText.innerText = currentLang === 'es' ? introInfo.badgeEs : introInfo.badgeEn;
+      }
+
+      const setlistOrderedContainer = document.getElementById('stSetlistOrdered');
+      if (setlistOrderedContainer) {
+        const songs = setlistsByProgram[item.programKey] || [];
+        setlistOrderedContainer.innerHTML = songs.map((song, idx) => {
+          const numStr = String(idx + 1).padStart(2, '0');
+          return `
+            <div class="setlist-song-row">
+              <span class="setlist-song-num">${numStr}</span>
+              <span class="setlist-song-title">${song}</span>
+            </div>
+          `;
+        }).join('');
       }
 
       document.getElementById('stDates').innerText = currentLang === 'es' ? item.datesEs : item.datesEn;
       document.getElementById('stTime').innerText = item.time;
       document.getElementById('stVenue').innerHTML = `<a href="${item.mapsUrl}" target="_blank" rel="noopener">${item.venue} <i class="fa-solid fa-arrow-up-right-from-square" style="font-size:11px;"></i></a>`;
-      document.getElementById('stArtist').innerText = item.artist;
 
-      /* Reiniciar carrusel de fichas a la primera tarjeta (Introducción) */
+      const artistDisplayName = item.artist || artistBioData.name;
+      document.getElementById('stArtist').innerText = artistDisplayName;
+      renderArtistAvatar(document.getElementById('stArtistAvatarCircle'), artistDisplayName);
+
+      const artistBioList = document.getElementById('stArtistBioList');
+      if (artistBioList) {
+        const bullets = currentLang === 'es' ? artistBioData.bulletsEs : artistBioData.bulletsEn;
+        artistBioList.innerHTML = bullets.map(b => `
+          <div class="artist-bio-item">
+            <i class="fa-solid fa-award"></i>
+            <span>${b}</span>
+          </div>
+        `).join('');
+      }
+
       initInfoCardsScrollSync();
       const infoTrack = document.getElementById('infoCardsTrack');
       if (infoTrack) infoTrack.scrollLeft = 0;
       updateInfoCardsIndicators(0);
 
-      /* Actualizar barra inferior fija estilo Eventbrite */
       const minPrice = getMinAvailablePrice(item);
       const stickyPriceEl = document.getElementById('stStickyPriceLabel');
       const stickyDateTimeEl = document.getElementById('stStickyDateTime');
@@ -4443,21 +4691,24 @@
     }
 
     function injectSEO() {
-      const schemaEvents = eventosData.filter(e => !e.slug.includes('combo')).map(ev => ({
-        "@context": "https://schema.org",
-        "@type": "MusicEvent",
-        "name": currentLang === 'es' ? ev.titleEs : ev.titleEn,
-        "startDate": `${ev.date}T${ev.time.replace(' hrs', '')}:00`,
-        "location": {
-          "@type": "Place",
-          "name": ev.venueName,
-          "address": { "@type": "PostalAddress", "streetAddress": ev.addressText, "addressLocality": ev.cityName, "addressCountry": "MX" }
-        },
-        "image": ev.image,
-        "description": currentLang === 'es' ? ev.reviewEs : ev.reviewEn,
-        "performer": { "@type": "Person", "name": ev.artist },
-        "offers": { "@type": "Offer", "url": ev.eventbriteUrl, "availability": "https://schema.org/InStock" }
-      }));
+      const schemaEvents = eventosData.filter(e => !e.slug.includes('combo')).map(ev => {
+        const introInfo = programIntros[ev.programKey] || programIntros.mj;
+        return {
+          "@context": "https://schema.org",
+          "@type": "MusicEvent",
+          "name": currentLang === 'es' ? ev.titleEs : ev.titleEn,
+          "startDate": `${ev.date}T${ev.time.replace(' hrs', '')}:00`,
+          "location": {
+            "@type": "Place",
+            "name": ev.venueName,
+            "address": { "@type": "PostalAddress", "streetAddress": ev.addressText, "addressLocality": ev.cityName, "addressCountry": "MX" }
+          },
+          "image": ev.image,
+          "description": currentLang === 'es' ? introInfo.reviewEs : introInfo.reviewEn,
+          "performer": { "@type": "Person", "name": ev.artist },
+          "offers": { "@type": "Offer", "url": ev.eventbriteUrl, "availability": "https://schema.org/InStock" }
+        };
+      });
 
       const existingScript = document.getElementById('schemaOrgScript');
       if (existingScript) existingScript.remove();
