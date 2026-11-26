@@ -91,7 +91,7 @@
       color: var(--text-bright);
       font-family: 'Montserrat', sans-serif;
       line-height: 1.6;
-      overflow-x: hidden;
+      overflow-x: clip;
       scroll-behavior: smooth;
       transition: background-color 0.25s ease, color 0.25s ease;
     }
@@ -1140,7 +1140,7 @@
       letter-spacing: 0.6px;
     }
 
-    /* MODAL DE EVENTO: DISEÑO UNIFICADO MÓVIL + ESCRITORIO */
+    /* BOTÓN "SELECCIONA TUS ENTRADAS" EN ESCRITORIO */
     .eb-section-title {
       display: flex;
       flex-direction: column;
@@ -1160,9 +1160,6 @@
       margin-bottom: 14px;
       text-align: center;
       cursor: pointer;
-      position: sticky;
-      top: 116px;
-      z-index: 50;
       box-shadow: 0 8px 22px rgba(212, 175, 55, 0.22);
       transition: filter 0.2s ease, transform 0.2s ease;
     }
@@ -1194,7 +1191,7 @@
     .standalone-eb-container {
       display: block;
       width: 100%;
-      scroll-margin-bottom: 150px;
+      scroll-margin-bottom: 240px;
     }
 
     .eb-sticky-ticket-bar {
@@ -1367,7 +1364,7 @@
       transform: scale(1.04);
     }
 
-    /* DISTRIBUCIÓN EN 2 COLUMNAS EN ESCRITORIO: IZQUIERDA INFO EVENTO / DERECHA EVENTBRITE YA DESPLEGADO */
+    /* DISTRIBUCIÓN EN 2 COLUMNAS EN ESCRITORIO: IZQUIERDA INFO EVENTO / DERECHA FIJA CON "SELECCIONA TUS ENTRADAS" + WIDGET */
     .standalone-layout-grid {
       display: flex;
       flex-direction: column;
@@ -1381,10 +1378,14 @@
         grid-template-columns: minmax(0, 1.04fr) minmax(0, 0.96fr);
         align-items: start;
         gap: 26px;
+        overflow: visible;
       }
 
-      /* En escritorio omitimos el botón/banner de seleccionar entradas y la barra inferior fija porque el widget ya está desplegado */
-      .standalone-right-col .eb-section-title,
+      .standalone-card {
+        overflow: visible;
+        padding-bottom: 36px;
+      }
+
       #ebStickyTicketBar {
         display: none !important;
       }
@@ -1392,14 +1393,16 @@
       .standalone-right-col {
         position: sticky;
         top: 116px;
+        align-self: start;
+        z-index: 40;
+      }
+
+      .standalone-right-col .eb-section-title {
+        display: flex !important;
       }
 
       .standalone-eb-container {
         display: block !important;
-      }
-
-      .standalone-card {
-        padding-bottom: 28px;
       }
     }
 
@@ -1572,7 +1575,6 @@
       line-height: 1.24;
     }
 
-    /* Tarjeta de organizador enlazada al perfil oficial en Eventbrite */
     .eb-organizer-card {
       display: flex;
       align-items: center;
@@ -1671,7 +1673,6 @@
       white-space: nowrap;
     }
 
-    /* Bloque de Fecha, Hora y Ubicación */
     .eb-logistics-list {
       display: flex;
       flex-direction: column;
@@ -1727,7 +1728,7 @@
       color: var(--accent-gold);
     }
 
-    /* FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO): ESTILO UNIFICADO MÓVIL + ESCRITORIO */
+    /* FICHAS DESLIZABLES */
     .info-cards-carousel-section {
       display: flex;
       flex-direction: column;
@@ -1913,7 +1914,6 @@
       border-top: 1px solid var(--border-subtle);
     }
 
-    /* SET LIST EN LISTA DE CUADROS TIPO BOTÓN */
     .setlist-button-list {
       margin: 10px 0 0 0;
       padding: 0;
@@ -1980,7 +1980,6 @@
       flex-shrink: 0;
     }
 
-    /* FICHA DEL ARTISTA CON CÍRCULO CENTRAL AMPLIO Y ROSTRO SIN CORTES */
     .artist-profile-box {
       display: flex;
       flex-direction: column;
@@ -2777,7 +2776,7 @@
         transform: none;
       }
       body.standalone-active.event-modal-open .whatsapp-floating-btn {
-        bottom: 94px;
+        bottom: 104px;
       }
       .whatsapp-floating-btn i {
         font-size: 23px;
@@ -2936,7 +2935,7 @@
         min-height: calc(100dvh - var(--wa-bar-height));
         border-radius: 0;
         border: none;
-        padding: 18px 14px 180px 14px;
+        padding: 18px 14px 280px 14px;
         box-shadow: none;
       }
 
@@ -2962,12 +2961,13 @@
         display: none !important;
       }
 
-      /* Widget siempre incrustado en la parte de abajo en móvil sin necesidad de desplegar */
+      /* Widget siempre incrustado en la parte de abajo en móvil con aire extra para que nada quede tapado */
       .standalone-eb-container {
         display: block !important;
         margin-top: 6px;
-        margin-bottom: 32px;
-        scroll-margin-bottom: 160px;
+        margin-bottom: 40px;
+        padding-bottom: 140px;
+        scroll-margin-bottom: 240px;
       }
 
       body.standalone-active.event-modal-open .eb-sticky-ticket-bar {
@@ -3201,7 +3201,6 @@
             <div class="eb-header-section">
               <h2 id="stTitle" class="standalone-title">--</h2>
 
-              <!-- Tarjeta de organizador enlazada al perfil oficial en Eventbrite -->
               <a href="https://www.eventbrite.com.mx/o/74000773583" target="_blank" rel="noopener" class="eb-organizer-card" aria-label="Ver perfil oficial de RE:SONAR LIVE en Eventbrite">
                 <div class="eb-organizer-left">
                   <div class="eb-organizer-avatar">R<span>:</span>S</div>
@@ -3219,7 +3218,6 @@
                 </div>
               </a>
 
-              <!-- Fecha, hora y ubicación -->
               <div class="eb-logistics-list">
                 <div class="eb-logistics-item">
                   <div class="eb-logistics-icon"><i class="fa-solid fa-calendar-days"></i></div>
@@ -3239,7 +3237,6 @@
             </div>
           </div>
 
-          <!-- FICHAS DESLIZABLES (SLIDESHOW INTERACTIVO): Acerca del evento, Set list, Artista -->
           <div class="info-cards-carousel-section" aria-label="Detalles del concierto">
             <div class="info-cards-top-header">
               <span class="info-swipe-hint">
@@ -3326,7 +3323,6 @@
             </div>
           </div>
 
-          <!-- Zonas, precios y mapa -->
           <div class="standalone-prices-box">
             <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> <span class="i18n" data-es="Precios de boletos y mapa de zonas" data-en="Ticket prices and seating map">Precios de boletos y mapa de zonas</span></div>
             <div id="stPricesContent" class="standalone-prices-grid"></div>
@@ -3348,7 +3344,7 @@
           <div class="eb-section-title" role="button" tabindex="0" onclick="handleSelectTicketsClick(event)">
             <div class="eb-section-title-main">
               <i class="fa-solid fa-ticket-simple"></i>
-              <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
+              <span class="i18n" data-es="SELECCIONA TUS ENTRADAS" data-en="SELECT YOUR TICKETS">SELECCIONA TUS ENTRADAS</span>
               <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.25s;"></i>
             </div>
             <span class="eb-powered-sub"><i class="fa-solid fa-lock"></i> Compra oficial respaldada por Eventbrite</span>
@@ -4645,10 +4641,10 @@
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
       if (!wrapper) return;
 
-      const stickyBarHeight = document.getElementById('ebStickyTicketBar')?.offsetHeight || 76;
+      const stickyBarHeight = document.getElementById('ebStickyTicketBar')?.offsetHeight || 82;
       const rect = wrapper.getBoundingClientRect();
       const targetBottomY = rect.bottom + window.scrollY;
-      const desiredScrollY = Math.max(0, targetBottomY - window.innerHeight + stickyBarHeight + 24);
+      const desiredScrollY = Math.max(0, targetBottomY - window.innerHeight + stickyBarHeight + 110);
 
       window.scrollTo({
         top: desiredScrollY,
@@ -4659,7 +4655,7 @@
     function handleSelectTicketsClick() {
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
       if (wrapper) {
-        const y = wrapper.getBoundingClientRect().top + window.scrollY - 80;
+        const y = wrapper.getBoundingClientRect().top + window.scrollY - 125;
         window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
     }
