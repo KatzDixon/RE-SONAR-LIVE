@@ -1140,7 +1140,7 @@
       letter-spacing: 0.6px;
     }
 
-    /* MODAL DE EVENTO: DISEÑO UNIFICADO MÓVIL + ESCRITORIO (2 COLUMNAS EN ESCRITORIO) */
+    /* MODAL DE EVENTO: DISEÑO UNIFICADO MÓVIL + ESCRITORIO */
     .eb-section-title {
       display: flex;
       flex-direction: column;
@@ -1194,6 +1194,7 @@
     .standalone-eb-container {
       display: block;
       width: 100%;
+      scroll-margin-bottom: 150px;
     }
 
     .eb-sticky-ticket-bar {
@@ -1202,17 +1203,17 @@
       left: 0;
       width: 100%;
       z-index: 9996;
-      background: rgba(14, 14, 19, 0.96);
+      background: rgba(14, 14, 19, 0.97);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       border-top: 1px solid var(--border-glass);
       box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.45);
-      padding: 11px 20px;
+      padding: 10px 18px 12px 18px;
       display: none;
     }
 
     body.light-mode .eb-sticky-ticket-bar {
-      background: rgba(255, 255, 255, 0.96);
+      background: rgba(255, 255, 255, 0.97);
       box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
     }
 
@@ -1222,7 +1223,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
     }
 
     .eb-sticky-price-info {
@@ -1265,14 +1266,22 @@
       text-overflow: ellipsis;
     }
 
+    .eb-sticky-cta-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+      flex-shrink: 0;
+    }
+
     .eb-sticky-cta-btn {
       background: var(--accent-gold-gradient);
       color: #09090c;
       border: none;
       border-radius: 10px;
-      padding: 13px 26px;
+      padding: 11px 22px;
       font-family: 'Montserrat', sans-serif;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
       letter-spacing: 0.4px;
       cursor: pointer;
@@ -1280,7 +1289,6 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      flex-shrink: 0;
       box-shadow: 0 6px 18px rgba(212, 175, 55, 0.28);
       transition: transform 0.18s ease, filter 0.18s ease;
     }
@@ -1288,6 +1296,20 @@
     .eb-sticky-cta-btn:hover {
       transform: translateY(-1px);
       filter: brightness(1.06);
+    }
+
+    .eb-sticky-powered-by {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.4px;
+      color: var(--text-muted);
+      line-height: 1.1;
+      text-align: center;
+    }
+
+    .eb-sticky-powered-by strong {
+      color: var(--eb-orange);
+      font-weight: 800;
     }
 
     /* VISTAS INDEPENDIENTES / MODALES */
@@ -2717,7 +2739,7 @@
       min-height: 580px;
       position: relative;
       border-radius: 12px;
-      overflow: hidden;
+      overflow: visible;
     }
 
     #eb-widget-wrapper iframe,
@@ -2755,7 +2777,7 @@
         transform: none;
       }
       body.standalone-active.event-modal-open .whatsapp-floating-btn {
-        bottom: 84px;
+        bottom: 94px;
       }
       .whatsapp-floating-btn i {
         font-size: 23px;
@@ -2914,7 +2936,7 @@
         min-height: calc(100dvh - var(--wa-bar-height));
         border-radius: 0;
         border: none;
-        padding: 18px 14px 104px 14px;
+        padding: 18px 14px 180px 14px;
         box-shadow: none;
       }
 
@@ -2935,21 +2957,25 @@
         font-size: 28px;
       }
 
+      /* Quitar botón superior de conseguir boletos en móvil */
+      .standalone-right-col .eb-section-title {
+        display: none !important;
+      }
+
+      /* Widget siempre incrustado en la parte de abajo en móvil sin necesidad de desplegar */
+      .standalone-eb-container {
+        display: block !important;
+        margin-top: 6px;
+        margin-bottom: 32px;
+        scroll-margin-bottom: 160px;
+      }
+
       body.standalone-active.event-modal-open .eb-sticky-ticket-bar {
         display: block;
       }
 
-      .standalone-eb-container {
-        display: none;
-      }
-
-      body.embed-expanded-mobile .standalone-eb-container {
-        display: block;
-        margin-top: 8px;
-      }
-
       .eb-sticky-ticket-bar {
-        padding: 10px 14px;
+        padding: 9px 14px 11px 14px;
       }
 
       .eb-sticky-price-main {
@@ -2957,8 +2983,8 @@
       }
 
       .eb-sticky-cta-btn {
-        padding: 12px 18px;
-        font-size: 12.5px;
+        padding: 10px 18px;
+        font-size: 12px;
       }
     }
 
@@ -3346,10 +3372,13 @@
         </div>
         <div class="eb-sticky-datetime" id="stStickyDateTime">--</div>
       </div>
-      <button type="button" class="eb-sticky-cta-btn" onclick="handleStickyTicketBarClick()">
-        <i class="fa-solid fa-ticket"></i>
-        <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
-      </button>
+      <div class="eb-sticky-cta-col">
+        <button type="button" class="eb-sticky-cta-btn" onclick="handleStickyTicketBarClick()">
+          <i class="fa-solid fa-ticket"></i>
+          <span class="i18n" data-es="Conseguir boletos" data-en="Get tickets">Conseguir boletos</span>
+        </button>
+        <span class="eb-sticky-powered-by">powered by <strong>eventbrite</strong></span>
+      </div>
     </div>
   </div>
 
@@ -3524,7 +3553,7 @@
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
         addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002285821793',
-        ebEventId: '2002285821793', ebHeight: 680,
+        ebEventId: '2002285821793', ebHeight: 740,
         whatsappKey: 'Michael Jackson en Piano en Cancún',
         isCombo: false,
         mapLayout: 'cancun',
@@ -3550,7 +3579,7 @@
         mapsUrl: 'https://maps.app.goo.gl/sZXSZ7AJ5bESz3Xm8',
         addressText: 'Casa de la Cultura de Cancún • Av. Yaxchilán 21-21, 77505 Cancún, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786313778',
-        ebEventId: '2002786313778', ebHeight: 680,
+        ebEventId: '2002786313778', ebHeight: 740,
         whatsappKey: 'Coldplay en Piano en Cancún',
         isCombo: false,
         mapLayout: 'cancun',
@@ -3576,7 +3605,7 @@
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
         addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-michael-jackson-en-piano-playa-del-carmen-tickets-2003618964258',
-        ebEventId: '2003618964258', ebHeight: 680,
+        ebEventId: '2003618964258', ebHeight: 740,
         whatsappKey: 'Michael Jackson en Piano en Playa del Carmen',
         isCombo: false,
         mapLayout: 'pdc',
@@ -3602,7 +3631,7 @@
         mapsUrl: 'https://maps.app.goo.gl/NRNtND4upiXbLjQr7',
         addressText: 'Planetario SAYAB, Playa del Carmen, Q.R.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/resonar-coldplay-en-piano-playa-del-carmen-tickets-2003619846898',
-        ebEventId: '2003619846898', ebHeight: 680,
+        ebEventId: '2003619846898', ebHeight: 740,
         whatsappKey: 'Coldplay en Piano en Playa del Carmen',
         isCombo: false,
         mapLayout: 'pdc',
@@ -3628,7 +3657,7 @@
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX (a una cuadra del Metrobús La Bombilla)',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002243538322',
-        ebEventId: '2002243538322', ebHeight: 680,
+        ebEventId: '2002243538322', ebHeight: 740,
         whatsappKey: 'Michael Jackson en Piano en CDMX',
         isCombo: false,
         mapLayout: 'cdmx',
@@ -3654,7 +3683,7 @@
         mapsUrl: 'https://maps.app.goo.gl/R1AK9Ueon3AXteFm8',
         addressText: 'Foro Lanzilotti • Av. Insurgentes Sur 2135, San Ángel, CDMX (a una cuadra del Metrobús La Bombilla)',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2002786319796',
-        ebEventId: '2002786319796', ebHeight: 680,
+        ebEventId: '2002786319796', ebHeight: 740,
         whatsappKey: 'Coldplay en Piano en CDMX',
         isCombo: false,
         mapLayout: 'cdmx',
@@ -3680,7 +3709,7 @@
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
         addressText: 'Eje Metropolitano 30, Av. Colón 400 Ote, Centro, Mty. N.L.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2003120357913',
-        ebEventId: '2003120357913', ebHeight: 680,
+        ebEventId: '2003120357913', ebHeight: 740,
         whatsappKey: 'Michael Jackson en Piano en MTY',
         isCombo: false,
         mapLayout: 'monterrey',
@@ -3706,7 +3735,7 @@
         mapsUrl: 'https://maps.app.goo.gl/vd7R4jhWFDtiq2Ny5',
         addressText: 'Eje Metropolitano 30, Av. Colón 400 Ote, Centro, Mty. N.L.',
         eventbriteUrl: 'https://www.eventbrite.com.mx/e/2003120820296',
-        ebEventId: '2003120820296', ebHeight: 680,
+        ebEventId: '2003120820296', ebHeight: 740,
         whatsappKey: 'Coldplay en Piano en MTY',
         isCombo: false,
         mapLayout: 'monterrey',
@@ -4593,12 +4622,6 @@
 
       injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight);
 
-      if (window.innerWidth <= 768) {
-        document.body.classList.remove('embed-expanded-mobile');
-        const chevron = document.getElementById('stEmbedChevron');
-        if (chevron) chevron.style.transform = 'rotate(0deg)';
-      }
-
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
           content_ids: [item.ebEventId],
@@ -4619,42 +4642,25 @@
         });
       }
 
-      const container = document.getElementById('standaloneEbContainer');
-      if (window.innerWidth <= 768) {
-        if (!document.body.classList.contains('embed-expanded-mobile')) {
-          document.body.classList.add('embed-expanded-mobile');
-        }
-        setTimeout(() => {
-          if (container) {
-            const y = container.getBoundingClientRect().top + window.scrollY - 64;
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }
-        }, 80);
-      }
+      const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
+      if (!wrapper) return;
+
+      const stickyBarHeight = document.getElementById('ebStickyTicketBar')?.offsetHeight || 76;
+      const rect = wrapper.getBoundingClientRect();
+      const targetBottomY = rect.bottom + window.scrollY;
+      const desiredScrollY = Math.max(0, targetBottomY - window.innerHeight + stickyBarHeight + 24);
+
+      window.scrollTo({
+        top: desiredScrollY,
+        behavior: 'smooth'
+      });
     }
 
     function handleSelectTicketsClick() {
-      if (window.innerWidth <= 768) toggleStandaloneEmbed();
-    }
-
-    function toggleStandaloneEmbed() {
-      const container = document.getElementById('standaloneEbContainer');
-      const chevron = document.getElementById('stEmbedChevron');
-      const isExpanded = document.body.classList.contains('embed-expanded-mobile');
-
-      if (isExpanded) {
-        document.body.classList.remove('embed-expanded-mobile');
-        if (chevron) chevron.style.transform = 'rotate(0deg)';
-        if (window.innerWidth <= 768) window.scrollTo({ top: 0, behavior: 'smooth' });
-      } else {
-        document.body.classList.add('embed-expanded-mobile');
-        if (chevron) chevron.style.transform = 'rotate(180deg)';
-        if (window.innerWidth <= 768) {
-          setTimeout(() => {
-            const y = container.getBoundingClientRect().top + window.scrollY - 120 + (window.innerHeight * 0.05);
-            window.scrollTo({ top: y, behavior: 'smooth' });
-          }, 100);
-        }
+      const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
+      if (wrapper) {
+        const y = wrapper.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top: Math.max(0, y), behavior: 'smooth' });
       }
     }
 
