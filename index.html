@@ -1310,7 +1310,7 @@
       display: none;
       transform: translateY(0);
       opacity: 1;
-      transition: transform 0.26s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.22s ease;
+      transition: transform 0.24s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.2s ease;
     }
 
     body.light-mode .eb-sticky-ticket-bar {
@@ -1319,7 +1319,7 @@
     }
 
     .eb-sticky-ticket-bar.bar-hidden {
-      transform: translateY(110%);
+      transform: translateY(112%);
       opacity: 0;
       pointer-events: none;
     }
@@ -3899,8 +3899,8 @@
 
     // Estado de 2 pasos para el botón de cerrar del modal de evento:
     // 1er clic (si no está arriba): desliza hasta arriba y arma el cierre.
-    // 2do clic (o si ya estaba arriba): cierra el modal.
-    // Se resetea cada vez que se presiona "Conseguir boletos".
+    // 2do clic (o si ya estaba arriba): cierra el modal y resetea el estado.
+    // También se resetea si el usuario vuelve a hacer scroll manual o pulsa "Conseguir boletos".
     let closeBtnReadyToExit = false;
 
     function syncCloseBtnVisualState() {
@@ -3917,8 +3917,12 @@
     }
 
     function resetCloseBtnCycle() {
-      closeBtnReadyToExit = false;
-      syncCloseBtnVisualState();
+      if (closeBtnReadyToExit) {
+        closeBtnReadyToExit = false;
+        syncCloseBtnVisualState();
+      } else {
+        syncCloseBtnVisualState();
+      }
     }
 
     function handleStandaloneCloseClick(btnEl) {
@@ -3927,17 +3931,18 @@
       if (!closeBtnReadyToExit && currentScrollY > 24) {
         closeBtnReadyToExit = true;
         syncCloseBtnVisualState();
+        setStickyBarHidden(false);
         programScrollCooldown = true;
         window.scrollTo({ top: 0, behavior: 'smooth' });
         setTimeout(() => {
           lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
           programScrollCooldown = false;
+          setStickyBarHidden(false);
         }, 700);
         return;
       }
 
-      closeBtnReadyToExit = false;
-      syncCloseBtnVisualState();
+      resetCloseBtnCycle();
       closeStandaloneView();
     }
 
@@ -3967,12 +3972,21 @@
       lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
 
       window.addEventListener('scroll', () => {
-        if (window.innerWidth > 768) return;
+        const currentY = window.scrollY || window.pageYOffset || 0;
+
+        if (!programScrollCooldown && closeBtnReadyToExit) {
+          resetCloseBtnCycle();
+        }
+
+        if (window.innerWidth > 768) {
+          lastMobileScrollY = currentY;
+          return;
+        }
         if (!document.body.classList.contains('standalone-active') || !document.body.classList.contains('event-modal-open')) {
+          lastMobileScrollY = currentY;
           return;
         }
 
-        const currentY = window.scrollY || window.pageYOffset || 0;
         const deltaY = currentY - lastMobileScrollY;
         const docHeight = Math.max(
           document.body.scrollHeight,
@@ -3981,13 +3995,16 @@
         const distanceToBottom = docHeight - (currentY + window.innerHeight);
 
         if (programScrollCooldown) {
+          if (currentY <= 12) {
+            setStickyBarHidden(false);
+          }
           lastMobileScrollY = currentY;
           return;
         }
 
-        if (distanceToBottom <= 90) {
+        if (distanceToBottom <= 24) {
           setStickyBarHidden(true);
-        } else if (deltaY < -8) {
+        } else if (currentY <= 12 || deltaY < -6) {
           setStickyBarHidden(false);
         }
 
