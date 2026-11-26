@@ -761,6 +761,106 @@
       border-color: transparent;
     }
 
+    /* ESTILOS DE PROMO CDMX ($50 MXN) — LLAMATIVOS PERO NO INVASIVOS */
+    @keyframes cdmxCouponShine {
+      0%, 82%, 100% {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(231, 201, 107, 0);
+      }
+      88% {
+        box-shadow: 0 6px 20px rgba(212, 175, 55, 0.35), 0 0 0 5px rgba(231, 201, 107, 0.16);
+      }
+    }
+
+    .st-coupon-floating-tag {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      z-index: 12;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 5px 11px;
+      border-radius: 999px;
+      background: rgba(14, 14, 19, 0.9);
+      border: 1px dashed rgba(231, 201, 107, 0.85);
+      color: #f3d77c;
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      backdrop-filter: blur(8px);
+      pointer-events: none;
+      animation: cdmxCouponShine 5s ease-in-out infinite;
+    }
+
+    .st-coupon-floating-tag i {
+      color: #e7c96b;
+      font-size: 10.5px;
+    }
+
+    .st-coupon-floating-tag strong {
+      color: #ffffff;
+      font-weight: 800;
+    }
+
+    .cdmx-old-price-strike {
+      text-decoration: line-through;
+      text-decoration-thickness: 1.5px;
+      text-decoration-color: rgba(230, 57, 70, 0.82);
+      color: var(--text-muted);
+      font-weight: 600;
+      opacity: 0.88;
+    }
+
+    .cdmx-promo-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.16);
+      border: 1px solid rgba(212, 175, 55, 0.38);
+      color: #e7c96b;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    body.light-mode .cdmx-promo-pill {
+      background: rgba(166, 124, 18, 0.12);
+      color: #8f680a;
+    }
+
+    .eb-sticky-price-promo-wrap {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .eb-sticky-old-price {
+      font-size: 12px;
+      text-decoration: line-through;
+      text-decoration-color: rgba(230, 57, 70, 0.85);
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .eb-section-promo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      margin-top: 2px;
+      padding: 2px 9px;
+      border-radius: 999px;
+      background: rgba(9, 9, 12, 0.14);
+      color: #09090c;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 9.5px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+    }
+
     .events-wrapper.mode-list {
       display: flex;
       flex-direction: column;
@@ -1362,7 +1462,7 @@
       cursor: pointer;
       z-index: 10050;
       box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
-      transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+      transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease, transform 0.2s ease;
     }
 
     .standalone-card > .standalone-fixed-close:hover,
@@ -1374,7 +1474,14 @@
       transform: scale(1.04);
     }
 
-    /* DISTRIBUCIÓN EN 2 COLUMNAS EN ESCRITORIO: IZQUIERDA INFO EVENTO / DERECHA FIJA CON "SELECCIONA TUS ENTRADAS" + WIDGET */
+    .standalone-card > .standalone-fixed-close.is-armed-exit {
+      border-color: var(--accent-gold);
+      background: var(--accent-gold-soft);
+      color: var(--accent-gold);
+      box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.22), 0 8px 20px rgba(0, 0, 0, 0.36);
+    }
+
+    /* DISTRIBUCIÓN EN 2 COLUMNAS EN ESCRITORIO */
     .standalone-layout-grid {
       display: flex;
       flex-direction: column;
@@ -2201,10 +2308,18 @@
       margin-bottom: 12px;
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
       gap: 8px;
     }
 
-    .standalone-prices-title i {
+    .standalone-prices-title-left {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .standalone-prices-title i.fa-tags {
       color: var(--accent-gold);
     }
 
@@ -2288,6 +2403,11 @@
       font-weight: 800;
       color: var(--accent-gold);
       font-size: 11.5px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
     }
 
     .zone-inspector-price.soldout {
@@ -2937,6 +3057,13 @@
         font-size: 19px;
       }
 
+      .st-coupon-floating-tag {
+        top: 8px;
+        right: 8px;
+        padding: 4px 9px;
+        font-size: 8.8px;
+      }
+
       .artist-avatar-circle {
         width: 96px;
         height: 96px;
@@ -3164,7 +3291,7 @@
   <!-- VISTA INDIVIDUAL DE EVENTO -->
   <div id="standaloneEventView" class="standalone-event-container" style="display: none;">
     <div class="standalone-card">
-      <button class="standalone-fixed-close" aria-label="Cerrar vista" onclick="closeStandaloneView()">&times;</button>
+      <button id="stCloseModalBtn" class="standalone-fixed-close" aria-label="Cerrar vista" onclick="handleStandaloneCloseClick(this)">&times;</button>
 
       <div class="standalone-layout-grid">
         <div class="standalone-left-col">
@@ -3176,6 +3303,10 @@
           <div class="eb-event-hero-card">
             <div class="standalone-flyer-wrapper">
               <span id="stBadgeCity" class="st-badge-city">--</span>
+              <span id="stCouponFloatingTag" class="st-coupon-floating-tag" style="display: none;">
+                <i class="fa-solid fa-ticket"></i>
+                <span id="stCouponFloatingText"></span>
+              </span>
               <div class="modal-slideshow-container" id="modalSlideshowContainer"></div>
               <button class="modal-slide-btn modal-slide-prev" onclick="changeModalSlide(-1)" aria-label="Anterior"><i class="fa-solid fa-chevron-left"></i></button>
               <button class="modal-slide-btn modal-slide-next" onclick="changeModalSlide(1)" aria-label="Siguiente"><i class="fa-solid fa-chevron-right"></i></button>
@@ -3326,7 +3457,13 @@
 
           <!-- PRECIOS Y MAPA VISIBLE FUERA DEL DESLIZABLE PARA FACILITAR LA COMPRA -->
           <div class="standalone-prices-box">
-            <div class="standalone-prices-title"><i class="fa-solid fa-tags"></i> <span class="i18n" data-es="Precios de boletos y mapa de zonas" data-en="Ticket prices and seating map">Precios de boletos y mapa de zonas</span></div>
+            <div class="standalone-prices-title">
+              <span class="standalone-prices-title-left">
+                <i class="fa-solid fa-tags"></i>
+                <span class="i18n" data-es="Precios de boletos y mapa de zonas" data-en="Ticket prices and seating map">Precios de boletos y mapa de zonas</span>
+              </span>
+              <span id="stPricesPromoBadge" class="cdmx-promo-pill" style="display: none;"></span>
+            </div>
             <div id="stPricesContent" class="standalone-prices-grid"></div>
             <div id="stZoneInspector" class="zone-hover-inspector">
               <div class="zone-inspector-top">
@@ -3348,6 +3485,7 @@
               <i class="fa-solid fa-chevron-down" id="stEmbedChevron" style="margin-left: auto; transition: transform 0.25s;"></i>
             </div>
             <span class="eb-powered-sub"><i class="fa-solid fa-lock"></i> Compra oficial respaldada por Eventbrite</span>
+            <span id="stDesktopSectionPromo" class="eb-section-promo-badge" style="display: none;"></span>
           </div>
 
           <div id="standaloneEbContainer" class="standalone-eb-container">
@@ -3439,6 +3577,8 @@
   </footer>
 
   <script>
+    const CDMX_DISCOUNT_MXN = 50;
+
     const venuesConfig = {
       cancun: { estacionamiento: 'Gratuito', accesibilidad: 'Si, este venue es inclusivo', todoPublico: 'Sí' },
       cdmx: { estacionamiento: 'Valet Parking con costo', accesibilidad: 'Limitada', todoPublico: 'Sí' },
@@ -3757,6 +3897,60 @@
     let lastMobileScrollY = 0;
     let programScrollCooldown = false;
 
+    // Estado de 2 pasos para el botón de cerrar del modal de evento:
+    // 1er clic (si no está arriba): desliza hasta arriba y arma el cierre.
+    // 2do clic (o si ya estaba arriba): cierra el modal.
+    // Se resetea cada vez que se presiona "Conseguir boletos".
+    let closeBtnReadyToExit = false;
+
+    function syncCloseBtnVisualState() {
+      const btn = document.getElementById('stCloseModalBtn');
+      if (!btn) return;
+      btn.classList.toggle('is-armed-exit', closeBtnReadyToExit);
+      if (closeBtnReadyToExit) {
+        btn.setAttribute('title', currentLang === 'es' ? 'Pulsa de nuevo para cerrar' : 'Click again to close');
+        btn.setAttribute('aria-label', currentLang === 'es' ? 'Pulsa de nuevo para cerrar el modal' : 'Click again to close modal');
+      } else {
+        btn.setAttribute('title', currentLang === 'es' ? 'Ir arriba o cerrar' : 'Scroll to top or close');
+        btn.setAttribute('aria-label', currentLang === 'es' ? 'Cerrar vista' : 'Close view');
+      }
+    }
+
+    function resetCloseBtnCycle() {
+      closeBtnReadyToExit = false;
+      syncCloseBtnVisualState();
+    }
+
+    function handleStandaloneCloseClick(btnEl) {
+      const currentScrollY = window.scrollY || window.pageYOffset || 0;
+
+      if (!closeBtnReadyToExit && currentScrollY > 24) {
+        closeBtnReadyToExit = true;
+        syncCloseBtnVisualState();
+        programScrollCooldown = true;
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
+          programScrollCooldown = false;
+        }, 700);
+        return;
+      }
+
+      closeBtnReadyToExit = false;
+      syncCloseBtnVisualState();
+      closeStandaloneView();
+    }
+
+    function hasCdmxPromo(ev) {
+      return Boolean(ev && ev.cityKey === 'cdmx');
+    }
+
+    function getEffectivePrice(ev, rawPrice) {
+      const num = Number(rawPrice) || 0;
+      if (!hasCdmxPromo(ev)) return num;
+      return Math.max(0, num - CDMX_DISCOUNT_MXN);
+    }
+
     function setStickyBarHidden(hidden) {
       stickyBarHiddenForWidget = Boolean(hidden);
       const bar = document.getElementById('ebStickyTicketBar');
@@ -3815,7 +4009,17 @@
       if (!ev || !ev.zones) return 300;
       const prices = Object.values(ev.zones)
         .filter(z => !z.soldOut && typeof z.price === 'number')
-        .map(z => z.price);
+        .map(z => getEffectivePrice(ev, z.price));
+      if (prices.length > 0) return Math.min(...prices);
+      const allPrices = Object.values(ev.zones).map(z => getEffectivePrice(ev, z.price) || 300);
+      return allPrices.length > 0 ? Math.min(...allPrices) : 300;
+    }
+
+    function getMinOriginalPrice(ev) {
+      if (!ev || !ev.zones) return 300;
+      const prices = Object.values(ev.zones)
+        .filter(z => !z.soldOut && typeof z.price === 'number')
+        .map(z => Number(z.price));
       if (prices.length > 0) return Math.min(...prices);
       const allPrices = Object.values(ev.zones).map(z => Number(z.price) || 300);
       return allPrices.length > 0 ? Math.min(...allPrices) : 300;
@@ -4168,8 +4372,17 @@
       const label = currentLang === 'es' ? z.labelEs : z.labelEn;
       const desc = currentLang === 'es' ? (z.descEs || fallbackDesc.descEs) : (z.descEn || fallbackDesc.descEn);
       const soldOutText = currentLang === 'es' ? 'Agotado' : 'Sold Out';
-      const priceText = z.soldOut ? soldOutText : `$${Number(z.price).toLocaleString('es-MX')} MXN`;
-      return { ...z, label, desc, soldOutText, priceText };
+      const origNum = Number(z.price) || 0;
+      const isPromo = hasCdmxPromo(item) && !z.soldOut;
+      const finalNum = isPromo ? getEffectivePrice(item, origNum) : origNum;
+
+      const priceText = z.soldOut
+        ? soldOutText
+        : (isPromo
+            ? `$${finalNum.toLocaleString('es-MX')} MXN (antes $${origNum.toLocaleString('es-MX')} • -$${CDMX_DISCOUNT_MXN} promo)`
+            : `$${finalNum.toLocaleString('es-MX')} MXN`);
+
+      return { ...z, label, desc, soldOutText, priceText, origNum, finalNum, isPromo };
     }
 
     function updateZoneInspector(item, zoneKey) {
@@ -4191,7 +4404,7 @@
 
       if (!zoneKey) {
         nameEl.textContent = currentLang === 'es' ? 'Selecciona o pasa el cursor sobre una zona o precio' : 'Select or hover over a zone or price';
-        priceEl.textContent = '';
+        priceEl.innerHTML = '';
         priceEl.classList.remove('soldout');
         if (descEl) descEl.textContent = '';
         actualizarBotonWhatsApp(item.whatsappKey, { mode: 'event', eventItem: item, zoneKey: null });
@@ -4200,8 +4413,20 @@
 
       const data = getZoneDisplayData(item, zoneKey);
       nameEl.textContent = data.label;
-      priceEl.textContent = data.priceText;
       priceEl.classList.toggle('soldout', Boolean(data.soldOut));
+
+      if (data.soldOut) {
+        priceEl.textContent = data.soldOutText;
+      } else if (data.isPromo) {
+        priceEl.innerHTML = `
+          <span class="cdmx-old-price-strike">$${data.origNum.toLocaleString('es-MX')}</span>
+          <span>$${data.finalNum.toLocaleString('es-MX')} MXN</span>
+          <span class="cdmx-promo-pill">-$${CDMX_DISCOUNT_MXN} promo</span>
+        `;
+      } else {
+        priceEl.textContent = `$${data.finalNum.toLocaleString('es-MX')} MXN`;
+      }
+
       if (descEl) descEl.textContent = data.desc || '';
 
       if (pricesBox) {
@@ -4332,6 +4557,7 @@
       document.getElementById('btnLangToggle').innerText = currentLang === 'es' ? 'EN' : 'ES';
       document.querySelectorAll('.i18n').forEach(el => el.innerText = el.getAttribute('data-' + currentLang));
       document.querySelectorAll('.i18n-html').forEach(el => el.innerHTML = el.getAttribute('data-' + currentLang));
+      syncCloseBtnVisualState();
       renderEvents();
 
       const rawHash = window.location.hash.replace('#', '');
@@ -4422,7 +4648,7 @@
           : `${dateBlockHtml}${bannerHtml}`;
 
         return `
-          <div class="event-card" onclick="goToStandalonePage('${ev.slug}')">
+          <div class="event-card" onclick="resetCloseBtnCycle(); goToStandalonePage('${ev.slug}')">
             ${topMediaHtml}
             <div class="card-body">
               <div class="info-col">
@@ -4441,7 +4667,7 @@
                   <span class="cl-price-amount">MX$${Number(minPrice).toLocaleString('es-MX')}.00</span>
                   <span class="cl-price-fee-note">${feeSmall}</span>
                 </div>
-                <button type="button" class="btn-buy" onclick="event.stopPropagation(); goToStandalonePage('${ev.slug}')">
+                <button type="button" class="btn-buy" onclick="event.stopPropagation(); resetCloseBtnCycle(); goToStandalonePage('${ev.slug}')">
                   <i class="fa-solid fa-ticket"></i> ${ctaText}
                 </button>
               </div>
@@ -4463,6 +4689,7 @@
     });
 
     function goToStandalonePage(slug) {
+      resetCloseBtnCycle();
       window.location.hash = '#' + slug;
     }
 
@@ -4496,6 +4723,7 @@
     }
 
     function closeStandaloneView() {
+      resetCloseBtnCycle();
       let targetCity = 'all';
       if (currentStandaloneSlug) {
         const foundItem = eventosData.find(e => e.slug === currentStandaloneSlug);
@@ -4555,9 +4783,37 @@
 
     function updateStandaloneContent(item) {
       currentStandaloneSlug = item.slug;
+      resetCloseBtnCycle();
       setStickyBarHidden(false);
       const fullGallery = [item.image, ...pastEventsSharedGallery];
       updateModalSlideshow(fullGallery);
+
+      const isPromo = hasCdmxPromo(item);
+      const couponTag = document.getElementById('stCouponFloatingTag');
+      const couponText = document.getElementById('stCouponFloatingText');
+      const pricesPromoBadge = document.getElementById('stPricesPromoBadge');
+      const desktopSectionPromo = document.getElementById('stDesktopSectionPromo');
+
+      if (isPromo) {
+        if (couponTag && couponText) {
+          couponText.innerHTML = currentLang === 'es'
+            ? `Cupón CDMX: <strong>-$${CDMX_DISCOUNT_MXN} MXN</strong>`
+            : `CDMX Coupon: <strong>-$${CDMX_DISCOUNT_MXN} MXN</strong>`;
+          couponTag.style.display = 'inline-flex';
+        }
+        if (pricesPromoBadge) {
+          pricesPromoBadge.innerHTML = `<i class="fa-solid fa-tag"></i> ${currentLang === 'es' ? `Promo -$${CDMX_DISCOUNT_MXN} MXN activa` : `-$${CDMX_DISCOUNT_MXN} MXN promo active`}`;
+          pricesPromoBadge.style.display = 'inline-flex';
+        }
+        if (desktopSectionPromo) {
+          desktopSectionPromo.innerHTML = `<i class="fa-solid fa-tag"></i> ${currentLang === 'es' ? `PROMO CDMX: -$${CDMX_DISCOUNT_MXN} MXN DE DESCUENTO` : `CDMX PROMO: -$${CDMX_DISCOUNT_MXN} MXN OFF`}`;
+          desktopSectionPromo.style.display = 'inline-flex';
+        }
+      } else {
+        if (couponTag) couponTag.style.display = 'none';
+        if (pricesPromoBadge) pricesPromoBadge.style.display = 'none';
+        if (desktopSectionPromo) desktopSectionPromo.style.display = 'none';
+      }
 
       const introInfo = programIntros[item.programKey] || programIntros.mj;
       document.getElementById('stBadgeCity').innerText = item.cityName;
@@ -4605,13 +4861,22 @@
       updateInfoCardsIndicators(0);
 
       const minPrice = getMinAvailablePrice(item);
+      const minOrigPrice = getMinOriginalPrice(item);
       const stickyPriceEl = document.getElementById('stStickyPriceLabel');
       const stickyDateTimeEl = document.getElementById('stStickyDateTime');
+
       if (stickyPriceEl) {
-        stickyPriceEl.innerHTML = currentLang === 'es'
-          ? `A partir de <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`
-          : `From <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`;
+        if (isPromo) {
+          stickyPriceEl.innerHTML = currentLang === 'es'
+            ? `<span class="eb-sticky-price-promo-wrap"><span class="eb-sticky-old-price">$${Number(minOrigPrice).toLocaleString('es-MX')}</span><span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span><span class="cdmx-promo-pill">-$${CDMX_DISCOUNT_MXN} promo</span></span>`
+            : `<span class="eb-sticky-price-promo-wrap"><span class="eb-sticky-old-price">$${Number(minOrigPrice).toLocaleString('es-MX')}</span><span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span><span class="cdmx-promo-pill">-$${CDMX_DISCOUNT_MXN} off</span></span>`;
+        } else {
+          stickyPriceEl.innerHTML = currentLang === 'es'
+            ? `A partir de <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`
+            : `From <span>$${Number(minPrice).toLocaleString('es-MX')} MXN</span>`;
+        }
       }
+
       if (stickyDateTimeEl) {
         const shortDate = currentLang === 'es' ? item.dateEs : item.dateEn;
         stickyDateTimeEl.textContent = `${shortDate} • ${item.time} • ${item.cityName}`;
@@ -4644,9 +4909,15 @@
       document.getElementById('stPricesContent').innerHTML = zoneKeys.map(zKey => {
         const zData = getZoneDisplayData(item, zKey);
         const soldBadge = zData.soldOut ? `<span class="soldout-tag">${zData.soldOutText}</span>` : '';
+        const priceMarkup = zData.soldOut
+          ? ''
+          : (zData.isPromo
+              ? `<span class="cdmx-old-price-strike">$${zData.origNum.toLocaleString('es-MX')}</span> <strong>$${zData.finalNum.toLocaleString('es-MX')}</strong> <span class="cdmx-promo-pill">-$${CDMX_DISCOUNT_MXN}</span>`
+              : `<strong>$${zData.finalNum.toLocaleString('es-MX')}</strong>`);
+
         return `
           <span class="price-zone-pill${zData.soldOut ? ' is-soldout' : ''}" data-zone="${zKey}">
-            ${zData.label}: <strong>$${Number(zData.price).toLocaleString('es-MX')}</strong> ${soldBadge}
+            ${zData.label}: ${priceMarkup} ${soldBadge}
           </span>
         `;
       }).join('');
@@ -4670,6 +4941,7 @@
     }
 
     function handleStickyTicketBarClick() {
+      resetCloseBtnCycle();
       const foundItem = eventosData.find(ev => ev.slug === currentStandaloneSlug);
       if (foundItem && typeof fbq === 'function') {
         fbq('track', 'Lead', {
@@ -4700,6 +4972,7 @@
     }
 
     function handleSelectTicketsClick() {
+      resetCloseBtnCycle();
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
       if (wrapper) {
         const y = wrapper.getBoundingClientRect().top + window.scrollY - 125;
@@ -4789,6 +5062,7 @@
         window.scrollTo(0, 0);
         lastMobileScrollY = 0;
       } else {
+        resetCloseBtnCycle();
         document.body.classList.remove('standalone-active');
         document.body.classList.remove('event-modal-open');
         document.body.classList.remove('embed-expanded-mobile');
