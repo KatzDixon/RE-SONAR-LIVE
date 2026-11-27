@@ -3896,11 +3896,8 @@
     let stickyBarHiddenForWidget = false;
     let lastMobileScrollY = 0;
     let programScrollCooldown = false;
+    let programScrollFallbackTimer = null;
 
-    // Estado de 2 pasos para el botón de cerrar del modal de evento:
-    // 1er clic (si no está arriba): desliza hasta arriba y arma el cierre.
-    // 2do clic (o si ya estaba arriba): cierra el modal y resetea el estado.
-    // También se resetea si el usuario vuelve a hacer scroll manual o pulsa "Conseguir boletos".
     let closeBtnReadyToExit = false;
 
     function syncCloseBtnVisualState() {
@@ -3933,15 +3930,17 @@
         syncCloseBtnVisualState();
         setStickyBarHidden(false);
         programScrollCooldown = true;
+        clearTimeout(programScrollFallbackTimer);
         window.scrollTo({ top: 0, behavior: 'smooth' });
-        setTimeout(() => {
+        programScrollFallbackTimer = setTimeout(() => {
           lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
           programScrollCooldown = false;
           setStickyBarHidden(false);
-        }, 700);
+        }, 1100);
         return;
       }
 
+      clearTimeout(programScrollFallbackTimer);
       resetCloseBtnCycle();
       closeStandaloneView();
     }
@@ -3995,14 +3994,16 @@
         const distanceToBottom = docHeight - (currentY + window.innerHeight);
 
         if (programScrollCooldown) {
-          if (currentY <= 12) {
+          if (distanceToBottom <= 48) {
+            setStickyBarHidden(true);
+          } else if (currentY <= 12) {
             setStickyBarHidden(false);
           }
           lastMobileScrollY = currentY;
           return;
         }
 
-        if (distanceToBottom <= 24) {
+        if (distanceToBottom <= 48) {
           setStickyBarHidden(true);
         } else if (currentY <= 12 || deltaY < -6) {
           setStickyBarHidden(false);
@@ -4740,6 +4741,7 @@
     }
 
     function closeStandaloneView() {
+      clearTimeout(programScrollFallbackTimer);
       resetCloseBtnCycle();
       let targetCity = 'all';
       if (currentStandaloneSlug) {
@@ -4974,18 +4976,31 @@
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
       if (!wrapper) return;
 
-      const y = wrapper.getBoundingClientRect().top + window.scrollY - 56;
+      const targetY = Math.max(0, wrapper.getBoundingClientRect().top + window.scrollY - 56);
       programScrollCooldown = true;
+      clearTimeout(programScrollFallbackTimer);
+
+      const finishProgramScroll = () => {
+        clearTimeout(programScrollFallbackTimer);
+        lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
+        programScrollCooldown = false;
+        const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+        const distanceToBottom = docHeight - ((window.scrollY || window.pageYOffset || 0) + window.innerHeight);
+        if (distanceToBottom <= 48) {
+          setStickyBarHidden(true);
+        }
+      };
+
+      if ('onscrollend' in window) {
+        window.addEventListener('scrollend', finishProgramScroll, { once: true });
+      }
 
       window.scrollTo({
-        top: Math.max(0, y),
+        top: targetY,
         behavior: 'smooth'
       });
 
-      setTimeout(() => {
-        lastMobileScrollY = window.scrollY || window.pageYOffset || 0;
-        programScrollCooldown = false;
-      }, 750);
+      programScrollFallbackTimer = setTimeout(finishProgramScroll, 1100);
     }
 
     function handleSelectTicketsClick() {
