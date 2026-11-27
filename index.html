@@ -3065,7 +3065,7 @@
         min-height: calc(100dvh - var(--wa-bar-height));
         border-radius: 0;
         border: none;
-        padding: 18px 14px 140px 14px;
+        padding: 18px 14px 16px 14px;
         box-shadow: none;
         overflow: visible;
       }
@@ -3101,9 +3101,9 @@
       .standalone-eb-container {
         display: block !important;
         margin-top: 6px;
-        margin-bottom: 24px;
-        padding-bottom: 48px;
-        scroll-margin-bottom: 120px;
+        margin-bottom: 0;
+        padding-bottom: 0;
+        scroll-margin-bottom: 0;
         overflow: visible;
       }
 
@@ -5009,7 +5009,11 @@
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
       if (!wrapper) return;
 
-      const targetY = Math.max(0, wrapper.getBoundingClientRect().top + window.scrollY - 56);
+      const rect = wrapper.getBoundingClientRect();
+      const topSafeY = rect.top + window.scrollY - 52;
+      const bottomAlignedY = rect.bottom + window.scrollY - window.innerHeight;
+      const targetY = Math.max(0, Math.min(topSafeY, bottomAlignedY));
+
       programScrollCooldown = true;
       clearTimeout(programScrollFallbackTimer);
 
