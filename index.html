@@ -761,7 +761,7 @@
       border-color: transparent;
     }
 
-    /* ESTILOS DE PROMO CDMX ($50 MXN) — LLAMATIVOS PERO NO INVASIVOS */
+    /* ESTILOS DE PROMO CDMX ($50 MXN) */
     @keyframes cdmxCouponShine {
       0%, 82%, 100% {
         box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35), 0 0 0 0 rgba(231, 201, 107, 0);
@@ -3992,20 +3992,18 @@
           document.documentElement.scrollHeight
         );
         const distanceToBottom = docHeight - (currentY + window.innerHeight);
+        // Umbral del 15% del alto total del documento para reaparecer al desplazarse
+        const reappearThreshold = docHeight * 0.15;
 
         if (programScrollCooldown) {
-          if (distanceToBottom <= 48) {
-            setStickyBarHidden(true);
-          } else if (currentY <= 12) {
-            setStickyBarHidden(false);
-          }
+          setStickyBarHidden(true);
           lastMobileScrollY = currentY;
           return;
         }
 
-        if (distanceToBottom <= 48) {
+        if (distanceToBottom <= reappearThreshold) {
           setStickyBarHidden(true);
-        } else if (currentY <= 12 || deltaY < -6) {
+        } else if (currentY <= 12 || (deltaY < -6 && distanceToBottom > reappearThreshold)) {
           setStickyBarHidden(false);
         }
 
@@ -4971,6 +4969,7 @@
         });
       }
 
+      // Oculta la barra de inmediato al pulsar "Conseguir boletos"
       setStickyBarHidden(true);
 
       const wrapper = document.getElementById('stEbWidgetWrapper') || document.getElementById('standaloneEbContainer');
@@ -4986,7 +4985,7 @@
         programScrollCooldown = false;
         const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
         const distanceToBottom = docHeight - ((window.scrollY || window.pageYOffset || 0) + window.innerHeight);
-        if (distanceToBottom <= 48) {
+        if (distanceToBottom <= docHeight * 0.15) {
           setStickyBarHidden(true);
         }
       };
