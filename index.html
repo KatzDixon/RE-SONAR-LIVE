@@ -2872,10 +2872,10 @@
     /* RESPONSIVE MÓVIL */
     @media (max-width: 768px) {
       html, body {
-        overflow-x: auto;
+        overflow-x: clip;
       }
 
-      /* Widget 30% más largo en móvil y con desbordamiento permitido */
+      /* Comportamiento por defecto en móvil */
       .payment-modal-wrapper,
       #paymentEbWidgetWrapper,
       #eb-widget-wrapper,
@@ -2892,6 +2892,32 @@
         max-width: none !important;
         min-height: calc(740px * 1.3) !important;
         height: calc(740px * 1.3) !important;
+      }
+
+      /* ÚNICAMENTE Monterrey y CDMX en móvil: el widget cabe completo dentro de la pantalla */
+      body.mobile-fit-widget-city .payment-modal-wrapper,
+      body.mobile-fit-widget-city #paymentEbWidgetWrapper,
+      body.mobile-fit-widget-city #eb-widget-wrapper,
+      body.mobile-fit-widget-city #stEbWidgetWrapper,
+      body.mobile-fit-widget-city div[id^="eb-node-"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        min-height: 520px !important;
+        height: auto !important;
+        overflow: hidden !important;
+      }
+
+      body.mobile-fit-widget-city #eb-widget-wrapper iframe,
+      body.mobile-fit-widget-city #stEbWidgetWrapper iframe,
+      body.mobile-fit-widget-city #paymentEbWidgetWrapper iframe,
+      body.mobile-fit-widget-city div[id^="eb-node-"] iframe {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        min-height: 520px !important;
+        height: 620px !important;
+        display: block;
       }
 
       .whatsapp-top-bar { font-size: 11px; }
@@ -3974,6 +4000,15 @@
       return Boolean(ev && ev.cityKey === 'cdmx');
     }
 
+    function isFitWidgetCity(ev) {
+      return Boolean(ev && (ev.cityKey === 'monterrey' || ev.cityKey === 'cdmx'));
+    }
+
+    function syncMobileFitWidgetClass(ev) {
+      const shouldFit = window.innerWidth <= 768 && isFitWidgetCity(ev);
+      document.body.classList.toggle('mobile-fit-widget-city', shouldFit);
+    }
+
     function getEffectivePrice(ev, rawPrice) {
       const num = Number(rawPrice) || 0;
       if (!hasCdmxPromo(ev)) return num;
@@ -4722,6 +4757,8 @@
       clearTimeout(resizeRenderTimer);
       resizeRenderTimer = setTimeout(() => {
         renderEvents();
+        const activeEv = eventosData.find(e => e.slug === currentStandaloneSlug) || null;
+        syncMobileFitWidgetClass(activeEv);
         if (window.innerWidth > 768) {
           setStickyBarHidden(false);
         }
@@ -4733,17 +4770,25 @@
       window.location.hash = '#' + slug;
     }
 
-    function injectEventbriteWidget(targetContainerId, eventId, height) {
+    function injectEventbriteWidget(targetContainerId, eventId, height, ev = null) {
       const container = document.getElementById(targetContainerId);
       const isMobileView = window.innerWidth <= 768;
-      const finalHeight = isMobileView ? Math.round((Number(height) || 740) * 1.3) : (Number(height) || 740);
+      const fitToScreen = isMobileView && isFitWidgetCity(ev);
 
-      container.style.overflow = 'visible';
+      syncMobileFitWidgetClass(ev);
+
+      const finalHeight = fitToScreen
+        ? 620
+        : (isMobileView ? Math.round((Number(height) || 740) * 1.3) : (Number(height) || 740));
+
+      container.style.width = '100%';
+      container.style.maxWidth = fitToScreen ? '100%' : '';
+      container.style.overflow = fitToScreen ? 'hidden' : 'visible';
       container.style.minHeight = `${finalHeight}px`;
 
       container.innerHTML = `
         <div class="eb-loader"><i class="fa-solid fa-spinner fa-spin"></i> ${currentLang === 'es' ? 'Cargando módulo de compra...' : 'Loading checkout module...'}</div>
-        <div id="eb-node-${eventId}" style="overflow: visible; min-height: ${finalHeight}px;"></div>
+        <div id="eb-node-${eventId}" style="width:100%;max-width:${fitToScreen ? '100%' : 'none'};overflow:${fitToScreen ? 'hidden' : 'visible'};min-height:${finalHeight}px;"></div>
       `;
 
       const buildWidget = () => {
@@ -4761,7 +4806,9 @@
             const loader = container.querySelector('.eb-loader');
             if (loader) loader.style.display = 'none';
             const iframe = container.querySelector('iframe');
-            if (iframe && window.innerWidth <= 768) {
+            if (iframe && isMobileView) {
+              iframe.style.width = fitToScreen ? '100%' : '';
+              iframe.style.maxWidth = fitToScreen ? '100%' : 'none';
               iframe.style.height = `${finalHeight}px`;
               iframe.style.minHeight = `${finalHeight}px`;
             }
@@ -4785,6 +4832,7 @@
       document.body.classList.remove('standalone-active');
       document.body.classList.remove('event-modal-open');
       document.body.classList.remove('embed-expanded-mobile');
+      document.body.classList.remove('mobile-fit-widget-city');
       setStickyBarHidden(false);
 
       if (history.pushState) {
@@ -4981,7 +5029,7 @@
       const mapNoteEl = document.getElementById('stMapNote');
       if (mapNoteEl) mapNoteEl.innerHTML = currentLang === 'es' ? item.mapNoteEs : item.mapNoteEn;
 
-      injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight);
+      injectEventbriteWidget('stEbWidgetWrapper', item.ebEventId, item.ebHeight, item);
 
       if (typeof fbq === 'function') {
         fbq('track', 'InitiateCheckout', {
@@ -5077,6 +5125,7 @@
       paymentModalContainer.style.display = 'none';
       thanksModalContainer.style.display = 'none';
       document.body.classList.remove('event-modal-open');
+      document.body.classList.remove('mobile-fit-widget-city');
 
       const paymentRoutes = {
         'cunpagocp': 'cancun-cpdic26',
@@ -5094,7 +5143,7 @@
           paymentModalContainer.style.display = 'block';
           document.body.classList.add('standalone-active');
           setStickyBarHidden(false);
-          injectEventbriteWidget('paymentEbWidgetWrapper', foundItem.ebEventId, foundItem.ebHeight);
+          injectEventbriteWidget('paymentEbWidgetWrapper', foundItem.ebEventId, foundItem.ebHeight, foundItem);
           actualizarBotonWhatsApp('Payment', { mode: 'payment', eventItem: foundItem, zoneKey: null });
           window.scrollTo(0, 0);
           return;
@@ -5136,6 +5185,7 @@
         document.body.classList.remove('standalone-active');
         document.body.classList.remove('event-modal-open');
         document.body.classList.remove('embed-expanded-mobile');
+        document.body.classList.remove('mobile-fit-widget-city');
         setStickyBarHidden(false);
         mainHomeSections.forEach(sec => sec.style.display = 'block');
 
