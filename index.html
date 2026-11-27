@@ -5010,9 +5010,10 @@
       if (!wrapper) return;
 
       const rect = wrapper.getBoundingClientRect();
-      const topSafeY = rect.top + window.scrollY - 52;
+      const docHeight = Math.max(document.body.scrollHeight, document.documentElement.scrollHeight);
+      const maxScrollY = Math.max(0, docHeight - window.innerHeight);
       const bottomAlignedY = rect.bottom + window.scrollY - window.innerHeight;
-      const targetY = Math.max(0, Math.min(topSafeY, bottomAlignedY));
+      const targetY = Math.max(0, Math.min(bottomAlignedY, maxScrollY));
 
       programScrollCooldown = true;
       clearTimeout(programScrollFallbackTimer);
